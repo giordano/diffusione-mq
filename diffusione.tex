@@ -1,0 +1,134 @@
+\documentclass[a4paper,fleqn,twoside]{article}
+\usepackage[T1]{fontenc}
+\usepackage[light,slantedGreeks]{kpfonts}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+
+%%%%% Pacchetti caricati
+\usepackage{layaureo}
+\usepackage[autostyle=true]{csquotes}
+\usepackage[style=numeric,hyperref,abbreviate=false,backend=biber]{biblatex}
+% `mathtools' serve per definire la norma e il valore assoluto
+\usepackage{mathtools}
+% `bm' serve per scrivere i vettori in corsivo con il comando
+% `\bm{vettore}'. Deve sostituire il comando `\mathbf{vettore}' perché questo
+% restituisce erroneamente lettere in tondo, non in corsivo e non funziona con
+% le lettere greche.
+\usepackage{bm}
+\usepackage{hyperref}
+
+% impostazioni per il pacchetto `hyperref'. Per l'elenco di tutte le opzioni del
+% documento consulta il manuale: `texdoc hyperref'
+\hypersetup{
+  pdftitle={Introduzione alla teoria della diffusione in meccanica quantistica},
+  pdfauthor={Mosè Giordano},
+  breaklinks=true,% permette di spezzare i link su più righe
+  bookmarksnumbered,% inserisce i numeri delle sezioni nei segnalibri
+  hidelinks % link neri e senza bordi colorati, adatto per la stampa
+}
+
+\addbibresource{bibliografia.bib} % nome del file contenente la bibliografia
+
+%%%%% Comandi personalizzati
+% ridefinisco i comandi per alcune lettere greche in modo che si usino le
+% varianti
+\renewcommand{\phi}{\varphi}
+\renewcommand{\epsilon}{\varepsilon}
+
+% Comando per indicare la variazione di una quantità.  Deve produrre una delta
+% maiuscola diritta, visto che carico il pacchetto `kpfonts' con l'opzione
+% `slantedGreeks' uso la macro `\Deltaup'.
+\newcommand{\var}{\Deltaup}
+
+% comando per evidenziare le sezioni da completare o espandere.  NOTA: è un
+% comando provvisorio, serve solo durante la scrittura del testo, ricordarsi di
+% eliminarlo quando non serve più.
+\newcommand{\completare}[1]{\textcolor{red}{#1}}
+
+% Operatori
+\newcommand*{\dd}{\mathop{}\!\mathrm{d}} % Operatore differenziale \dd
+\DeclareMathOperator{\e}{\mathrm{e}} % Numero di Eulero
+\DeclareMathOperator{\uimm}{\mathrm{i}} % unità immaginaria
+% Operatore valore assoluto \abs{x}. Usa \abs*{} per le frazioni
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+% Operatore norma \norm{x}. Usa \norm*{} per le frazioni
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+
+%% Derivate
+% Derivata totale: \toder[ordine]{funzione}{variabile}
+\newcommand*{\toder}[3][]{\frac{{\dd^{#1}}#2}{\dd {#3}^{#1}}}
+% Derivata parziale \parder[ordine]{funzione}{variabile}
+% Per la definizione del comando `parder' (per inserire le derivate parziali)
+% vedi
+% http://www.guitex.org/home/index.php?option=com_kunena&func=view&catid=5&id=42178&Itemid=60#42199
+\makeatletter
+\newcommand{\parder}[2]{\begingroup
+  \@tempswafalse\toks@={}\count@=\z@
+  \@for\next:=#2\do
+    {\expandafter\check@var\next\@nil
+     \advance\count@\parder@exp
+     \if@tempswa
+       \toks@=\expandafter{\the\toks@\,}%
+     \else
+       \@tempswatrue
+     \fi
+     \toks@=\expandafter{\the\expandafter\toks@\expandafter\partial\parder@var}}%
+  \frac{\partial\ifnum\count@=\@ne\else^{\number\count@}\fi#1}{\the\toks@}%
+  \endgroup}
+\def\check@var{\@ifstar{\mult@var}{\one@var}}
+\def\mult@var#1#2\@nil{\def\parder@var{#2^{#1}}\def\parder@exp{#1}}
+\def\one@var#1\@nil{\def\parder@var{#1}\chardef\parder@exp\@ne}
+\makeatother
+
+% Derivate per le formule in linea (usare \frac in linea è eccessivo). La `l'
+% iniziale nel nome distingue questi comandi da quelli per le formule fuori
+% corpo. Non uso `\dd' ma `\mathrm{d}' perché nelle formule in linea `\dd'
+% aggiunge una spaziatura non adatta. Non sono dei comandi bellissimi, ma
+% permettono di passare facilmente da formula in linea a fuori corpo e viceversa
+% cambiando una lettera.
+% Derivata totale: \ltoder[ordine]{funzione}{variabile}
+\newcommand*{\ltoder}[3][]{\mathrm{d}^{#1}#2 / \mathrm{d} {#3}^{#1}}
+% Derivata parziale: \lparder[ordine]{funzione}{variabile}
+\newcommand*{\lparder}[3][]{\partial^{#1} #2 / \partial {#3}^{#1}}
+% NOTA: `\parder' e `\lparder' non sono completamente interscambiabili, il primo
+% comando è molto più complesso e permette di inserire le derivate miste, a
+% differenza del secondo.
+
+% Versore. Esempi: versore x: `\versore{x}', versore i: \versor{\imath}, versore
+% j: \versor{\jmath} (solo `i' e `j' richiedono `\imath' e `\jmath', altrimenti
+% il puntino litiga con `\hat')
+\newcommand*{\versor}[1]{\hat{\bm{#1}}}
+
+
+\title{Introduzione alla teoria della diffusione \\ in meccanica quantistica}
+\author{Mosè Giordano}
+
+\begin{document}
+\maketitle
+
+\section{Concetti generali}
+\label{sec:concetti-generali}
+
+\section{Diffusione in meccanica quantistica}
+\label{sec:meccanica-quantistica}
+
+\section{Sviluppo in onde parziali}
+\label{sec:onde-parziali}
+
+\section{Approssimazione di Born}
+\label{sec:approx-born}
+
+\section{Operatori di diffusione}
+\label{sec:operatori-diffusione}
+
+\phantomsection
+\addcontentsline{toc}{section}{\refname}
+\nocite{*}
+\printbibliography
+
+\end{document}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: t
+%%% End: 
