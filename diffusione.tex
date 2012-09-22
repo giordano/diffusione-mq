@@ -208,9 +208,12 @@ In questo modo l'hamiltoniana assume la forma più semplice
 \end{equation}
 Il primo termine è l'energia cinetica del centro di massa, gli ultimi due sono
 l'energia della particella fittizia di massa ridotta
-$m = m_{1}m_{2}/(m_{1}+m_{2})$.  Come noto, possiamo cercare autostati
-dell'hamiltoniana~\eqref{eq:hamiltoniana} della forma separabile
-$\Psi(\bm{R}, \bm{r}) = \Phi(\bm{R})\psi(\bm{r})$.  In particolare,
+$m = m_{1}m_{2}/(m_{1}+m_{2})$.  Vogliamo determinare gli autostati stazionari
+dell'hamiltoniana e in particolare con valori positivi dell'energia, associati a
+stati non legati, perché se lo stato delle due particelle fosse legato sarebbe
+nulla la probabilità di trovarle a distanza reciproca infinita.  Come noto,
+possiamo cercare autostati dell'hamiltoniana~\eqref{eq:hamiltoniana} della forma
+separabile $\Psi(\bm{R}, \bm{r}) = \Phi(\bm{R})\psi(\bm{r})$.  In particolare,
 $\psi(\bm{r})$ deve soddisfare la seguente equazione di Schröedinger stazionaria
 \begin{equation}
   \bigg(-\frac{\hslash^{2}}{2m}\nabla^{2} + V(\bm{r})\bigg)\psi(\bm{r}) =
@@ -307,9 +310,11 @@ d'urto differenziale è
 La sezione d'urto differenziale è la quantità di maggior interesse nei problemi
 di diffusione perché è quella misurabile sperimentalmente e abbiamo visto che è
 uguale al modulo quadro di $f(\theta,\phi)$, chiamata per questo motivo
-\emph{ampiezza di diffusione}.  Nei due prossimi paragrafi studieremo due metodi
-alternativi per calcolare l'ampiezza di diffusione: lo sviluppo in onde parziali
-e l'approssimazione di Born.
+\emph{ampiezza di diffusione}.  La sezione d'urto non dipende dal fattore di
+normalizzazione $A$ e spesso nel seguito lo trascureremo ponendolo uguale a $1$.
+Nei due prossimi paragrafi studieremo due metodi alternativi per calcolare
+l'ampiezza di diffusione: lo sviluppo in onde parziali e l'approssimazione di
+Born.
 
 \section{Sviluppo in onde parziali}
 \label{sec:onde-parziali}
@@ -340,17 +345,24 @@ dell'hamiltoniana
 \end{equation}
 Ciascuna delle funzioni $\psi_{klm}$ prende il nome di \emph{onda parziale},
 quindi la loro combinazione lineare è detta \emph{sviluppo in onde parziali}.
-L'equazione radiale che soddisfa $u_{kl}$ è
+L'equazione radiale che soddisfa $R_{kl}$ è
+\begin{equation}
+  \label{eq:diff-R-op}
+  \bigg(\frac{1}{r^{2}}\toder{}{r}r^{2}\toder{}{r} + k^{2} - U(r) -
+  \frac{l(l+1)}{r^{2}}\bigg)R_{kl}(r) = 0.
+\end{equation}
+Sostituendo $R_{kl}=u_{kl}/r$ troviamo che la funzione $u_{kl}$ soddisfa
+un'equazione differenziale più semplice
 \begin{equation}
   \bigg(\toder[2]{}{r} + k^{2} - U(r) - \frac{l(l+1)}{r^{2}}\bigg)u_{kl}(r) = 0.
 \end{equation}
 Il potenziale di interazione è a simmetria sferica, la particella incidente
 rompe la completa simmetria definendo una direzione precisa che identifichiamo
 con l'asse $\versor{z}$ (cioè $\bm{k} = k\versor{z}$), tuttavia non è presente
-alcuna dipendenza dall'angolo azimutale $\phi$.  Pertanto per annullare la
-dipendenza della funzione d'onda $\psi(\bm{r})$ da $\phi$ nello
-sviluppo~\eqref{eq:onde-parziali1} dobbiamo considerare solo i termini con
-$m = 0$ perché le armoniche sferiche dipende da $\phi$ attraverso
+alcuna dipendenza dall'angolo azimutale $\phi$ e ci sarà pertanto simmetria
+cilindrica.  Per annullare la dipendenza della funzione d'onda $\psi(\bm{r})$ da
+$\phi$ nello sviluppo~\eqref{eq:onde-parziali1} dobbiamo considerare solo i
+termini con $m = 0$ perché le armoniche sferiche dipende da $\phi$ attraverso
 $\e^{\uimm m \phi}$.
 
 % TODO: dimostrare lo sviluppo in onde parziali dell'onda piana
@@ -583,6 +595,72 @@ quindi
   \sigma_{\textup{tot}} = \frac{4\pi}{k} \Im(f(0)).
 \end{equation}
 Questo risultato è noto come \emph{teorema ottico}.
+
+Se il potenziale è non nullo per una distanza relativa $r < L$ ed è assente per
+distanze maggiori è possibile trovare una formula che fornisce direttamente gli
+sfasamenti $\delta_{l}$.  Possiamo considerare il punto $r = L$ come il
+passaggio fra la regione di diffusione e la regione intermedia.  Bisogna
+risolvere, eventualmente usando metodi numerici, l'equazione
+differenziale~\eqref{eq:diff-R-op} nella regione di diffusione $r < L$ ed
+effettuare il raccordo con la forma~\eqref{eq:R-intermedio} valutata nel punto
+$r = L$.  Poiché la~\eqref{eq:diff-R-op} è un'equazione differenziale del
+secondo ordine, ci saranno due soluzioni linearmente indipendenti, di cui solo
+una non diverge per nell'origine, come succede per esempio in assenza di
+potenziale con le funzioni sferiche di Bessel e Neumann.  Per determinare gli
+sfasamenti possiamo imporre la continuità in $r=L$ di $R_{kl}$ e
+$\ltoder{R_{kl}}{r}$, ma è più conveniente imporre che sia continua da sinistra in
+$r=L$ la derivata logaritmica
+\begin{equation}
+  \gamma_{kl} = \toder{\log R_{kl}}{r} = \frac{1}{R_{kl}} \toder{R_{kl}}{r},
+\end{equation}
+che ha il vantaggio di essere indipendente dalla normalizzazione della funzione
+radiale.  Sostituiamo l'espressione~\eqref{eq:R-intermedio} di $R_{kl}$, valida
+nella regione intermedia, nell'equazione precedente e valutiamo il risultato nel
+punto $r = L$
+\begin{equation}
+  \gamma_{kl} = \frac{k(j'_{l}(kL)\cos\delta_{l} -
+    n'_{l}(kL)\sin\delta_{l})}{j_{l}(kL)\cos\delta_{l} -
+    n_{l}(kL)\sin\delta_{l}},
+\end{equation}
+in cui $j'(\rho) = \partial_{\rho}j(\rho)$.  Riarrangiando l'equazione
+precedente è possibile ricavare la tangente di $\delta_{l}$
+\begin{equation}
+  \label{eq:tangente-sfasamento}
+  \tan\delta_{l} = \frac{kj'_{l}(kL) - \gamma_{kl}j_{l}(kL)}{kn'_{l}(kL) -
+    \gamma_{kl}n_{l}(kL)}.
+\end{equation}
+Si definiscono le funzioni di Hankel sferiche
+\begin{subequations}
+  \begin{align}
+    h_{l}^{(1)}(\rho) &= j_{l}(\rho) + \uimm n_{l}(\rho), \\
+    h_{l}^{(2)}(\rho) &= j_{l}(\rho) - \uimm n_{l}(\rho)
+  \end{align}
+\end{subequations}
+e vediamo come possono essere utilizzate per calcolare gli sfasamenti.  Tramite
+gli sviluppi in esponenziali delle funzioni seno e coseno si trova la seguente
+relazione valida in generale
+\begin{equation}
+  \e^{2\uimm x} = \frac{\uimm \tan x + 1}{1 - \uimm \tan x},
+\end{equation}
+da cui
+\begin{equation}
+  S_{l} = \e^{2\uimm\delta_{l}} = -\frac{R_{kl}(L)k h_{l}^{(2)}{}'(kL) -
+    R'_{kl}(L)h_{l}^{(2)}(kL)}{R_{kl}(L)k h_{l}^{(1)}{}'(kL) -
+    R'_{kl}(L)h_{l}^{(1)}(kL)} = -\left.\frac{W[R_{kl}(r),
+      h_{l}^{(2)}(kr)]}{W[R_{kl}(r), h_{l}^{(1)}(kr)]}\right|_{r = L}.
+\end{equation}
+Il simbolo $W[\cdot,\cdot]$ indica il wronskiano delle due funzioni, con
+derivate rispetto alla coordinata $r$, quindi per le funzioni di Hankel si ha
+$\partial_{r}h(kr) = k \partial_{\rho}h(\rho) = k h'(\rho)$.
+
+Se il potenziale non è esattamente nullo per $r > L$ ma è comunque a corto
+raggio, possiamo calcolare gli sfasamenti usando ancora la
+formula~\eqref{eq:tangente-sfasamento} nel limite $L \to \infty$, ricordando che
+anche $\gamma_{kl}$ dipende da $L$.  Infine si può dimostrare che
+\begin{equation}
+  \delta_{l} \underset{l \to \infty}{\sim} \frac{1}{l!}.
+\end{equation}
+
 
 \section{Approssimazione di Born}
 \label{sec:approx-born}
