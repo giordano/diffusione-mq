@@ -104,6 +104,20 @@
 \maketitle
 \tableofcontents
 
+\phantomsection
+\addcontentsline{toc}{section}{Sommario}
+\section*{Sommario}
+\label{sec:sommario}
+
+Queste note presentano un'introduzione alla teoria della diffusione nella
+meccanica quantistica non relativistica.  Sono una rielaborazione personale
+degli appunti delle lezioni di Fisica Teorica tenute dal professor Luigi Martina
+nel corso di Laurea Magistrale in Fisica all'Università del Salento nell'anno
+accademico 2011-2012.  I testi di riferimento seguiti
+sono~\textcites{ballentine:quantum-mechanics,cohen:quantum-mechanics}, in
+aggiunta ho integrato del materiale preso
+da~\textcite{griffiths:introduction-qm}.
+
 \section{\completare{Concetti generali}}
 \label{sec:concetti-generali}
 
@@ -183,13 +197,14 @@ affronteremo il problema
 Abbiamo fatto queste assunzioni non perché non siano possibili casi differenti
 (sono per esempio molto importanti i casi di diffusione di particelle dotate di
 spin e di diffusioni inelastiche) ma solo per semplificare la presente
-trattazione.
+trattazione.  Lo teoria generale della diffusione, senza le ipotesi precedenti,
+è sviluppata da~\textcite[433-466]{ballentine:quantum-mechanics}.
 
 L'hamiltoniana per un sistema di due particelle senza spin interagenti fra loro
 è
 \begin{equation}
   H = -\frac{\hslash^{2}}{2m_{1}} \nabla_{1}^{2}
-  -\frac{\hslash^{2}}{2m_{2}}\nabla_{2}^{2} + V(\bm{r_{1}} - \bm{r}_{2}).
+  -\frac{\hslash^{2}}{2m_{2}}\nabla_{2}^{2} + V(\bm{r}_{1} - \bm{r}_{2}).
 \end{equation}
 Come anticipato, tratteremo il problema come il solito problema dei due corpi,
 quindi definiamo la posizione $\bm{R}$ del centro di massa e la posizione
@@ -197,7 +212,7 @@ relativa $\bm{r}$ rispettivamente come
 \begin{subequations}
   \begin{align}
     \bm{R} &= \frac{m_{1}\bm{r}_{1} + m_{2}\bm{r}_{2}}{m_{1} + m_{2}}, \\
-    \bm{r} &= \bm{r_{1}} - \bm{r}_{2}.
+    \bm{r} &= \bm{r}_{1} - \bm{r}_{2}.
   \end{align}
 \end{subequations}
 In questo modo l'hamiltoniana assume la forma più semplice
@@ -308,16 +323,19 @@ d'urto differenziale è
   \sigma(\theta,\phi) = \frac{J_{b}r^{2}}{J_{a}} = \abs{f(\theta,\phi)}^{2}.
 \end{equation}
 La sezione d'urto differenziale è la quantità di maggior interesse nei problemi
-di diffusione perché è quella misurabile sperimentalmente e abbiamo visto che è
-uguale al modulo quadro di $f(\theta,\phi)$, chiamata per questo motivo
+di diffusione perché è quella misurabile sperimentalmente e abbiamo trovato che
+è uguale al modulo quadro di $f(\theta,\phi)$, chiamata per questo motivo
 \emph{ampiezza di diffusione}.  La sezione d'urto non dipende dal fattore di
 normalizzazione $A$ e spesso nel seguito lo trascureremo ponendolo uguale a $1$.
 Nei due prossimi paragrafi studieremo due metodi alternativi per calcolare
-l'ampiezza di diffusione: lo sviluppo in onde parziali e l'approssimazione di
+l'ampiezza di diffusione: il metodo delle onde parziali e l'approssimazione di
 Born.
 
-\section{Sviluppo in onde parziali}
+\section{Metodo delle onde parziali}
 \label{sec:onde-parziali}
+
+\subsection{Sviluppo in onde parziali}
+\label{sec:sviluppo-onde}
 
 Il primo metodo che studieremo è particolarmente utile nei casi in cui il
 potenziale di interazione ha simmetria sferica, cioè dipende solo dal modulo $r$
@@ -326,7 +344,8 @@ Schröedinger stazionaria assume la forma
 \begin{equation}
   (\nabla^{2} + k^{2} - U(r)) \psi(\bm{r}) = 0,
 \end{equation}
-con $U(r) = (2m/\hslash^{2})V(r)$.  In questo caso sappiamo che una soluzione
+con $U(r) = (2m/\hslash^{2})V(r)$.  Poiché l'hamiltoniana commuta con gli
+operatori di momento angolare $\bm{L}^{2}$ e $L_{z}$ sappiamo che una soluzione
 dell'equazione precedente è del tipo separabile
 $R_{kl}(r)Y_{l}^{m}(\theta,\phi)$, in cui $Y_{l}^{m}(\theta,\phi))$ è
 un'armonica sferica e $R_{kl}(r)$ è una funzione puramente radiale che può
@@ -339,7 +358,7 @@ valore del numero d'onda $k$ poiché stiamo considerando gli stati stazionari
 dell'hamiltoniana
 \begin{equation}
   \label{eq:onde-parziali1}
-  \psi(\bm{r}) = \sum_{l = 0}^{+\infty} \sum_{m = -l}^{l} \psi_{klm}(\bm{r} =
+  \psi(\bm{r}) = \sum_{l = 0}^{+\infty} \sum_{m = -l}^{l} \psi_{klm}(\bm{r}) =
   \sum_{l = 0}^{+\infty} \sum_{m = -l}^{l} a_{lm}
   \frac{u_{kl}(r)}{r}Y_{l}^{m}(\theta,\phi).
 \end{equation}
@@ -354,22 +373,25 @@ L'equazione radiale che soddisfa $R_{kl}$ è
 Sostituendo $R_{kl}=u_{kl}/r$ troviamo che la funzione $u_{kl}$ soddisfa
 un'equazione differenziale più semplice
 \begin{equation}
+  \label{eq:diff-u-op}
   \bigg(\toder[2]{}{r} + k^{2} - U(r) - \frac{l(l+1)}{r^{2}}\bigg)u_{kl}(r) = 0.
 \end{equation}
 Il potenziale di interazione è a simmetria sferica, la particella incidente
 rompe la completa simmetria definendo una direzione precisa che identifichiamo
-con l'asse $\versor{z}$ (cioè $\bm{k} = k\versor{z}$), tuttavia non è presente
-alcuna dipendenza dall'angolo azimutale $\phi$ e ci sarà pertanto simmetria
-cilindrica.  Per annullare la dipendenza della funzione d'onda $\psi(\bm{r})$ da
-$\phi$ nello sviluppo~\eqref{eq:onde-parziali1} dobbiamo considerare solo i
-termini con $m = 0$ perché le armoniche sferiche dipende da $\phi$ attraverso
+con l'asse $\versor{z}$ (cioè poniamo $\versor{z}$ tale che
+$\bm{k} = k\versor{z}$), tuttavia non è presente alcuna dipendenza dall'angolo
+azimutale $\phi$ e ci sarà pertanto simmetria cilindrica.  Per annullare la
+dipendenza della funzione d'onda $\psi(\bm{r})$ da $\phi$ nello sviluppo in onde
+parziali~\eqref{eq:onde-parziali1} dobbiamo considerare solo i termini con
+$m = 0$ perché le armoniche sferiche dipende da $\phi$ attraverso
 $\e^{\uimm m \phi}$.
 
 % TODO: dimostrare lo sviluppo in onde parziali dell'onda piana
 Tenendo anche presente quanto appena notato, possiamo ipotizzare una forma più
 precisa per lo sviluppo in onde parziali di $\psi(\bm{r})$.  Partiamo
-dall'osservare che un'onda piana, quindi in assenza di potenziale, può essere
-sviluppata in onde parziali nel seguente modo
+dall'osservare che un'onda piana, quindi in assenza di potenziale, con vettore
+d'onda $\bm{k} = k\versor{z}$ può essere sviluppata in onde parziali nel
+seguente modo
 \begin{equation}
   \label{eq:sviluppo-onda-piana}
   \e^{\uimm \bm{k}\cdot\bm{r}} = \sum_{l} (2l+1) \uimm^{l} j_{l}(kr)
@@ -377,10 +399,19 @@ sviluppata in onde parziali nel seguente modo
 \end{equation}
 in cui $j_{l}$ è la funzione di Bessel sferica di ordine $l$, $P_{l}$ è il
 polinomio di Legendre di grado $l$ e $\theta$ è l'angolo compreso fra
-$\bm{k} = k\versor{z}$ e $\bm{r}$.  In presenza di un potenziale a corto raggio
-possiamo supporre che l'andamento asintotico della funzione d'onda di diffusione
-stazionaria, quindi con fissato valore dell'energia e di conseguenza di $k$, sia
-del tipo
+$\bm{k} = k\versor{z}$ e $\bm{r}$.
+
+Supponiamo che il potenziale di interazione sia a \emph{rapida decrescenza}, o
+\emph{a corto raggio}, vale a dire per $r$ tendente all'infinito va a $0$ più
+rapidamente di $1/r^{2}$
+\begin{equation}
+  \lim_{r \to \infty} r^{2}V(r) \in \mathbb{R}.
+\end{equation}
+In questo modo stiamo escludendo dalla trattazione il potenziale di Coulomb,
+nonostante sia a simmetria sferica, perché decresce come $1/r$.  In presenza di
+un tale potenziale possiamo supporre che l'andamento asintotico della funzione
+d'onda di diffusione stazionaria, quindi con fissato valore dell'energia e di
+conseguenza di $k$, sia del tipo
 \begin{equation}
   \label{eq:onde-parziali2}
   \psi(\bm{r}) = \sum_{l} (2l+1) \uimm^{l} A_{l} R_{kl}(r) P_{l}(\cos\theta),
@@ -411,21 +442,14 @@ introdotte e inoltre dei coefficienti $A_{l}$ da determinare.
     potenziale centrifugo sono trascurabili rispetto a $k^2$.}
 \label{fig:regioni-potenziale-sferico}
 \end{figure}
-Supponiamo che il potenziale di interazione sia a \emph{rapida decrescenza}, o
-\emph{a corto raggio}, vale a dire per $r$ tendente all'infinito va a $0$ più
-rapidamente di $1/r^{2}$
-\begin{equation}
-  \lim_{r \to \infty} r^{2}V(r) \in \mathbb{R}.
-\end{equation}
-In questo modo stiamo escludendo dalla trattazione il potenziale di Coulomb,
-nonostante sia a simmetria sferica, perché decresce come $1/r$.
-Sotto questa ipotesi, con riferimento alla
+Sotto l'ipotesi di potenziale a corto raggio, con riferimento alla
 figura~\ref{fig:regioni-potenziale-sferico} possiamo suddividere lo spazio in
 tre regioni: la regione di diffusione, in cui il potenziale di interazione è
 sensibilmente diverso da zero, la regione intermedia in cui $U \ll l(l+1)/r^{2}$
 e la zona di radiazione, in cui $kr \gg 1$ e quindi anche il termine di momento
 angolare è trascurabile nell'hamiltoniana.  Nella zona di radiazione, cioè per
-grandi valori di $r$, l'equazione di Schröedinger si riduce a
+grandi valori di $r$, l'equazione di Schröedinger radiale~\eqref{eq:diff-u-op}
+si riduce a
 \begin{equation}
   \toder[2]{u_{kl}}{r^{2}} = -k^{2}u.
 \end{equation}
@@ -441,7 +465,7 @@ quindi $F = 0$ e
 \end{equation}
 come avevo previsto nella forma asintotica~\eqref{eq:forma-asintotica}.
 
-Nella regione intermedia l'equazione radiale è
+Nella regione intermedia l'equazione radiale~\eqref{eq:diff-u-op} è
 \begin{equation}
   \toder[2]{u_{kl}}{r} - \frac{l(l+1)}{r^{2}}u_{kl} = -k^{2}u_{kl}.
 \end{equation}
@@ -461,20 +485,20 @@ asintotici
     j_{l}(\rho) &\underset{\rho \to \infty}{\sim} \frac{1}{\rho} \sin\bigg(\rho
     - l \frac{\pi}{2}\bigg), \\
     n_{l}(\rho) &\underset{\rho \to 0}{\sim} \frac{(2l-1)!!}{\rho^{l+1}}, \\
-    n_{l}(\rho) &\underset{\rho \to \infty}{\sim} \frac{1}{\rho} -\cos\bigg(\rho
+    n_{l}(\rho) &\underset{\rho \to \infty}{\sim} -\frac{1}{\rho}\cos\bigg(\rho
     - l \frac{\pi}{2}\bigg).
   \end{align}
 \end{subequations}
-quindi nell'origine le funzioni di Bessel convergono, mentre le funzioni di
-Neumann divergono.  Per normalizzare $R_{kl}$ scegliamo i coefficienti $B$ e $C$
-tali che $\abs{B}^{2} + \abs{C}^{2} = 1$, in particolare poniamo
-$B = \cos\delta_{l}$ e $C = -\sin\delta_{l}$, quindi
+Nell'origine le funzioni di Bessel convergono, mentre le funzioni di Neumann
+divergono.  Per normalizzare $R_{kl}$ scegliamo i coefficienti $B$ e $C$ tali
+che $\abs{B}^{2} + \abs{C}^{2} = 1$, in particolare poniamo $B = \cos\delta_{l}$
+e $C = -\sin\delta_{l}$, quindi
 \begin{equation}
   \label{eq:R-intermedio}
   R_{kl}(r) = j_{l}(kr)\cos\delta_{l} - n_{l}(kr)\sin\delta_{l}.
 \end{equation}
-L'equazione differenziale che soddisfa $R_{kl}$ è reale, quindi la soluzione può
-essere scelta reale e anche i $\delta_{l}$ dovranno essere reali.  Con questa
+L'equazione differenziale che soddisfa $R_{kl}$ è reale, la soluzione può essere
+scelta reale e anche i $\delta_{l}$ dovranno essere reali.  Con questa
 posizione, usando le proprietà~\eqref{eq:asintoti-bessel} troviamo che il
 comportamento asintotico per grandi valori di $kr$, quindi nella zona di
 radiazione, di $R_{kl}$ è
@@ -520,7 +544,7 @@ semplicità, ricordando i comportamenti asintotici~\eqref{eq:jl-asintotico} e
   f(\theta,\phi)\frac{\e^{\uimm kr}}{r}.
 \end{multline}
 Usando la relazione $\sin x = (\e^{\uimm x} - \e^{-\uimm x})/(2\uimm)$ e
-uguagliando ambo i membri così ottenuti i coefficienti di $\e^{-\uimm kr}$
+uguagliando i coefficienti di $\e^{-\uimm kr}$ in ambo i membri così ottenuti
 troviamo
 \begin{multline}
   \sum_{l}(2l+1)\uimm^{l}P_{l}(\cos\theta)A_{l}\exp(\uimm l\pi/2 -
@@ -558,12 +582,12 @@ La sezione d'urto differenziale è data dall'equazione~\eqref{eq:sezione-d'urto}
   \sigma(\theta,\phi) = \sigma(\theta) = \abs{f(\theta)}^{2}.
 \end{equation}
 La sezione d'urto totale si ricava integrando la sezione d'urto differenziale su
-tutto l'angolo solido.  Ricordando la relazione di ortogonalità fra i polinomi
-di Legendre
+tutto l'angolo solido.  I polinomi di Legendre sono ortogonali, infatti
+soddisfano la seguente relazione
 \begin{equation}
   \int_{-1}^{1}P_{l}(u)P_{l'}(u)\dd u = \frac{2\delta_{ll'}}{2l+1}
 \end{equation}
-ricaviamo
+e da questa ricaviamo
 \begin{equation}
   \begin{split}
     \sigma_{\textup{tot}} &= \int \sigma(\theta) \sin\theta\dd\theta\dd\phi =
@@ -579,9 +603,8 @@ Utilizzando le altre espressioni dell'ampiezza di diffusione $f(\theta)$ si
 possono trovare con calcoli analoghi espressioni differenti per la sezione
 d'urto totale
 \begin{equation}
-  \sigma_{\textup{tot}} = \sum_{l} \sigma_{\textup{tot}}^{l} =
-  \frac{\pi}{k^{2}} \sum_{l}(2l+1)\abs{1 - S_{l}}^{2} = \frac{2\pi}{k^{2}}
-  \sum_{l}(2l+1)(1-\Re(S_{l})),
+  \sigma_{\textup{tot}} = \frac{\pi}{k^{2}} \sum_{l}(2l+1)\abs{1 - S_{l}}^{2} =
+  \frac{2\pi}{k^{2}} \sum_{l}(2l+1)(1-\Re(S_{l})),
 \end{equation}
 con $S_{l} = \e^{2\uimm\delta_{l}}$.  Infine notiamo che ponendo $\theta = 0$
 nell'ultimo membro dell'equazione~\eqref{eq:ampiezza-diffusione-op} e ricordando
@@ -596,11 +619,14 @@ quindi
 \end{equation}
 Questo risultato è noto come \emph{teorema ottico}.
 
+\subsection{Calcolo degli sfasamenti}
+\label{sec:calcolo-sfasamenti}
+
 Se il potenziale è non nullo per una distanza relativa $r < L$ ed è assente per
 distanze maggiori è possibile trovare una formula che fornisce direttamente gli
 sfasamenti $\delta_{l}$.  Possiamo considerare il punto $r = L$ come il
 passaggio fra la regione di diffusione e la regione intermedia.  Bisogna
-risolvere, eventualmente usando metodi numerici, l'equazione
+risolvere, eventualmente con metodi numerici, l'equazione
 differenziale~\eqref{eq:diff-R-op} nella regione di diffusione $r < L$ ed
 effettuare il raccordo con la forma~\eqref{eq:R-intermedio} valutata nel punto
 $r = L$.  Poiché la~\eqref{eq:diff-R-op} è un'equazione differenziale del
@@ -608,8 +634,8 @@ secondo ordine, ci saranno due soluzioni linearmente indipendenti, di cui solo
 una non diverge per nell'origine, come succede per esempio in assenza di
 potenziale con le funzioni sferiche di Bessel e Neumann.  Per determinare gli
 sfasamenti possiamo imporre la continuità in $r=L$ di $R_{kl}$ e
-$\ltoder{R_{kl}}{r}$, ma è più conveniente imporre che sia continua da sinistra in
-$r=L$ la derivata logaritmica
+$\ltoder{R_{kl}}{r}$, ma è più conveniente imporre che sia continua da sinistra
+in $r=L$ la derivata logaritmica
 \begin{equation}
   \gamma_{kl} = \toder{\log R_{kl}}{r} = \frac{1}{R_{kl}} \toder{R_{kl}}{r},
 \end{equation}
@@ -622,14 +648,15 @@ punto $r = L$
     n'_{l}(kL)\sin\delta_{l})}{j_{l}(kL)\cos\delta_{l} -
     n_{l}(kL)\sin\delta_{l}},
 \end{equation}
-in cui $j'(\rho) = \partial_{\rho}j(\rho)$.  Riarrangiando l'equazione
-precedente è possibile ricavare la tangente di $\delta_{l}$
+in cui $j'_{l}(kR)$ indica la derivata di $j_{l}(kr)$ rispetto a $kr$ e valutata
+nel punto $kr = kR$.  Significato analogo per $n'_{l}(kR)$.  Riarrangiando
+l'equazione precedente è possibile ricavare la tangente di $\delta_{l}$
 \begin{equation}
   \label{eq:tangente-sfasamento}
   \tan\delta_{l} = \frac{kj'_{l}(kL) - \gamma_{kl}j_{l}(kL)}{kn'_{l}(kL) -
     \gamma_{kl}n_{l}(kL)}.
 \end{equation}
-Si definiscono le funzioni di Hankel sferiche
+Si definiscono le funzioni di Hankel sferiche di prima e seconda specie
 \begin{subequations}
   \begin{align}
     h_{l}^{(1)}(\rho) &= j_{l}(\rho) + \uimm n_{l}(\rho), \\
@@ -670,7 +697,6 @@ anche $\gamma_{kl}$ dipende da $L$.  Infine si può dimostrare che
 
 \phantomsection
 \addcontentsline{toc}{section}{\refname}
-\nocite{*}
 \printbibliography
 
 \end{document}
