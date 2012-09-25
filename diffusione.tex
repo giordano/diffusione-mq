@@ -9,8 +9,9 @@
 \usepackage[autostyle=true]{csquotes}
 \usepackage[style=numeric,hyperref,abbreviate=false,backend=biber]{biblatex}
 \usepackage[font=small,format=hang,labelfont=bf]{caption}
+\usepackage{braket}
 \usepackage{tikz}
-% `mathtools' serve per definire la norma e il valore assoluto
+% `mathtools' serve per definire il valore assoluto
 \usepackage{mathtools}
 % `bm' serve per scrivere i vettori in corsivo con il comando
 % `\bm{vettore}'. Deve sostituire il comando `\mathbf{vettore}' perché questo
@@ -48,8 +49,6 @@
 \DeclareMathOperator{\uimm}{\mathrm{i}} % unità immaginaria
 % Operatore valore assoluto \abs{x}. Usa \abs*{} per le frazioni
 \DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
-% Operatore norma \norm{x}. Usa \norm*{} per le frazioni
-\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
 
 %% Derivate
 % Derivata totale: \toder[ordine]{funzione}{variabile}
@@ -192,7 +191,7 @@ affronteremo il problema
 \item supponiamo che l'interazione fra proiettile e bersaglio sia descritta da
   un potenziale $V$ dipendente dalla distanza relativa fra le due particelle
   $\bm{r}_{1} - \bm{r}_{2}$: $V = V(\bm{r}_{1} - \bm{r}_{2})$.  Questo ci
-  permetterà di adottare il formalismo ben noto del problema dei due corpi.
+  permetterà di adottare il formalismo noto del problema dei due corpi.
 \end{itemize}
 Abbiamo fatto queste assunzioni non perché non siano possibili casi differenti
 (sono per esempio molto importanti i casi di diffusione di particelle dotate di
@@ -231,6 +230,7 @@ possiamo cercare autostati dell'hamiltoniana~\eqref{eq:hamiltoniana} della forma
 separabile $\Psi(\bm{R}, \bm{r}) = \Phi(\bm{R})\psi(\bm{r})$.  In particolare,
 $\psi(\bm{r})$ deve soddisfare la seguente equazione di Schröedinger stazionaria
 \begin{equation}
+  \label{eq:schroedinger-stazionaria}
   \bigg(-\frac{\hslash^{2}}{2m}\nabla^{2} + V(\bm{r})\bigg)\psi(\bm{r}) =
   E\psi(\bm{r}).
 \end{equation}
@@ -244,42 +244,41 @@ solo il moto relativo fra la particella incidente e il bersaglio.
 Nel paragrafo~\ref{sec:concetti-generali} abbiamo visto che nei problemi di
 diffusione è presente un flusso $J_{a}$ incidente sul bersaglio e un flusso
 $J_{b}$ diffuso dal bersaglio e che si allontana in tutte le direzioni.  Ci
-aspettiamo dunque che la funzione d'onda $\psi(\bm{r})$ sia la somma di una
-funzione d'onda incidente $\psi_{a}$, che rappresenta il flusso di proiettili, e
-una funzione d'onda di diffusione $\psi_{b}$, che rappresenta gli eiettili
+aspettiamo che la funzione d'onda $\psi(\bm{r})$ sia la somma di una funzione
+d'onda incidente $\psi_{a}$, che rappresenta il flusso di proiettili, e una
+funzione d'onda di diffusione $\psi_{b}$, che rappresenta gli eiettili
 \begin{equation}
   \psi(\bm{r}) = \psi_{a}(\bm{r}) + \psi_{b}(\bm{r}).
 \end{equation}
 Molto tempo prima di raggiungere il bersaglio, il proiettile si muove come una
 particella libera perché per valori sufficientemente grandi della distanza
-relativa $r$ il potenziale $V(\bm{r})$ è praticamente nullo.  Quindi la
-componente $\psi_{a}(\bm{r})$ sarà un'onda piana del tipo
-$\e^{\uimm \bm{k}\cdot\bm{r}}$, con $\bm{k}$ vettore d'onda associato alla
-particella di massa $m$, il cui modulo è legato all'energia $E$ dalla nota
-relazione $E = \hslash^{2}k^{2}/(2m)$.  Nella vicinanza del bersaglio, la
-funzione d'onda della particella subirà una profonda modifica a causa
-dell'interazione con il bersaglio.  Tuttavia molto tempo dopo l'interazione,
-l'eiettile sarà lontano dall'influenza del potenziale e la sua funzione d'onda
-avrà raggiunto una forma ``stabile''.  Facendo un'analogia con la meccanica
-ondulatoria classica possiamo prevedere una forma esplicita per il comportamento
-asintotico di $\psi_{b}(\bm{r})$.  Un'onda piana che urta contro un ostacolo,
-cioè il bersaglio nel problema di diffusione, si diffonde in tutto lo spazio
-come un'onda sferica uscente del tipo $f(\theta,\phi)\e^{\uimm kr}/r$, con
-$f(\theta,\phi)$ ampiezza dell'onda di diffusione.  Essa dipende dalle due
-coordinate angolari sferiche $\theta$ e $\phi$ perché la diffusione non è in
-generale isotropica.  Il fattore $1/r$ assicura che il flusso della densità di
-probabilità $\abs{\psi_{b}}^{2}$ sia costante per ogni superficie sferica
-centrata nel bersaglio.  Il comportamento asintotico della funzione d'onda
-$\psi(\bm{r})$ sarà del tipo
+relativa $r$ il potenziale $V(\bm{r})$ è praticamente nullo.  La componente
+$\psi_{a}(\bm{r})$ sarà un'onda piana del tipo $\e^{\uimm \bm{k}\cdot\bm{r}}$,
+con $\bm{k}$ vettore d'onda associato alla particella di massa $m$, il cui
+modulo è legato all'energia $E$ dalla nota relazione $E =
+\hslash^{2}k^{2}/(2m)$.
+Nella vicinanza del bersaglio, la funzione d'onda della particella subirà una
+profonda modifica a causa dell'interazione con il bersaglio.  Tuttavia molto
+tempo dopo l'interazione, l'eiettile sarà lontano dall'influenza del potenziale
+e la sua funzione d'onda avrà raggiunto una forma ``stabile''.  Facendo
+un'analogia con la meccanica ondulatoria classica possiamo prevedere una forma
+esplicita per il comportamento asintotico di $\psi_{b}(\bm{r})$.  Un'onda piana
+che urta contro un ostacolo, cioè il bersaglio nel problema di diffusione, si
+diffonde in tutto lo spazio come un'onda sferica uscente del tipo
+$f(\theta,\phi)\e^{\uimm kr}/r$, con $f(\theta,\phi)$ ampiezza dell'onda di
+diffusione.  Essa dipende dalle due coordinate angolari sferiche $\theta$ e
+$\phi$ perché la diffusione non è in generale isotropica.  Il fattore $1/r$
+assicura che il flusso della densità di probabilità $\abs{\psi_{b}}^{2}$ sia
+costante per ogni superficie sferica centrata nel bersaglio.  Il comportamento
+asintotico della funzione d'onda $\psi(\bm{r})$ sarà del tipo
 \begin{equation}
   \label{eq:forma-asintotica}
   \psi(\bm{r}) = \psi_{a}(\bm{r}) + \psi_{b}(\bm{r}) =A \bigg( \e^{\uimm
     \bm{k}\cdot\bm{r}} + f(\theta,\phi)\frac{\e^{\uimm kr}}{r} \bigg),
 \end{equation}
-con $A$ fattore di normalizzazione.  Nei paragrafi successivi vedremo che la
-forma asintotica~\eqref{eq:forma-asintotica} della funzione d'onda in un
-problema di diffusione, ricavata qui in base a un'analogia classica, è ben
-giustificata sotto opportune ipotesi.
+con $A$ fattore di normalizzazione.  Nei paragrafi successivi vedremo che questa
+forma asintotica della funzione d'onda in un problema di diffusione, ricavata
+qui in base a un'analogia classica, è ben giustificata sotto opportune ipotesi.
 
 \subsection{Calcolo della sezione d'urto}
 \label{sec:sez-urto-mq}
@@ -315,10 +314,10 @@ Per la componente di diffusione abbiamo
 \end{subequations}
 Poiché stiamo considerando il comportamento asintotico, grandi $r$, le
 componenti angolari del flusso $(\bm{J}_{b})_{\theta}$ e $(\bm{J}_{b})_{\phi}$
-sono trascurabili rispetto alla componente radiale $(\bm{J}_{b})_{\textup{r}}$,
-allora approssimiamo $J_{b} \approx (\bm{J}_{b})_{r}$.  Inserendo questi
-risultati nell'equazione~\eqref{eq:sezione-d'urto} troviamo che la sezione
-d'urto differenziale è
+sono trascurabili rispetto alla componente radiale $(\bm{J}_{b})_{\textup{r}}$ e
+approssimiamo $J_{b} \approx (\bm{J}_{b})_{r}$.  Inserendo questi risultati
+nell'equazione~\eqref{eq:sezione-d'urto} troviamo che la sezione d'urto
+differenziale è
 \begin{equation}
   \sigma(\theta,\phi) = \frac{J_{b}r^{2}}{J_{a}} = \abs{f(\theta,\phi)}^{2}.
 \end{equation}
@@ -362,9 +361,9 @@ dell'hamiltoniana
   \sum_{l = 0}^{+\infty} \sum_{m = -l}^{l} a_{lm}
   \frac{u_{kl}(r)}{r}Y_{l}^{m}(\theta,\phi).
 \end{equation}
-Ciascuna delle funzioni $\psi_{klm}$ prende il nome di \emph{onda parziale},
-quindi la loro combinazione lineare è detta \emph{sviluppo in onde parziali}.
-L'equazione radiale che soddisfa $R_{kl}$ è
+Ciascuna delle funzioni $\psi_{klm}$ prende il nome di \emph{onda parziale} e la
+loro combinazione lineare è detta \emph{sviluppo in onde parziali}.  L'equazione
+radiale che soddisfa $R_{kl}$ è
 \begin{equation}
   \label{eq:diff-R-op}
   \bigg(\frac{1}{r^{2}}\toder{}{r}r^{2}\toder{}{r} + k^{2} - U(r) -
@@ -410,7 +409,7 @@ rapidamente di $1/r^{2}$
 In questo modo stiamo escludendo dalla trattazione il potenziale di Coulomb,
 nonostante sia a simmetria sferica, perché decresce come $1/r$.  In presenza di
 un tale potenziale possiamo supporre che l'andamento asintotico della funzione
-d'onda di diffusione stazionaria, quindi con fissato valore dell'energia e di
+d'onda di diffusione stazionaria, con fissato valore dell'energia e di
 conseguenza di $k$, sia del tipo
 \begin{equation}
   \label{eq:onde-parziali2}
@@ -446,7 +445,7 @@ Sotto l'ipotesi di potenziale a corto raggio, con riferimento alla
 figura~\ref{fig:regioni-potenziale-sferico} possiamo suddividere lo spazio in
 tre regioni: la regione di diffusione, in cui il potenziale di interazione è
 sensibilmente diverso da zero, la regione intermedia in cui $U \ll l(l+1)/r^{2}$
-e la zona di radiazione, in cui $kr \gg 1$ e quindi anche il termine di momento
+e la zona di radiazione, in cui $kr \gg 1$ e anche il termine di momento
 angolare è trascurabile nell'hamiltoniana.  Nella zona di radiazione, cioè per
 grandi valori di $r$, l'equazione di Schröedinger radiale~\eqref{eq:diff-u-op}
 si riduce a
@@ -480,8 +479,9 @@ asintotici
 \begin{subequations}
   \label{eq:asintoti-bessel}
   \begin{align}
+    \label{eq:jl-asintotico-orig}
     j_{l}(\rho) &\underset{\rho \to 0}{\sim} \frac{\rho^{l}}{(2l+1)!!}, \\
-    \label{eq:jl-asintotico}
+    \label{eq:jl-asintotico-inf}
     j_{l}(\rho) &\underset{\rho \to \infty}{\sim} \frac{1}{\rho} \sin\bigg(\rho
     - l \frac{\pi}{2}\bigg), \\
     n_{l}(\rho) &\underset{\rho \to 0}{\sim} \frac{(2l-1)!!}{\rho^{l+1}}, \\
@@ -492,7 +492,7 @@ asintotici
 Nell'origine le funzioni di Bessel convergono, mentre le funzioni di Neumann
 divergono.  Per normalizzare $R_{kl}$ scegliamo i coefficienti $B$ e $C$ tali
 che $\abs{B}^{2} + \abs{C}^{2} = 1$, in particolare poniamo $B = \cos\delta_{l}$
-e $C = -\sin\delta_{l}$, quindi
+e $C = -\sin\delta_{l}$, da cui
 \begin{equation}
   \label{eq:R-intermedio}
   R_{kl}(r) = j_{l}(kr)\cos\delta_{l} - n_{l}(kr)\sin\delta_{l}.
@@ -500,7 +500,7 @@ e $C = -\sin\delta_{l}$, quindi
 L'equazione differenziale che soddisfa $R_{kl}$ è reale, la soluzione può essere
 scelta reale e anche i $\delta_{l}$ dovranno essere reali.  Con questa
 posizione, usando le proprietà~\eqref{eq:asintoti-bessel} troviamo che il
-comportamento asintotico per grandi valori di $kr$, quindi nella zona di
+comportamento asintotico per grandi valori di $kr$, cioè nella zona di
 radiazione, di $R_{kl}$ è
 \begin{equation}
   \label{eq:R-asintotico}
@@ -511,16 +511,16 @@ Se non ci fosse potenziale di interazione, l'espressione~\eqref{eq:R-intermedio}
 della funzione radiale sarebbe valida fino a $r=0$, non solo nella regione
 intermedia.  Abbiamo osservato che le funzioni di Neumann sferiche nell'origine
 divergono come $1/r^{l+1}$, ma la parte radiale della funzione d'onda non può
-avere questo comportamento, quindi deve essere $\delta_{l} = 0$ per ogni $l$ e
+avere questo comportamento, dunque deve essere $\delta_{l} = 0$ per ogni $l$ e
 $r$ in assenza di potenziale e in questo caso si avrebbe $R_{kl}(r) =
 j_{l}(kr)$.
 Questo risultato supporta lo sviluppo in onde parziali ipotizzato
 nell'equazione~\eqref{eq:onde-parziali2}.  A questo punto possiamo confrontare
 l'andamento asintotico~\eqref{eq:R-asintotico} di $R_{kl}(r)$ con
-quello~\eqref{eq:jl-asintotico} del caso di potenziale nullo e riconosciamo che
-l'effetto di un potenziale sferico a corto raggio a grandi distanze $r$ è quello
-di introdurre uno sfasamento in ciascuna funzione radiale asintotica $R_{kl}(r)$
-dello sviluppo in onde parziali~\eqref{eq:onde-parziali2}.
+quello~\eqref{eq:jl-asintotico-inf} del caso di potenziale nullo e riconosciamo
+che l'effetto di un potenziale sferico a corto raggio a grandi distanze $r$ è
+quello di introdurre uno sfasamento in ciascuna funzione radiale asintotica
+$R_{kl}(r)$ dello sviluppo in onde parziali~\eqref{eq:onde-parziali2}.
 
 \subsection{Calcolo della sezione d'urto}
 \label{sec:sez-urto-op}
@@ -528,13 +528,13 @@ dello sviluppo in onde parziali~\eqref{eq:onde-parziali2}.
 Nel paragrafo~\ref{sec:sez-urto-mq} abbiamo visto che la sezione d'urto
 differenziale è determinata dal comportamento asintotico della funzione d'onda.
 I potenziali sferici a corto raggio introducono uno sfasamento negli stati
-stazionari di diffusione, quindi ci aspettiamo che in questo caso la sezione
-d'urto differenziale sia esprimibile in funzione degli sfasamenti.
+stazionari di diffusione, ci aspettiamo che in questo caso la sezione d'urto
+differenziale sia esprimibile in funzione degli sfasamenti.
 
 Sostituiamo gli sviluppi in onde parziali~\eqref{eq:sviluppo-onda-piana} e
 \eqref{eq:onde-parziali2} nell'espressione
 asintotica~\eqref{eq:forma-asintotica} della funzione d'onda, con $A = 1$ per
-semplicità, ricordando i comportamenti asintotici~\eqref{eq:jl-asintotico} e
+semplicità, ricordando i comportamenti asintotici~\eqref{eq:jl-asintotico-inf} e
 \eqref{eq:R-asintotico}
 \begin{multline}
   \label{eq:foo}
@@ -551,7 +551,7 @@ troviamo
   \uimm\delta_{l}) \\
   = \sum_{l}(2l+1)\uimm^{l}P_{l}(\cos\theta)\exp(\uimm l\pi/2).
 \end{multline}
-I polinomi di Legendre sono funzioni linearmente indipendenti, quindi affinché
+I polinomi di Legendre sono funzioni linearmente indipendenti e affinché
 l'equazione precedente sia valida devono essere uguali i coefficienti dei
 $P_{l}$ dello stesso grado $l$, da cui ricaviamo che
 \begin{equation}
@@ -589,10 +589,10 @@ soddisfano la seguente relazione
 \end{equation}
 e da questa ricaviamo
 \begin{equation}
+  \label{eq:serie-sfasamenti}
   \begin{split}
-    \sigma_{\textup{tot}} &= \int \sigma(\theta) \sin\theta\dd\theta\dd\phi =
-    \int_{0}^{2\pi}\dd \phi \int_{0}^{\pi} \abs{f(\theta)}^{2} \sin\theta
-    \dd\theta \\
+    \sigma_{\textup{tot}} &= \int_{0}^{2\pi}\dd \phi \int_{0}^{\pi}
+    \abs{f(\theta)}^{2} \sin\theta \dd\theta \\
     &= 2\pi \frac{1}{k^{2}} \sum_{ll'}(2l+1)(2l'+1) \sin\delta_{l} \e^{-\uimm
       \delta_{l}} \sin\delta_{l'}\e^{\uimm \delta_{l'}}
     \int_{-1}^{1}P_{l}(\cos\theta)P_{l'}(\cos\theta) \dd(\cos\theta) \\
@@ -619,19 +619,29 @@ quindi
 \end{equation}
 Questo risultato è noto come \emph{teorema ottico}.
 
+Se il potenziale $U(r)$ fosse identicamente nullo, avremmo
+$R_{kl}(r) = j_{l}(kr)$ e dall'equazione~\eqref{eq:jl-asintotico-orig} vediamo
+che per $kr \ll l$ va come $(kr)^{l}$ e diventa sempre più piccolo al crescere
+di $l$.  Se $U(r)$ è a corto raggio, in particolare con raggio uguale a $L$,
+nell'equazione~\eqref{eq:diff-R-op} il potenziale è moltiplicato per la piccola
+quantità $R_{kl}(r)$ e avrà un piccolo effetto sulla soluzione.  Questo rozzo
+ragionamento ci permette di intuire che gli sfasamenti $\delta_{l}$ sono piccoli
+se $kL \ll l$ e in questo caso la serie~\eqref{eq:serie-sfasamenti} converge già
+dopo pochi termini e risulta maggiormente utile a livello pratico.  La
+condizione $kL \ll l$ è vera, indipendentemente dal valore del raggio $L$ del
+potenziale, per piccoli valori dell'energia della particella incidente.
+
 \subsection{Calcolo degli sfasamenti}
 \label{sec:calcolo-sfasamenti}
 
 Se il potenziale è non nullo per una distanza relativa $r < L$ ed è assente per
 distanze maggiori è possibile trovare una formula che fornisce direttamente gli
-sfasamenti $\delta_{l}$.  Possiamo considerare il punto $r = L$ come il
-passaggio fra la regione di diffusione e la regione intermedia.  Bisogna
-risolvere, eventualmente con metodi numerici, l'equazione
-differenziale~\eqref{eq:diff-R-op} nella regione di diffusione $r < L$ ed
-effettuare il raccordo con la forma~\eqref{eq:R-intermedio} valutata nel punto
-$r = L$.  Poiché la~\eqref{eq:diff-R-op} è un'equazione differenziale del
-secondo ordine, ci saranno due soluzioni linearmente indipendenti, di cui solo
-una non diverge per nell'origine, come succede per esempio in assenza di
+sfasamenti $\delta_{l}$.  Bisogna risolvere, eventualmente con metodi numerici,
+l'equazione differenziale~\eqref{eq:diff-R-op} nella regione di diffusione
+$r < L$ ed effettuare il raccordo con la forma~\eqref{eq:R-intermedio} valutata
+nel punto $r = L$.  Poiché la~\eqref{eq:diff-R-op} è un'equazione differenziale
+del secondo ordine, ci saranno due soluzioni linearmente indipendenti, di cui
+solo una non diverge per nell'origine, come succede per esempio in assenza di
 potenziale con le funzioni sferiche di Bessel e Neumann.  Per determinare gli
 sfasamenti possiamo imporre la continuità in $r=L$ di $R_{kl}$ e
 $\ltoder{R_{kl}}{r}$, ma è più conveniente imporre che sia continua da sinistra
@@ -677,7 +687,7 @@ da cui
       h_{l}^{(2)}(kr)]}{W[R_{kl}(r), h_{l}^{(1)}(kr)]}\right|_{r = L}.
 \end{equation}
 Il simbolo $W[\cdot,\cdot]$ indica il wronskiano delle due funzioni, con
-derivate rispetto alla coordinata $r$, quindi per le funzioni di Hankel si ha
+derivate rispetto alla coordinata $r$, dunque per le funzioni di Hankel si ha
 $\partial_{r}h(kr) = k \partial_{\rho}h(\rho) = k h'(\rho)$.
 
 Se il potenziale non è esattamente nullo per $r > L$ ma è comunque a corto
@@ -688,9 +698,214 @@ anche $\gamma_{kl}$ dipende da $L$.  Infine si può dimostrare che
   \delta_{l} \underset{l \to \infty}{\sim} \frac{1}{l!}.
 \end{equation}
 
+\section{Metodo dell'approssimazione di Born}
+\label{sec:metodo-born}
 
-\section{Approssimazione di Born}
-\label{sec:approx-born}
+Abbiamo visto che il metodo dello sviluppo in onde parziali è utile nei processi
+a bassa energia.  Il metodo dell'approssimazione di Born che andiamo a
+presentare è più utile, invece, nel caso di alte energie delle particelle
+incidenti.
+
+\subsection{Equazione di Lippmann–Schwinger}
+\label{sec:equazione-ls}
+
+L'equazione di Schröedinger stazionaria~\eqref{eq:schroedinger-stazionaria} può
+essere riscritta nella forma
+\begin{equation}
+  \label{eq:helmholtz}
+  (\nabla^{2} + k^{2})\psi(\bm{r}) = Q(\bm{r}),
+\end{equation}
+in cui
+\begin{equation}
+  Q(\bm{r}) = U(\bm{r})\psi(\bm{r}) =
+  \frac{2m}{\hslash^{2}}V(\bm{r})\psi(\bm{r}).
+\end{equation}
+L'equazione~\eqref{eq:helmholtz} assomiglia all'equazione di Helmholtz non
+omogenea, qui però il termine noto $Q(\bm{r})$ dipende a sua volta
+dall'incognita $\psi(\bm{r})$.
+% TODO: eventualmente fare tutti i passaggi per ricavare la funzione di Green
+Dalla teoria delle funzioni di Green si sa che la soluzione generale
+dell'equazione~\eqref{eq:helmholtz} è data da
+\begin{equation}
+  \psi(\bm{r}) = \psi_{0}(\bm{r}) + \int G(\bm{r} -
+  \bm{r}_{0})Q(\bm{r}_{0})\dd^{3}\bm{r}_{0} = \psi_{0}(\bm{r}) +
+  \frac{2m}{\hslash^{2}}\int G(\bm{r} -
+  \bm{r}_{0})V(\bm{r}_{0})\psi(\bm{r}_{0})\dd^{3}\bm{r}_{0},
+\end{equation}
+in cui $G(\bm{r})$ è una funzione di Green dell'operatore $\nabla^{2} + k^{2}$
+ed è data dalla soluzione dell'equazione
+\begin{equation}
+  \label{eq:green}
+  (\nabla^{2} + k^{2})G(\bm{r}) = \delta^{3}(\bm{r}),
+\end{equation}
+mentre $\psi_{0}(\bm{r})$ è una soluzione particolare dell'equazione di
+Helmholtz omogenea
+\begin{equation}
+  (\nabla^{2} + k^{2})\psi_{0}(\bm{r}) = 0.
+\end{equation}
+Osserviamo che quest'ultima equazione non è altro che l'equazione di
+Schröedinger stazionaria di particella libera, quindi
+$\psi_{0}(\bm{r}) = A\e^{\uimm \bm{k}\cdot\bm{r}}$, con $A$ costante di
+normalizzazione.  Una funzione di Green che soddisfa
+l'equazione~\eqref{eq:green} è
+\begin{equation}
+  G(\bm{r}) = -\frac{\e^{\uimm kr}}{4\pi r}.
+\end{equation}
+In definitiva la soluzione dell'equazione~\eqref{eq:helmholtz} è data da
+\begin{equation}
+  \label{eq:lippmann-schwinger}
+  \psi(\bm{r}) = A\e^{\uimm \bm{k}\cdot\bm{r}} - \frac{m}{2\pi\hslash^{2}}\int
+  \frac{\e^{\uimm k\abs{\bm{r} - \bm{r}_{0}}}}{\abs{\bm{r} - \bm{r}_{0}}}
+  V(\bm{r}_{0}) \psi(\bm{r}_{0}) \dd^{3}\bm{r}_{0}.
+\end{equation}
+Questa equazione integrale è nota come \emph{equazione di Lippmann–Schwinger}.
+Essa è equivalente all'equazione di Schröedinger
+stazionaria~\eqref{eq:schroedinger-stazionaria} ma in più contiene al suo
+interno la condizione al contorno data dal termine
+$\psi_{0}(\bm{r}) = A\e^{\uimm \bm{k}\cdot\bm{r}}$.
+
+\subsection{Serie di Born}
+\label{sec:serie-born}
+
+Generalmente nei problemi di diffusione il potenziale di interazione è
+localizzato in una regione finita dello spazio, cioè è praticamente nullo al di
+fuori di essa, e si vuole determinare la funzione d'onda a grande distanza dal
+centro diffusore.  In particolare supponiamo che il potenziale $V(\bm{r}_{0})$
+sia localizzato intorno a $\bm{r}_{0} = \bm{0}$ e che dobbiamo determinare
+$\psi(\bm{r})$ per $\abs{\bm{r}} \gg \abs{\bm{r}_{0}}$.  In questo caso possiamo
+utilizzare l'approssimazione
+\begin{equation}
+  \abs{\bm{r} - \bm{r}_{0}}^{2} \approx r^{2} +r_{0}^{2} -
+  2\bm{r}\cdot\bm{r}_{0} \approx r^{2}\bigg(1 -
+  2\frac{\bm{r}\cdot\bm{r}_{0}}{r^{2}}\bigg)
+\end{equation}
+da cui
+\begin{equation}
+  \abs{\bm{r} - \bm{r}_{0}} \approx r - \versor{r}\cdot\bm{r}_{0}.
+\end{equation}
+Poniamo il vettore d'onda del flusso diffuso uguale a $\bm{k}' = k\versor{r}$
+perché per la conservazione dell'energia ha lo stesso modulo $k$ del vettore
+d'onda incidente $\bm{k} = k\versor{z}$.  La funzione di Green può essere
+approssimata con
+\begin{equation}
+  \frac{\e^{\uimm k\abs{\bm{r} - \bm{r}_{0}}}}{\abs{\bm{r} - \bm{r}_{0}}}
+  \approx \frac{\e^{\uimm kr}}{r} \e^{-\uimm \bm{k}'\cdot\bm{r}_{0}}.
+\end{equation}
+Abbiamo trovato che per grandi valori di $r$ la funzione d'onda è data da
+\begin{equation}
+  \label{eq:bar}
+  \psi(\bm{r}) = A\e^{\uimm \bm{k}\cdot\bm{r}} - \frac{\e^{\uimm kr}}{r}
+  \frac{m}{2\pi\hslash^{2}} \int \e^{-\uimm \bm{k}'\cdot\bm{r}_{0}}
+  V(\bm{r}_{0}) \psi(\bm{r}_{0}) \dd^{3}\bm{r}_{0} = A\bigg(\e^{\uimm
+    \bm{k}\cdot\bm{r}} + f(\theta,\phi)\frac{\e^{\uimm kr}}{r}\bigg),
+\end{equation}
+con
+\begin{equation}
+  f(\theta,\phi) = -\frac{m}{2\pi\hslash^{2}A} \int\e^{-\uimm
+    \bm{k}'\cdot\bm{r}_{0}} V(\bm{r}_{0}) \psi(\bm{r}_{0}) \dd^{3}\bm{r}_{0}.
+\end{equation}
+Questo risultato conferma anche in questo caso la forma
+asintotica~\eqref{eq:forma-asintotica} della funzione d'onda di diffusione.
+Nella rappresentazione bra-ket l'ampiezza di diffusione può essere scritta come
+\begin{equation}
+  f(\theta,\phi) = -\frac{m}{2\pi\hslash^{2}} \braket{\psi_{0,\bm{k}'} | V |
+    \psi} = -\frac{m}{2\pi\hslash^{2}} \int\e^{-\uimm
+    \bm{k}'\cdot\bm{r}_{0}} V(\bm{r}_{0}) \psi(\bm{r}_{0}) \dd^{3}\bm{r}_{0}
+\end{equation}
+in cui $A=1$, $\psi_{0,\bm{k'}} = \e^{\uimm \bm{k}'\cdot\bm{r}}$ è autostato
+dell'hamiltoniana $H_{0} = -\nabla^{2}/(2m)$.
+
+Riscriviamo schematicamente l'equazione di
+Lippmann–Schwinger~\eqref{eq:lippmann-schwinger} in questo modo
+\begin{equation}
+  \psi = \psi_{0} + \int gV\psi,
+\end{equation}
+in cui per brevità abbiamo posto $g = 2mG/\hslash^{2}$.  Sostituiamo il secondo
+membro sotto il segno di integrale
+\begin{equation}
+  \psi = \psi_{0} + \int gV\psi_{0} + \iint gVgV\psi.
+\end{equation}
+Possiamo continuare la procedura ottenendo
+\begin{equation}
+  \label{eq:serie-born}
+  \psi = \psi_{0} + \int gV\psi_{0} + \iint gVgV\psi_{0} + \iiint gVgVgV\psi_{0}
+  + \dots.
+\end{equation}
+Questa è la \emph{serie di Born}.  Il termine $\psi_{0}$ di ordine zero della
+serie rappresenta la funzione d'onda incidente $\psi_{0}$ non disturbata dal
+potenziale, negli integrali successivi essa compare con un numero crescente di
+potenze del prodotto $gV$ fra la funzione di Green e il potenziale di
+interazione.  Fisicamente possiamo interpretare il termine $\int gV\psi_{0}$ di
+ordine $1$ come un singolo processo di diffusione, il termine
+$\iint gVgV\psi_{0}$ di ordine $2$ come due processi di diffusione in sequenza,
+ecc.  In questo contesto la funzione di Green è chiamata \emph{propagatore}
+perché spiega come il disturbo prodotto dal potenziale si propaga fra
+un'interazione e la successiva.  Feynman si è ispirato proprio alla serie di
+Born per realizzare la sua formulazione della meccanica quantistica
+relativistica espressa in termini di vertici ($V$) e propagatori ($g$).
+% TODO: provare a disegnare la figura 11.13 del Griffiths e rivedere la forma di
+% questo paragrafo.
+
+\subsection{Prima approssimazione di Born}
+\label{sec:prima-approx-born}
+
+Nell'\emph{approssimazione di Born} si arresta la serie~\eqref{eq:serie-born} al
+termine del primo ordine
+\begin{equation}
+  \begin{split}
+    \psi(\bm{r}) &= \psi_{0}(\bm{r}) + \int g(\bm{r} - \bm{r}_{0}) V(\bm{r}_{0})
+    \psi_{0}(\bm{r}_{0}) \dd^{3}\bm{r}_{0} \\
+    &= A\e^{\uimm \bm{k}\cdot\bm{r}} - \frac{\e^{\uimm kr}}{r}
+    \frac{m}{2\pi\hslash^{2}}\int \e^{-\uimm (\bm{k}' - \bm{k})\cdot\bm{r}_{0}}
+    V(\bm{r}_{0}) \dd^{3} \bm{r}_{0}.
+  \end{split}
+\end{equation}
+Viene chiamata a volte \emph{prima} approssimazione di Born proprio perché la
+serie si arresta al termine del primo ordine.  È possibile migliorare
+l'approssimazione considerando anche i termini di ordine superiore nella serie.
+La prima approssimazione di Born, fisicamente, può essere espressa dicendo che
+se il potenziale è debole rispetto all'energia della particella incidente, la
+funzione d'onda di quest'ultima non è sostanzialmente modificata e quindi
+nell'equazione~\eqref{eq:bar} poniamo
+$\psi(\bm{r}_{0}) \approx \psi_{0}(\bm{r}_{0}) =
+A\e^{\uimm \bm{k}\cdot\bm{r}_{0}}$.
+L'ampiezza di diffusione in questo modo diventa
+\begin{equation}
+  f(\theta,\phi) = -\frac{m}{2\pi\hslash^{2}} \braket{\psi_{0,\bm{k}'} | V |
+    \psi_{0,\bm{k}}} = -\frac{m}{2\pi\hslash^{2}} \int \e^{-\bm{q}\cdot\bm{r}}
+  V(\bm{r}) \dd^{3} \bm{r},
+\end{equation}
+con $\bm{q} = \bm{k}' - \bm{k}$ momento trasferito.  Per semplicità abbiamo
+soppresso il pedice $0$ da $\bm{r}_{0}$ dato che qui non c'è pericolo di
+ambiguità.  L'ampiezza di diffusione di Born è allora la trasformata di Fourier
+del potenziale fatta rispetto al momento trasferito $\bm{q}$.
+
+Per basse energie, cioè bassi valori di $k$, l'esponenziale nell'integrale è
+essenzialmente costante nella regione di diffusione e l'ampiezza di diffusione
+diventa
+\begin{equation}
+  f(\theta,\phi) = -\frac{m}{2\pi\hslash^{2}} \int V(\bm{r}) \dd^{3}
+  \bm{r}.
+\end{equation}
+
+% TODO: dimostrare la seguente formula dell'ampiezza di diffusione.
+Nel caso di potenziale a simmetria sferica, $V(\bm{r}) = V(r)$, l'ampiezza di
+diffusione di Born dipende solo dalla colatitudine $\theta$, per quanto detto
+nel paragrafo~\ref{sec:sviluppo-onde}, e assume l'espressione
+\begin{equation}
+  f(\theta) = -\frac{2m}{q\hslash^{2}} \int_{0}^{+\infty} rV(r) \sin(qr) \dd r.
+\end{equation}
+% TODO: fare la figura 11.12 del Griffiths
+Poiché $\abs{\bm{k}} = \abs{\bm{k}'} = k$, il modulo $q$ del momento trasferito
+vale $q = 2k\sin(\theta/2)$ e la dipendenza angolare dell'ampiezza di diffusione
+è contenuta in $q$.
+
+\subsection{Validità dell'approssimazione}
+\label{sec:validita-born}
+
+% TODO: parlare da qualche parte del fatto che se il potenziale è debole la
+% deflessione è piccola e gli sfasamenti, dove ha senso considerarli, sono
+% piccoli.
 
 \section{Operatori di diffusione}
 \label{sec:operatori-diffusione}
