@@ -9,6 +9,7 @@
 \usepackage[autostyle=true]{csquotes}
 \usepackage[style=numeric,hyperref,abbreviate=false,backend=biber]{biblatex}
 \usepackage[font=small,format=hang,labelfont=bf]{caption}
+\usepackage{sidecap}
 \usepackage{braket}
 \usepackage{tikz}
 % `mathtools' serve per definire il valore assoluto
@@ -19,6 +20,8 @@
 % le lettere greche.
 \usepackage{bm}
 \usepackage{hyperref}
+
+\usetikzlibrary{calc,decorations.markings}
 
 % impostazioni per il pacchetto `hyperref'. Per l'elenco di tutte le opzioni del
 % documento consulta il manuale: `texdoc hyperref'
@@ -94,6 +97,19 @@
 % j: \versor{\jmath} (solo `i' e `j' richiedono `\imath' e `\jmath', altrimenti
 % il puntino litiga con `\hat')
 \newcommand*{\versor}[1]{\hat{\bm{#1}}}
+
+% Il comando `\allinea' deve essere dato come valore dell'opzione `baseline' del
+% comando `\tikz' per allineare verticalmente i disegni in linea.  Vedi
+% http://tex.stackexchange.com/questions/59658/use-of-tikzpicture-matrix-in-align-or-gather-environment/59660#comment126261_59660
+\newcommand\allinea{-\the\dimexpr\fontdimen22\textfont2\relax}
+
+\tikzset{
+  % vedi http://tex.stackexchange.com/a/39283
+  middlearrow/.style={decoration={markings,mark= at position 0.5 with
+      {\arrow{#1}},},postaction={decorate}},
+  % vedi http://www.texample.net/tikz/examples/pgf-version-2/
+  dot/.style={fill=black,circle,minimum size=2.5pt,inner sep=0}
+}
 
 
 \title{Introduzione alla teoria della diffusione \\ in meccanica quantistica}
@@ -815,6 +831,61 @@ Nella rappresentazione bra-ket l'ampiezza di diffusione può essere scritta come
 in cui $A=1$, $\psi_{0,\bm{k'}} = \e^{\uimm \bm{k}'\cdot\bm{r}}$ è autostato
 dell'hamiltoniana $H_{0} = -\nabla^{2}/(2m)$.
 
+\begin{figure}
+  \centering
+  {\footnotesize
+    % porzione di codice presa dal pacchetto `nccmath' per rendere la formula
+    % centrata anche se si usa l'opzione di classe `fleqn'.
+    \makeatletter
+    \@fleqnfalse
+    \@mathmargin\@centering \ignorespaces
+    \makeatother
+    \begin{equation*}
+      \psi =
+      \tikz[baseline=\allinea]{
+        \draw[middlearrow={latex}] (0,0) -- node[below] {$\psi_{0}$} (1.8,0);} +
+      \tikz[baseline=\allinea]{
+        \draw[middlearrow={latex}] (0,0) -- node[below] {$\psi_{0}$} (2.4,0)
+        node[shape=coordinate] (V) {};
+        \draw (V) circle (1);
+        \draw (V) node[below] {$V$} -- node[above right,sloped] {$g$}
+        ++(1.5,1.2);
+        \node[dot] at (V) {};} +
+      \tikz[baseline=\allinea]{
+        \draw[middlearrow={latex}] (0,0) -- node[below]
+        {$\psi_{0}$} (1.4,0) node[shape=coordinate] (V1) {};
+        \draw (V1) node[below] {$V$} -- node[above,sloped] {$g$} ++(0.9,0.3)
+        node[shape=coordinate] (V2) {};
+        \draw (V2) node[below] {$V$} -- node[above right,sloped] {$g$}
+        ++(1.3,-0.4);
+        \draw (1.9,0) circle (1);
+        \node[dot] at (V1) {};
+        \node[dot] at (V2) {};} +
+      \tikz[baseline=\allinea]{
+        \draw[middlearrow={latex}] (0,0) -- node[below]
+        {$\psi_{0}$} (1.1,0) node[shape=coordinate] (V1) {};
+        \draw (V1) node[above] {$V$} -- node[above,sloped] {$g$} ++(0.4,-0.2)
+        node[shape=coordinate] (V2) {};
+        \draw (V2) node[below] {$V$} -- node[below,sloped] {$g$} ++(0.6,0.3)
+        node[shape=coordinate] (V3) {};
+        \draw (V3) node[above] {$V$} -- node[above right,sloped] {$g$}
+        ++(1.1,-0.4);
+        \draw (1.7,0) circle (1);
+        \node[dot] at (V1) {};
+        \node[dot] at (V2) {};
+        \node[dot] at (V3) {};} +\cdots
+    \end{equation*}
+    % ultima riga del codice, preso dal pacchetto `nccmath', per centrare la
+    % formula
+    \ignorespacesafterend
+  }
+  \caption{Interpretazione fisica della serie di Born~\eqref{eq:serie-born}.  Il
+    termine di ordine zero è la sola onda piana $\psi_{0}$ incidente, il termine
+    di ordine $1$ è un'onda piana diffusa una volta, il termine di ordine $2$ è
+    un'onda piana diffusa due volte, il termine di ordine $3$ è un'onda piana
+    diffusa tre volte, ecc.}
+\label{fig:serie-born}
+\end{figure}
 Riscriviamo schematicamente l'equazione di
 Lippmann–Schwinger~\eqref{eq:lippmann-schwinger} in questo modo
 \begin{equation}
@@ -835,16 +906,16 @@ Questa è la \emph{serie di Born}.  Il termine $\psi_{0}$ di ordine zero della
 serie rappresenta la funzione d'onda incidente $\psi_{0}$ non disturbata dal
 potenziale, negli integrali successivi essa compare con un numero crescente di
 potenze del prodotto $gV$ fra la funzione di Green e il potenziale di
-interazione.  Fisicamente possiamo interpretare il termine $\int gV\psi_{0}$ di
-ordine $1$ come un singolo processo di diffusione, il termine
-$\iint gVgV\psi_{0}$ di ordine $2$ come due processi di diffusione in sequenza,
-ecc.  In questo contesto la funzione di Green è chiamata \emph{propagatore}
-perché spiega come il disturbo prodotto dal potenziale si propaga fra
-un'interazione e la successiva.  Feynman si è ispirato proprio alla serie di
-Born per realizzare la sua formulazione della meccanica quantistica
+interazione.  Nella figura~\ref{fig:serie-born} è rappresentata
+l'interpretazione fisica della serie di Born.  Fisicamente possiamo interpretare
+il termine $\int gV\psi_{0}$ di ordine $1$ come un singolo processo di
+diffusione, il termine $\iint gVgV\psi_{0}$ di ordine $2$ come due processi di
+diffusione in sequenza, ecc.  In questo contesto la funzione di Green è chiamata
+\emph{propagatore} perché spiega come il disturbo prodotto dal potenziale si
+propaga fra un'interazione e la successiva.  Feynman si è ispirato proprio alla
+serie di Born per realizzare la sua formulazione della meccanica quantistica
 relativistica espressa in termini di vertici ($V$) e propagatori ($g$).
-% TODO: provare a disegnare la figura 11.13 del Griffiths e rivedere la forma di
-% questo paragrafo.
+% TODO: rivedere la forma di questo paragrafo.
 
 \subsection{Prima approssimazione di Born}
 \label{sec:prima-approx-born}
@@ -888,6 +959,22 @@ diventa
   \bm{r}.
 \end{equation}
 
+\begin{SCfigure}
+  \centering
+  \begin{tikzpicture}[scale=2]
+    \draw[-latex] (0,0) -- node[below] {$\bm{k} = k \versor{z}$} (2,0)
+    node[shape=coordinate] (k) {};
+    \draw[-latex] (0,0) -- node[sloped,above] {$\bm{k}' = k \versor{r}$}
+    ($cos(30)*(2,0) + sin(30)*(0,2)$) node[shape=coordinate] (k1) {};
+    \draw[-latex] (k) -- node[right] {$\bm{q} = \bm{k}' - \bm{k}$} (k1);
+    \draw (0.6,0) to[out=90,in=-60] node[right] {$\theta$} ($cos(30)*(0.6,0) +
+    sin(30)*(0,0.6)$);
+  \end{tikzpicture}
+  \caption{Il momento trasferito $\bm{q} = \bm{k}' - \bm{k}$ è la base del
+    triangolo isoscele di lati lunghi $k$ e con angolo al vertice $\theta$,
+    quindi $q = \abs{\bm{q}} = 2k\sin(\theta/2)$.}
+\label{fig:momento-trasferito}
+\end{SCfigure}
 % TODO: dimostrare la seguente formula dell'ampiezza di diffusione.
 Nel caso di potenziale a simmetria sferica, $V(\bm{r}) = V(r)$, l'ampiezza di
 diffusione di Born dipende solo dalla colatitudine $\theta$, per quanto detto
@@ -895,10 +982,14 @@ nel paragrafo~\ref{sec:sviluppo-onde}, e assume l'espressione
 \begin{equation}
   f(\theta) = -\frac{2m}{q\hslash^{2}} \int_{0}^{+\infty} rV(r) \sin(qr) \dd r.
 \end{equation}
-% TODO: fare la figura 11.12 del Griffiths
-Poiché $\abs{\bm{k}} = \abs{\bm{k}'} = k$, il modulo $q$ del momento trasferito
-vale $q = 2k\sin(\theta/2)$ e la dipendenza angolare dell'ampiezza di diffusione
-è contenuta in $q$.
+Il modulo $q$ del momento trasferito vale $q = 2k\sin(\theta/2)$, come mostrato
+nella figura~\ref{fig:momento-trasferito}, e la dipendenza angolare
+dell'ampiezza di diffusione è contenuta in $q$.
+
+Come abbiamo visto nel paragrafo~\ref{sec:sez-urto-mq}, la sezione d'urto
+differenziale è il modulo quadro dell'ampiezza di diffusione,
+$\sigma(\theta,\phi) = \abs{f(\theta,\phi)}^{2}$, e la sezione d'urto totale è
+dato da $\sigma_{\textup{tot}} = \int \sigma(\theta,\phi) \dd\Omega$.
 
 \subsection{Validità dell'approssimazione}
 \label{sec:validita-born}
