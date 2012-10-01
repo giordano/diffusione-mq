@@ -837,50 +837,39 @@ dell'hamiltoniana $H_{0} = -\nabla^{2}/(2m)$.
 \begin{figure}
   \centering
   {\footnotesize
-    % porzione di codice presa dal pacchetto `nccmath' per rendere la formula
-    % centrata anche se si usa l'opzione di classe `fleqn'.
-    \makeatletter
-    \@fleqnfalse
-    \@mathmargin\@centering \ignorespaces
-    \makeatother
-    \begin{equation*}
-      \psi =
-      \tikz[baseline=\allinea]{
-        \draw[middlearrow={latex}] (0,0) -- node[below] {$\psi_{0}$} (1.8,0);} +
-      \tikz[baseline=\allinea]{
-        \draw[middlearrow={latex}] (0,0) -- node[below] {$\psi_{0}$} (2.4,0)
-        node[shape=coordinate] (V) {};
-        \draw (V) circle (1);
-        \draw (V) node[below] {$V$} -- node[above right,sloped] {$g$}
-        ++(1.5,1.2);
-        \node[dot] at (V) {};} +
-      \tikz[baseline=\allinea]{
-        \draw[middlearrow={latex}] (0,0) -- node[below]
-        {$\psi_{0}$} (1.4,0) node[shape=coordinate] (V1) {};
-        \draw (V1) node[below] {$V$} -- node[above,sloped] {$g$} ++(0.9,0.3)
-        node[shape=coordinate] (V2) {};
-        \draw (V2) node[below] {$V$} -- node[above right,sloped] {$g$}
-        ++(1.3,-0.4);
-        \draw (1.9,0) circle (1);
-        \node[dot] at (V1) {};
-        \node[dot] at (V2) {};} +
-      \tikz[baseline=\allinea]{
-        \draw[middlearrow={latex}] (0,0) -- node[below]
-        {$\psi_{0}$} (1.1,0) node[shape=coordinate] (V1) {};
-        \draw (V1) node[above] {$V$} -- node[above,sloped] {$g$} ++(0.4,-0.2)
-        node[shape=coordinate] (V2) {};
-        \draw (V2) node[below] {$V$} -- node[below,sloped] {$g$} ++(0.6,0.3)
-        node[shape=coordinate] (V3) {};
-        \draw (V3) node[above] {$V$} -- node[above right,sloped] {$g$}
-        ++(1.1,-0.4);
-        \draw (1.7,0) circle (1);
-        \node[dot] at (V1) {};
-        \node[dot] at (V2) {};
-        \node[dot] at (V3) {};} +\cdots
-    \end{equation*}
-    % ultima riga del codice, preso dal pacchetto `nccmath', per centrare la
-    % formula
-    \ignorespacesafterend
+    $ \displaystyle
+    \psi =
+    \tikz[baseline=\allinea]{
+      \draw[middlearrow={latex}] (0,0) -- node[below] {$\psi_{0}$} (1.8,0);} +
+    \tikz[baseline=\allinea]{
+      \draw[middlearrow={latex}] (0,0) -- node[below] {$\psi_{0}$} (2.4,0)
+      node[shape=coordinate] (V) {};
+      \draw (V) circle (1);
+      \draw (V) node[below] {$V$} -- node[above right,sloped] {$g$} ++(1.5,1.2);
+      \node[dot] at (V) {};} +
+    \tikz[baseline=\allinea]{
+      \draw[middlearrow={latex}] (0,0) -- node[below]
+      {$\psi_{0}$} (1.4,0) node[shape=coordinate] (V1) {};
+      \draw (V1) node[below] {$V$} -- node[above,sloped] {$g$} ++(0.9,0.3)
+      node[shape=coordinate] (V2) {};
+      \draw (V2) node[below] {$V$} -- node[above right,sloped] {$g$}
+      ++(1.3,-0.4);
+      \draw (1.9,0) circle (1);
+      \node[dot] at (V1) {};
+      \node[dot] at (V2) {};} +
+    \tikz[baseline=\allinea]{
+      \draw[middlearrow={latex}] (0,0) -- node[below]
+      {$\psi_{0}$} (1.1,0) node[shape=coordinate] (V1) {};
+      \draw (V1) node[above] {$V$} -- node[above,sloped] {$g$} ++(0.4,-0.2)
+      node[shape=coordinate] (V2) {};
+      \draw (V2) node[below] {$V$} -- node[below,sloped] {$g$} ++(0.6,0.3)
+      node[shape=coordinate] (V3) {};
+      \draw (V3) node[above] {$V$} -- node[above right,sloped] {$g$}
+      ++(1.1,-0.4);
+      \draw (1.7,0) circle (1);
+      \node[dot] at (V1) {};
+      \node[dot] at (V2) {};
+      \node[dot] at (V3) {};} +\cdots $
   }
   \caption{Interpretazione fisica della serie di Born~\eqref{eq:serie-born}.  Il
     termine di ordine zero è la sola onda piana $\psi_{0}$ incidente, il termine
@@ -938,7 +927,7 @@ abbiamo
 \end{equation}
 Questa è l'\emph{approssimazione di Born}, chiamata a volte \emph{prima}
 approssimazione di Born proprio perché la serie si arresta al termine di ordine
-$1$.  È possibile migliorare l'approssimazione considerando anche i termini
+$1$.  È possibile migliorare l'approssimazione considerando anche termini
 successivi nella serie.  La prima approssimazione di Born, fisicamente, può
 essere espressa dicendo che se il potenziale è debole rispetto all'energia della
 particella incidente, la funzione d'onda di quest'ultima non è sostanzialmente
