@@ -762,12 +762,15 @@ Helmholtz omogenea
 Osserviamo che quest'ultima equazione non è altro che l'equazione di
 Schröedinger stazionaria di particella libera, quindi
 $\psi_{0}(\bm{r}) = A\e^{\uimm \bm{k}\cdot\bm{r}}$, con $A$ costante di
-normalizzazione.  Una funzione di Green che soddisfa
-l'equazione~\eqref{eq:green} è
+normalizzazione.  Due soluzioni dell'equazione~\eqref{eq:green} sono le funzioni
+di Green uscente $G_{+}(\bm{r})$ ed entrante $G_{-}(\bm{r})$ definite da
 \begin{equation}
-  G(\bm{r}) = -\frac{\e^{\uimm kr}}{4\pi r}.
+  G_{\pm}(\bm{r}) = -\frac{\e^{\pm \uimm kr}}{4\pi r}.
 \end{equation}
-In definitiva la soluzione dell'equazione~\eqref{eq:helmholtz} è data da
+Dalla forma asintotica~\eqref{eq:forma-asintotica} della funzione d'onda si
+intuisce che dobbiamo prendere in considerazione la funzione di Green uscente
+$G_{+}$.  In definitiva la soluzione dell'equazione~\eqref{eq:helmholtz} è data
+da
 \begin{equation}
   \label{eq:lippmann-schwinger}
   \psi(\bm{r}) = A\e^{\uimm \bm{k}\cdot\bm{r}} - \frac{m}{2\pi\hslash^{2}}\int
@@ -801,8 +804,8 @@ da cui
 \end{equation}
 Poniamo il vettore d'onda del flusso diffuso uguale a $\bm{k}' = k\versor{r}$
 perché per la conservazione dell'energia ha lo stesso modulo $k$ del vettore
-d'onda incidente $\bm{k} = k\versor{z}$.  La funzione di Green può essere
-approssimata con
+d'onda incidente $\bm{k} = k\versor{z}$.  La funzione di Green uscente $G_{+}$
+può essere approssimata con
 \begin{equation}
   \frac{\e^{\uimm k\abs{\bm{r} - \bm{r}_{0}}}}{\abs{\bm{r} - \bm{r}_{0}}}
   \approx \frac{\e^{\uimm kr}}{r} \e^{-\uimm \bm{k}'\cdot\bm{r}_{0}}.
@@ -900,28 +903,30 @@ Possiamo continuare la procedura ottenendo
 \begin{equation}
   \label{eq:serie-born}
   \psi = \psi_{0} + \int gV\psi_{0} + \iint gVgV\psi_{0} + \iiint gVgVgV\psi_{0}
-  + \dots.
+  + \cdots.
 \end{equation}
 Questa è la \emph{serie di Born}.  Il termine $\psi_{0}$ di ordine zero della
 serie rappresenta la funzione d'onda incidente $\psi_{0}$ non disturbata dal
 potenziale, negli integrali successivi essa compare con un numero crescente di
 potenze del prodotto $gV$ fra la funzione di Green e il potenziale di
 interazione.  Nella figura~\ref{fig:serie-born} è rappresentata
-l'interpretazione fisica della serie di Born.  Fisicamente possiamo interpretare
-il termine $\int gV\psi_{0}$ di ordine $1$ come un singolo processo di
-diffusione, il termine $\iint gVgV\psi_{0}$ di ordine $2$ come due processi di
-diffusione in sequenza, ecc.  In questo contesto la funzione di Green è chiamata
-\emph{propagatore} perché spiega come il disturbo prodotto dal potenziale si
-propaga fra un'interazione e la successiva.  Feynman si è ispirato proprio alla
-serie di Born per realizzare la sua formulazione della meccanica quantistica
-relativistica espressa in termini di vertici ($V$) e propagatori ($g$).
-% TODO: rivedere la forma di questo paragrafo.
+l'interpretazione fisica della serie di Born: possiamo interpretare il termine
+$\int gV\psi_{0}$ di ordine $1$ come l'onda piana $\psi_{0}$ che viene diffusa
+una sola volta e poi si propaga liberamente, il termine $\iint gVgV\psi_{0}$ di
+ordine $2$ come due processi di diffusione in sequenza, ecc.  In questo contesto
+la funzione di Green è chiamata \emph{propagatore} perché spiega come l'onda
+disturbata dal potenziale si propaga fra un'interazione e la successiva.  I
+diagrammi di Feynman, espressi in termini di vertici ($V$) e propagatori ($g$),
+alla base della formulazione della meccanica quantistica relativistica di
+Feynman sono ispirati proprio alla serie di Born.
 
 \subsection{Prima approssimazione di Born}
 \label{sec:prima-approx-born}
 
-Nell'\emph{approssimazione di Born} si arresta la serie~\eqref{eq:serie-born} al
-termine del primo ordine
+Se il potenziale $V$ è piccolo, i termini della serie~\eqref{eq:serie-born}
+contenenti potenze di $V$ di ordine $2$ o superiori sono trascurabili rispetto
+al termine di ordine $1$, quindi arrestando la serie al termine del primo ordine
+abbiamo
 \begin{equation}
   \begin{split}
     \psi(\bm{r}) &= \psi_{0}(\bm{r}) + \int g(\bm{r} - \bm{r}_{0}) V(\bm{r}_{0})
@@ -931,13 +936,13 @@ termine del primo ordine
     V(\bm{r}_{0}) \dd^{3} \bm{r}_{0}.
   \end{split}
 \end{equation}
-Viene chiamata a volte \emph{prima} approssimazione di Born proprio perché la
-serie si arresta al termine del primo ordine.  È possibile migliorare
-l'approssimazione considerando anche i termini di ordine superiore nella serie.
-La prima approssimazione di Born, fisicamente, può essere espressa dicendo che
-se il potenziale è debole rispetto all'energia della particella incidente, la
-funzione d'onda di quest'ultima non è sostanzialmente modificata e quindi
-nell'equazione~\eqref{eq:bar} poniamo
+Questa è l'\emph{approssimazione di Born}, chiamata a volte \emph{prima}
+approssimazione di Born proprio perché la serie si arresta al termine di ordine
+$1$.  È possibile migliorare l'approssimazione considerando anche i termini
+successivi nella serie.  La prima approssimazione di Born, fisicamente, può
+essere espressa dicendo che se il potenziale è debole rispetto all'energia della
+particella incidente, la funzione d'onda di quest'ultima non è sostanzialmente
+modificata e quindi nell'equazione~\eqref{eq:bar} poniamo
 $\psi(\bm{r}_{0}) \approx \psi_{0}(\bm{r}_{0}) =
 A\e^{\uimm \bm{k}\cdot\bm{r}_{0}}$.
 L'ampiezza di diffusione in questo modo diventa
@@ -967,8 +972,8 @@ diventa
     \draw[-latex] (0,0) -- node[sloped,above] {$\bm{k}' = k \versor{r}$}
     ($cos(30)*(2,0) + sin(30)*(0,2)$) node[shape=coordinate] (k1) {};
     \draw[-latex] (k) -- node[right] {$\bm{q} = \bm{k}' - \bm{k}$} (k1);
-    \draw (0.6,0) to[out=90,in=-60] node[right] {$\theta$} ($cos(30)*(0.6,0) +
-    sin(30)*(0,0.6)$);
+    \draw[-latex] (0.6,0) to[out=90,in=-60] node[right] {$\theta$}
+    ($cos(30)*(0.6,0) + sin(30)*(0,0.6)$);
   \end{tikzpicture}
   \caption{Il momento trasferito $\bm{q} = \bm{k}' - \bm{k}$ è la base del
     triangolo isoscele di lati lunghi $k$ e con angolo al vertice $\theta$,
