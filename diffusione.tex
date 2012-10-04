@@ -7,7 +7,7 @@
 %%%%% Pacchetti caricati
 \usepackage{layaureo}
 \usepackage[autostyle=true]{csquotes}
-\usepackage[style=numeric,hyperref,abbreviate=false,backend=biber]{biblatex}
+\usepackage[style=authoryear,hyperref,backend=biber]{biblatex}
 \usepackage[font=small,format=hang,labelfont=bf]{caption}
 \usepackage{sidecap}
 \usepackage{braket}
@@ -767,10 +767,11 @@ di Green uscente $G_{+}(\bm{r})$ ed entrante $G_{-}(\bm{r})$ definite da
 \begin{equation}
   G_{\pm}(\bm{r}) = -\frac{\e^{\pm \uimm kr}}{4\pi r}.
 \end{equation}
-Dalla forma asintotica~\eqref{eq:forma-asintotica} della funzione d'onda si
-intuisce che dobbiamo prendere in considerazione la funzione di Green uscente
-$G_{+}$.  In definitiva la soluzione dell'equazione~\eqref{eq:helmholtz} è data
-da
+Poiché vogliamo che il comportamento asintotico della funzione d'onda sia del
+tipo~\eqref{eq:forma-asintotica}, si intuisce che dobbiamo prendere in
+considerazione la funzione di Green uscente $G_{+}$ e in effetti verificheremo
+più avanti che questa scelta soddisfa la nostra richiesta.  In definitiva la
+soluzione dell'equazione~\eqref{eq:helmholtz} è data da
 \begin{equation}
   \label{eq:lippmann-schwinger}
   \psi(\bm{r}) = A\e^{\uimm \bm{k}\cdot\bm{r}} - \frac{m}{2\pi\hslash^{2}}\int
@@ -914,8 +915,7 @@ Feynman sono ispirati proprio alla serie di Born.
 
 Se il potenziale $V$ è piccolo, i termini della serie~\eqref{eq:serie-born}
 contenenti potenze di $V$ di ordine $2$ o superiori sono trascurabili rispetto
-al termine di ordine $1$, quindi arrestando la serie al termine del primo ordine
-abbiamo
+al termine di ordine $1$, quindi arrestando la serie al termine lineare in $gV$
 \begin{equation}
   \begin{split}
     \psi(\bm{r}) &= \psi_{0}(\bm{r}) + \int g(\bm{r} - \bm{r}_{0}) V(\bm{r}_{0})
@@ -953,7 +953,7 @@ diventa
   \bm{r}.
 \end{equation}
 
-\begin{SCfigure}
+\begin{SCfigure}[2]
   \centering
   \begin{tikzpicture}[scale=2]
     \draw[-latex] (0,0) -- node[below] {$\bm{k} = k \versor{z}$} (2,0)
@@ -978,7 +978,15 @@ nel paragrafo~\ref{sec:sviluppo-onde}, e assume l'espressione
 \end{equation}
 Il modulo $q$ del momento trasferito vale $q = 2k\sin(\theta/2)$, come mostrato
 nella figura~\ref{fig:momento-trasferito}, e la dipendenza angolare
-dell'ampiezza di diffusione è contenuta in $q$.
+dell'ampiezza di diffusione è contenuta in $q$.  Poiché l'approssimazione di
+Born è applicabile in caso di potenziale sufficientemente debole, le deflessioni
+$\delta_{l}$ prodotte dal potenziale di interazione sferico saranno molto
+piccole: $\delta_{l} \ll 1$.  In questo caso
+$\e^{2\uimm \delta_{l}} - 1 \approx 2\uimm \delta_{l}$ e l'ampiezza di
+diffusione~\eqref{eq:ampiezza-diffusione-op} si può approssimare con
+\begin{equation}
+  f(\theta) \approx \frac{1}{k}\sum_{l}(2l+1) \delta_{l} P_{l}(\cos\theta).
+\end{equation}
 
 Come abbiamo visto nel paragrafo~\ref{sec:sez-urto-mq}, la sezione d'urto
 differenziale è il modulo quadro dell'ampiezza di diffusione,
@@ -988,12 +996,268 @@ dato da $\sigma_{\textup{tot}} = \int \sigma(\theta,\phi) \dd\Omega$.
 \subsection{Validità dell'approssimazione}
 \label{sec:validita-born}
 
-% TODO: parlare da qualche parte del fatto che se il potenziale è debole la
-% deflessione è piccola e gli sfasamenti, dove ha senso considerarli, sono
-% piccoli.
+In questo paragrafo proveremo a determinare delle condizioni che stabiliscono in
+quali casi è possibile utilizzare l'approssimazione di Born.  Per semplicità di
+calcoli assumiamo che qui il potenziale sia centrale: $V(\bm{r}) = V(r)$.
+Riscriviamo la serie di Born~\eqref{eq:serie-born} più esplicitamente nel
+seguente modo
+\begin{equation}
+  \begin{split}
+    \psi(\bm{r}) &= \psi_{0}(\bm{r}) + \psi_{1}(\bm{r}) + \psi_{2}(\bm{r}) +
+    \psi_{3}(\bm{r}) + \cdots \\
+    &=\psi_{0} + \frac{2 m}{\hslash^{2}}\int\dd^{3}\bm{r}_{0} G_{+}(\bm{r} -
+    \bm{r}_{0}) V(r_{0}) \psi_{0}(\bm{r}_{0}) \\
+    &+ \bigg(\frac{2m}{\hslash^{2}}\bigg)^{2} \int\dd^{3}\bm{r}_{0}G_{+}(\bm{r}
+    - \bm{r}_{0}) V(r_{0})\int\dd^{3}\bm{r}_{1} G_{+}(\bm{r}_{0}
+    -\bm{r}_{1}) V(r_{1}) \psi_{0}(\bm{r}_{1}) \\
+    &+ \bigg(\frac{2m}{\hslash^{2}}\bigg)^{3} \int\dd^{3}\bm{r}_{0}G_{+}(\bm{r}
+    - \bm{r}_{0}) V(r_{0})\int\dd^{3}\bm{r}_{1} G_{+}(\bm{r}_{0}
+    -\bm{r}_{1}) V(r_{1}) \\
+    &\cdot\int\dd^{3}\bm{r}_{2} G_{+}(\bm{r}_{1} -
+    \bm{r}_{2}) V(r_{2}) \psi_{0}(\bm{r}_{2}) + \cdots.
+  \end{split}
+\end{equation}
+È possibile applicare la prima approssimazione di Born se
+$\abs{\psi_{1}(\bm{r})} \ll 1$.  Valutiamo $\psi_{1}(\bm{r})$ nel punto
+$\bm{r} = \bm{0}$ in cui questa funzione è generalmente più grande in modulo
+\begin{equation}
+  \begin{split}
+    \psi_{1}(\bm{0}) &= -\frac{m}{2\pi\hslash^{2}}\int \frac{\e^{\uimm
+        kr_{0}}}{r_{0}} V(r_{0}) \e^{\uimm \bm{k}\cdot\bm{r}_{0}}
+    \dd^{3}\bm{r}_{0} \\
+    &= -\frac{2m}{\hslash^{2}k} \int_{0}^{+\infty} \e^{\uimm kr_{0}}V(r_{0})
+    \sin(kr_{0}) \dd r_{0}.
+  \end{split}
+\end{equation}
+La quantità $f(k)=\e^{\uimm kr_{0}}\sin(kr_{0})/k$ assume il massimo valore in
+modulo\footnote{Senza fare lo studio della funzione $f(k)$ è sufficiente
+  osservare che $\abs{f(k)}^{2} = r_{0} \sin^{2}(kr_{0})/(kr_{0})^{2}$ e
+  l'andamento della funzione $\sin^{2}(kr_{0})/(kr_{0})^{2}$ è noto.}
+per $k = 0$ e risulta $f(0) = \lim_{k \to 0} f(k) = r_{0}$.  In definitiva
+abbiamo trovato che se il potenziale assume sempre lo stesso segno la prima
+approssimazione di Born è applicabile, per ogni valore di $k$, se
+\begin{equation}
+  \frac{2m}{\hslash^{2}}\int_{0}^{+\infty}\abs{V(r_{0})}r_{0}\dd r_{0} \ll 1.
+\end{equation}
+Possiamo ottenere una condizione più stringente, spesso però troppo restrittiva,
+se supponiamo che il potenziale abbia un valore massimo $V_{0}$ e raggio
+d'azione $L$.  Sostituendo questi valori nell'equazione precedente abbiamo
+\begin{equation}
+  \frac{2m}{\hslash^{2}}\int_{0}^{L}\abs{V_{0}}r_{0}\dd r_{0} =
+  \frac{\abs{V_{0}}mL^{2}}{\hslash^{2}} \ll 1.
+\end{equation}
+In ogni caso osserviamo che per grandi valori di $k$ la quantità $f(k)$
+nell'integrale diventa molto piccola per via del fattore $1/k$ e delle rapide
+oscillazioni del termine $\e^{\uimm kr_{0}}\sin(kr_{0})$.  In particolare, se
+$kL \gg 1$ queste oscillazioni diventano molto frequenti all'interno del raggio
+d'azione del potenziale.  Non è semplice individuare condizione precisa sotto la
+quale è possibile applicare l'approssimazione di Born, tuttavia si intuisce che
+questa diventa più affidabile per grandi valori dell'energia della particella
+incidente\footnote{In effetti in questo caso il potenziale può essere
+  considerato come una piccola perturbazione dell'hamiltoniana di particella
+  libera e l'approssimazione di Born è quindi giustificata.}
+ed è proprio in questi casi che è maggiormente utilizzata.
 
 \section{Operatori di diffusione}
 \label{sec:operatori-diffusione}
+
+Fino a qui abbiamo trattato la teoria della diffusione in meccanica quantistica
+facendo uso della rappresentazione nella base delle coordinate.  In questo
+paragrafo svilupperemo la teoria anche con la più elegante e generale notazione
+operatoriale dei bra-ket che permette di svincolarsi da una particolare
+rappresentazione.
+
+% TODO: nota che per la definizione del risolvete ho seguito la convenzione
+% del Ballentine: G = (z - H_0)^{-1}, mentre Martina e Boiti utilizzano la
+% convenzione G = (H_0 - z)^{-1} e la matrice di trasferimento (vedi appunti del
+% 27/01/2012) è scritta come G = G - G_0 T G_0.  Se mi decido, un giorno
+% converto tutto nella convenzione di Martina.
+Consideriamo l'hamiltoniana $H$ nella forma
+\begin{equation}
+  H = H_{0} + V
+\end{equation}
+con $H_{0}$ hamiltoniana di particella libera e $V$ potenziale di diffusione.
+Introduciamo gli operatori risolventi, i corrispondenti delle funzioni di Green
+nel linguaggio operatoriale, rispettivamente dell'hamiltoniana di particella
+libera e dell'hamiltoniana completa
+\begin{subequations}
+  \begin{align}
+    G_{0}(z) &= (z\mathbb{I} - H_{0})^{-1}, \\
+    G(z) &= (z\mathbb{I} - H)^{-1},
+  \end{align}
+\end{subequations}
+con $\mathbb{I}$ operatore identità e $z$, in generale, numero complesso.  I
+risolventi non sono ben definiti nel campo dei numeri reali perché se $z$
+appartiene allo spettro dell'operatore autoaggiunto $H_{0}$ o $H$, a seconda del
+risolvente considerato, allora l'operatore $z - H_{0}$ o $z - H$ non è
+invertibile.  Il valore del risolvente nel campo dei reali può essere ottenuto
+mediante un passaggio al limite dal campo dei complessi.  Per semplicità di
+scrittura, nel seguito ometteremo l'operatore $\mathbb{I}$.  Introduciamo
+l'\emph{operatore di trasferimento} $T$ definito dalla relazione
+\begin{equation}
+  \label{eq:oper-trasferimento}
+  G(z) = G_{0}(z) + G_{0}(z) T(z) G_{0}(z).
+\end{equation}
+Dalla definizione di $T$ abbiamo
+\begin{equation}
+  \begin{split}
+    T &= G_{0}^{-1} G G_{0}^{-1} - G_{0}^{-1} \\
+    &= (z - H_{0})(GG_{0}^{-1} - 1) \\
+    &= (z - H_{0})(GG_{0}^{-1} - GG^{-1}) \\
+    &= (z - H_{0})GV,
+  \end{split}
+\end{equation}
+in cui abbiamo sfruttato la relazione $G_{0}^{-1} - G^{-1} = V$.  D'altra parte
+$G_{0}^{-1} G G_{0}^{-1} - G_{0}^{-1}$ può anche essere riscritto come
+$(G_{0}^{-1}G - 1)(z - H_{0})$ e con calcoli analoghi si trova che
+\begin{equation}
+  T = VG(z - H_{0}).
+\end{equation}
+Confrontando i due risultati abbiamo
+\begin{subequations}
+  \begin{align}
+    G_{0} T &= GV, \\
+    T G_{0} &= VG.
+  \end{align}
+\end{subequations}
+Sostituendo questo nella definizione~\eqref{eq:oper-trasferimento}
+dell'operatore di trasferimento risulta
+\begin{equation}
+  \label{eq:baz}
+  G(z) = G_{0}(z) + G(z)VG_{0}(z) = G_{0}(z) + G_{0}(z)VG(z).
+\end{equation}
+Questa equazione può essere risolta iterativamente ottenendo una serie
+perturbativa formale
+\begin{equation}
+  \label{eq:oper-G-serie}
+  G = G_{0} + G_{0}VG_{0} + G_{0}VG_{0}VG_{0} + \cdots.
+\end{equation}
+Inoltre abbiamo
+\begin{equation}
+  \begin{split}
+    T - V &= G_{0}^{-1} G V -V \\
+    &= (G_{0}^{-1}G - 1)V \\
+    &= (G_{0}^{-1} - G^{-1})GV \\
+    &= VGV
+  \end{split}
+\end{equation}
+da cui
+\begin{equation}
+  T = V + VGV.
+\end{equation}
+Sostituendo l'equazione~\eqref{eq:oper-G-serie} nella precedente troviamo
+\begin{equation}
+  T = V + VG_{0}V + VG_{0}V + VG_{0}VG_{0}V + \cdots.
+\end{equation}
+Vedremo che questo risultato è la generalizzazione della serie di Born nel
+linguaggio operatoriale. %TODO: farlo vedere oppure togliere questa frase.
+
+L'equazione di Schröedinger stazionaria è
+\begin{equation}
+  H \ket{\psi_{a}^{(+)}} = E \ket{\psi_{a}^{(+)}},
+\end{equation}
+in cui $a$ indica l'insieme di numeri quantici, fra cui il vettore d'onda
+$\bm{k}_{a}$, che caratterizzano lo stato e l'apice $(+)$ rappresenta che il
+comportamento asintotico della funzione d'onda di diffusione deve essere del
+tipo~\eqref{eq:forma-asintotica} cioè la somma di un'onda piana e un'onda
+sferica \emph{uscente}.  È necessaria questa precisazione perché in alcuni
+contesti può essere utile considerare funzioni d'onda $\psi^{(-)}$ il cui
+comportamento asintotico è dato dalla somma di un'onda piana e un'onda sferica
+\emph{entrante}.  Possiamo riscrivere l'equazione di Schröedinger precedente
+anche come
+\begin{equation}
+  \label{eq:oper-schroedinger}
+  (E - H_{0})\ket{\psi_{a}^{(+)}} = V \ket{\psi_{a}^{(+)}}.
+\end{equation}
+Da qui si vede che $\ket{\psi_{a}^{(+)}}$ è data dalla somma della quantità
+$G_{0}(E^{+})V\ket{\psi_{a}^{(+)}}$, con
+$G_{}(E^{+})
+= \lim_{\epsilon \to 0+} G_{0}(E + \uimm \epsilon)$,
+e di una qualsiasi funzione $\ket{\phi_{a}}$ tale che
+$(E - H_{0})\ket{\psi_{0}} = 0$, cioè $\ket{\psi_{0}}$ deve essere autostato
+dell'hamiltoniana $H_{0}$ con lo stesso autovalore di energia di
+$\ket{\psi_{a}^{(+)}}$.  Dunque abbiamo
+\begin{equation}
+  \label{eq:oper-lippman-schwinger}
+  \ket{\psi_{a}^{(+)}} = \ket{\psi_{0}} + G_{0}(E^{+})V\ket{\psi_{a}^{(+)}}
+\end{equation}
+e questa è l'\emph{equazione di Lippmann–Schwinger} nella notazione
+operatoriale.  In rappresentazione di coordinate questa diventa proprio
+l'equazione~\eqref{eq:lippmann-schwinger}.
+L'equazione~\eqref{eq:oper-lippman-schwinger} contiene ``più informazione''
+della semplice equazioni di Schröedinger~\eqref{eq:oper-schroedinger} perché
+incorpora la condizione al contorno data dal termine $\ket{\psi_{0}}$.  Se
+poniamo nell'equazione di Lippmann–Schwinger $V = 0$ la soluzione sarà
+$\ket{\psi_{0}}$, che è autostato dell'hamiltoniana di particella libera e
+rappresenta il fascio incidente.  Quindi la forma dello stato di diffusione è
+del tipo: fascio incidente $+$ onda diffusa dal potenziale.  Il risolvente
+$G_{0}(E^{+})$ è associato a stati di diffusione $\ket{\psi^{(+)}}$
+\emph{uscenti}, vedi~\textcite[450-452]{ballentine:quantum-mechanics}.  Un'altra
+possibile scelta per il risolvete potrebbe essere
+$G_{0}(E^{-}) = \lim_{\epsilon \to 0} G_{0}(E - \uimm \epsilon)$, ma si può far
+vedere che questa è associata a stati di diffusione $\ket{\psi^{(-)}}$
+\emph{entranti} dati da
+\begin{equation}
+  \ket{\psi_{a}^{(-)}} = \ket{\psi_{0}} + G_{0}(E^{-})V\ket{\psi_{a}^{(-)}}
+\end{equation}
+Avevamo incontrato una simile ambiguità anche per le funzioni di Green nel
+paragrafo~\ref{sec:equazione-ls}.  Il prodotto scalare fra due stati di
+diffusione entrante e uscente $\braket{\psi_{b}^{(-)} | \psi_{a}^{(+)}}$
+associati a due insiemi di numeri quantici $a$ e $b$ differenti (in particolare
+sono diversi i vettori d'onda $\bm{k}_{a}$ e $\bm{k}_{b}$) definisce gli
+elementi della cosiddetta \emph{matrice S} o \emph{matrice di diffusione}
+\begin{equation}
+  S_{b,a} = \braket{\psi_{b}^{(-)} | \psi_{a}^{(+)}}.
+\end{equation}
+
+Mettiamo ora il relazione la matrice di trasferimento con l'ampiezza di
+diffusione $f_{ab}^{(+)}(\Omega_{\bm{k}_{b}})$ che nella teoria generale della
+diffusione si dimostra essere uguale a
+(vedi~\textcite[436-441]{ballentine:quantum-mechanics})
+\begin{equation}
+  f_{ab}^{(+)}(\Omega_{\bm{k}_{b}}) = -\frac{m}{2\pi\hslash^{2}}
+  \braket{\psi_{0,b} | V | \psi_{a}^{(+)}},
+\end{equation}
+dove $a$ indica lo stato del fascio incidente (quindi l'onda incidente ha
+vettore $\bm{k}_{a}$), $b$ quello dell'onda diffusa (che ha vettore d'onda
+$\bm{k}_{b}$), $\Omega_{\bm{k}_{b}}$ è l'angolo di $\bm{k}_{b}$,
+$\ket{\psi_{0,b}}$ è autostato dell'hamiltoniana di particella libera con
+autovalore $E_{b} = \hslash^{2}k_{b}^{2}/2m$.  Dall'equazione~\eqref{eq:baz}
+abbiamo $G(z) = (1 + G(z)V)G_{0}(z)$, da cui
+\begin{equation}
+  G(z)G_{0}^{-1}(z) = 1 + G(z)V.
+\end{equation}
+Dall'equazione~\eqref{eq:baz} abbiamo anche $G_{0}(z) = G(z) - G_{0}(z)VG(z) =
+(1 - G_{0}(z)V)G(z)$, da cui
+\begin{equation}
+  G_{0}(z)G^{-1}(z) = 1 - G_{0}(z)V.
+\end{equation}
+Moltiplicando membro a membro le due equazioni sopra ricavate, da entrambi i
+lati, abbiamo
+\begin{equation}
+  (1 + G(z)V)(1 - G_{0}(z)V) = (1 - G_{0}(z)V)(1 + G(z)V) = 1.
+\end{equation}
+Scriviamo l'equazione di Lippmann–Schwinger~\eqref{eq:oper-lippman-schwinger}
+come
+\begin{equation}
+  (1 - G_{0}(E^{+})V)\ket{\psi_{a}^{(+)}} = \ket{\psi_{0}}
+\end{equation}
+e sostituendo il risultato precedente abbiamo
+\begin{equation}
+  \ket{\psi_{a}^{(+)}} = (1 + G(E^{+})V)\ket{\psi_{0}}.
+\end{equation}
+Abbiamo trovato che
+$V\ket{\psi_{a}^{(+)}} = (V + VG(E^{+})V)\ket{\psi_{0}} =
+T(E^{+})\ket{\psi_{0}}$. Gli elementi della matrice di trasferimento fra gli
+stati $\ket{\psi_{0,\bm{k}_{b}}}$ e $\ket{\psi_{0,\bm{k}_{a}}}$, associati a
+vettori d'onda, rispettivamente, $\bm{k}_{b}$ e $\bm{k}_{a}$, sono
+\begin{equation}
+  \begin{split}
+    \braket{\psi_{0,\bm{k}_{b}} | T(E^{+}) | \psi_{0,\bm{k}_{a}}} &=
+    \braket{\psi_{0,\bm{k}_{b}} | V | \psi_{a}^{(+)}} \\
+    &= -\frac{2\pi\hslash^{2}}{m} f_{ab}^{(+)}(\Omega_{\bm{k}_{b}}).
+  \end{split}
+\end{equation}
 
 \phantomsection
 \addcontentsline{toc}{section}{\refname}
