@@ -212,8 +212,7 @@ affronteremo il problema
 Abbiamo fatto queste assunzioni non perché non siano possibili casi differenti
 (sono per esempio molto importanti i casi di diffusione di particelle dotate di
 spin e di diffusioni inelastiche) ma solo per semplificare la presente
-trattazione.  Lo teoria generale della diffusione, senza le ipotesi precedenti,
-è sviluppata da~\textcite[433-466]{ballentine:quantum-mechanics}.
+trattazione.
 
 L'hamiltoniana per un sistema di due particelle senza spin interagenti fra loro
 è
@@ -342,7 +341,7 @@ di diffusione perché è quella misurabile sperimentalmente e abbiamo trovato ch
 è uguale al modulo quadro di $f(\theta,\phi)$, chiamata per questo motivo
 \emph{ampiezza di diffusione}.  La sezione d'urto non dipende dal fattore di
 normalizzazione $A$ e spesso nel seguito lo trascureremo ponendolo uguale a $1$.
-Nei due prossimi paragrafi studieremo due metodi alternativi per calcolare
+Nei prossimi paragrafi studieremo due metodi alternativi per calcolare
 l'ampiezza di diffusione: il metodo delle onde parziali e l'approssimazione di
 Born.
 
@@ -782,17 +781,15 @@ Questa equazione integrale è nota come \emph{equazione di Lippmann–Schwinger}
 Essa è equivalente all'equazione di Schröedinger
 stazionaria~\eqref{eq:schroedinger-stazionaria} ma in più contiene al suo
 interno la condizione al contorno data dal termine
-$\psi_{0}(\bm{r}) = A\e^{\uimm \bm{k}\cdot\bm{r}}$.
+$\psi_{0}(\bm{r}) = A\e^{\uimm \bm{k}\cdot\bm{r}}$ che descrive il comportamento
+della funzione d'onda in assenza di potenziale.
 
 \subsection{Serie di Born}
 \label{sec:serie-born}
 
-Generalmente nei problemi di diffusione il potenziale di interazione è
-localizzato in una regione finita dello spazio, cioè è praticamente nullo al di
-fuori di essa, e si vuole determinare la funzione d'onda a grande distanza dal
-centro diffusore.  In particolare supponiamo che il potenziale $V(\bm{r}_{0})$
-sia localizzato intorno a $\bm{r}_{0} = \bm{0}$ e che dobbiamo determinare
-$\psi(\bm{r})$ per $\abs{\bm{r}} \gg \abs{\bm{r}_{0}}$.  In questo caso possiamo
+Supponiamo anche in questo caso che il potenziale sia a corto raggio, cioè che
+risulti $\lim_{r \to \infty} r^{2}V(\bm{r}) \in \mathbb{R}$.  Poiché vogliamo
+determinare $\psi(\bm{r})$ per $\abs{\bm{r}} \gg \abs{\bm{r}_{0}}$, possiamo
 utilizzare l'approssimazione
 \begin{equation}
   \abs{\bm{r} - \bm{r}_{0}}^{2} \approx r^{2} +r_{0}^{2} -
@@ -828,6 +825,7 @@ Questo risultato conferma anche in questo caso la forma
 asintotica~\eqref{eq:forma-asintotica} della funzione d'onda di diffusione.
 Nella rappresentazione bra-ket l'ampiezza di diffusione può essere scritta come
 \begin{equation}
+  \label{eq:ampiezza-braket}
   f(\theta,\phi) = -\frac{m}{2\pi\hslash^{2}} \braket{\psi_{0,\bm{k}'} | V |
     \psi} = -\frac{m}{2\pi\hslash^{2}} \int\e^{-\uimm
     \bm{k}'\cdot\bm{r}_{0}} V(\bm{r}_{0}) \psi(\bm{r}_{0}) \dd^{3}\bm{r}_{0}
@@ -936,6 +934,7 @@ $\psi(\bm{r}_{0}) \approx \psi_{0}(\bm{r}_{0}) =
 A\e^{\uimm \bm{k}\cdot\bm{r}_{0}}$.
 L'ampiezza di diffusione in questo modo diventa
 \begin{equation}
+  \label{eq:ampiezza-born-braket}
   f(\theta,\phi) = -\frac{m}{2\pi\hslash^{2}} \braket{\psi_{0,\bm{k}'} | V |
     \psi_{0,\bm{k}}} = -\frac{m}{2\pi\hslash^{2}} \int \e^{-\bm{q}\cdot\bm{r}}
   V(\bm{r}) \dd^{3} \bm{r},
@@ -1147,10 +1146,15 @@ da cui
 \end{equation}
 Sostituendo l'equazione~\eqref{eq:oper-G-serie} nella precedente troviamo
 \begin{equation}
+  \label{eq:oper-T-serie}
   T = V + VG_{0}V + VG_{0}V + VG_{0}VG_{0}V + \cdots.
 \end{equation}
-Vedremo che questo risultato è la generalizzazione della serie di Born nel
-linguaggio operatoriale. %TODO: farlo vedere oppure togliere questa frase.
+Vedremo come, grazie a questo risultato, la matrice di trasferimento può essere
+messo in relazione con l'ampiezza di diffusione in approssimazione di
+Born.
+
+\subsection{Equazione di Lippmann-Schwinger}
+\label{sec:oper-equazione-di-ls}
 
 L'equazione di Schröedinger stazionaria è
 \begin{equation}
@@ -1160,11 +1164,10 @@ in cui $a$ indica l'insieme di numeri quantici, fra cui il vettore d'onda
 $\bm{k}_{a}$, che caratterizzano lo stato e l'apice $(+)$ rappresenta che il
 comportamento asintotico della funzione d'onda di diffusione deve essere del
 tipo~\eqref{eq:forma-asintotica} cioè la somma di un'onda piana e un'onda
-sferica \emph{uscente}.  È necessaria questa precisazione perché in alcuni
-contesti può essere utile considerare funzioni d'onda $\psi^{(-)}$ il cui
-comportamento asintotico è dato dalla somma di un'onda piana e un'onda sferica
-\emph{entrante}.  Possiamo riscrivere l'equazione di Schröedinger precedente
-anche come
+sferica \emph{uscente}.  È necessaria questa precisazione perché è possibile
+considerare funzioni d'onda $\psi^{(-)}$ il cui comportamento asintotico è dato
+dalla somma di un'onda piana e un'onda sferica \emph{entrante}.  Possiamo
+riscrivere l'equazione di Schröedinger precedente anche come
 \begin{equation}
   \label{eq:oper-schroedinger}
   (E - H_{0})\ket{\psi_{a}^{(+)}} = V \ket{\psi_{a}^{(+)}}.
@@ -1173,20 +1176,20 @@ Da qui si vede che $\ket{\psi_{a}^{(+)}}$ è data dalla somma della quantità
 $G_{0}(E^{+})V\ket{\psi_{a}^{(+)}}$, con
 $G_{}(E^{+})
 = \lim_{\epsilon \to 0+} G_{0}(E + \uimm \epsilon)$,
-e di una qualsiasi funzione $\ket{\phi_{a}}$ tale che
-$(E - H_{0})\ket{\psi_{0}} = 0$, cioè $\ket{\psi_{0}}$ deve essere autostato
-dell'hamiltoniana $H_{0}$ con lo stesso autovalore di energia di
-$\ket{\psi_{a}^{(+)}}$.  Dunque abbiamo
+e di una funzione $\ket{\psi_{0}}$ tale che $(E - H_{0})\ket{\psi_{0}} = 0$,
+cioè $\ket{\psi_{0}}$ deve essere autostato dell'hamiltoniana $H_{0}$ con lo
+stesso autovalore di energia di $\ket{\psi_{a}^{(+)}}$.  Dunque abbiamo
 \begin{equation}
-  \label{eq:oper-lippman-schwinger}
+  \label{eq:oper-lippmann-schwinger}
   \ket{\psi_{a}^{(+)}} = \ket{\psi_{0}} + G_{0}(E^{+})V\ket{\psi_{a}^{(+)}}
 \end{equation}
 e questa è l'\emph{equazione di Lippmann–Schwinger} nella notazione
 operatoriale.  In rappresentazione di coordinate questa diventa proprio
 l'equazione~\eqref{eq:lippmann-schwinger}.
-L'equazione~\eqref{eq:oper-lippman-schwinger} contiene ``più informazione''
+L'equazione~\eqref{eq:oper-lippmann-schwinger} contiene ``più informazione''
 della semplice equazioni di Schröedinger~\eqref{eq:oper-schroedinger} perché
-incorpora la condizione al contorno data dal termine $\ket{\psi_{0}}$.  Se
+incorpora la condizione al contorno data dal termine $\ket{\psi_{0}}$ che
+descrive il comportamento della funzione d'onda in assenza di potenziale.  Se
 poniamo nell'equazione di Lippmann–Schwinger $V = 0$ la soluzione sarà
 $\ket{\psi_{0}}$, che è autostato dell'hamiltoniana di particella libera e
 rappresenta il fascio incidente.  Quindi la forma dello stato di diffusione è
@@ -1194,7 +1197,7 @@ del tipo: fascio incidente $+$ onda diffusa dal potenziale.  Il risolvente
 $G_{0}(E^{+})$ è associato a stati di diffusione $\ket{\psi^{(+)}}$
 \emph{uscenti}, vedi~\textcite[450-452]{ballentine:quantum-mechanics}.  Un'altra
 possibile scelta per il risolvete potrebbe essere
-$G_{0}(E^{-}) = \lim_{\epsilon \to 0} G_{0}(E - \uimm \epsilon)$, ma si può far
+$G_{0}(E^{-}) = \lim_{\epsilon \to 0+} G_{0}(E - \uimm \epsilon)$, ma si può far
 vedere che questa è associata a stati di diffusione $\ket{\psi^{(-)}}$
 \emph{entranti} dati da
 \begin{equation}
@@ -1210,6 +1213,9 @@ elementi della cosiddetta \emph{matrice S} o \emph{matrice di diffusione}
   S_{b,a} = \braket{\psi_{b}^{(-)} | \psi_{a}^{(+)}}.
 \end{equation}
 
+\subsection{Calcolo dell'ampiezza di diffusione}
+\label{sec:oper-ampiezza-diffusione}
+
 Mettiamo ora il relazione la matrice di trasferimento con l'ampiezza di
 diffusione $f_{ab}^{(+)}(\Omega_{\bm{k}_{b}})$ che nella teoria generale della
 diffusione si dimostra essere uguale a
@@ -1222,8 +1228,11 @@ dove $a$ indica lo stato del fascio incidente (quindi l'onda incidente ha
 vettore $\bm{k}_{a}$), $b$ quello dell'onda diffusa (che ha vettore d'onda
 $\bm{k}_{b}$), $\Omega_{\bm{k}_{b}}$ è l'angolo di $\bm{k}_{b}$,
 $\ket{\psi_{0,b}}$ è autostato dell'hamiltoniana di particella libera con
-autovalore $E_{b} = \hslash^{2}k_{b}^{2}/2m$.  Dall'equazione~\eqref{eq:baz}
-abbiamo $G(z) = (1 + G(z)V)G_{0}(z)$, da cui
+autovalore $E_{b} = \hslash^{2}k_{b}^{2}/2m$.  Avevamo trovato lo stesso
+risultato anche nel paragrafo~\ref{sec:serie-born},
+equazione~\eqref{eq:ampiezza-braket}, in cui abbiamo utilizzato una notazione
+differente.  Dall'equazione~\eqref{eq:baz} abbiamo $G(z) = (1 + G(z)V)G_{0}(z)$,
+da cui
 \begin{equation}
   G(z)G_{0}^{-1}(z) = 1 + G(z)V.
 \end{equation}
@@ -1237,7 +1246,7 @@ lati, abbiamo
 \begin{equation}
   (1 + G(z)V)(1 - G_{0}(z)V) = (1 - G_{0}(z)V)(1 + G(z)V) = 1.
 \end{equation}
-Scriviamo l'equazione di Lippmann–Schwinger~\eqref{eq:oper-lippman-schwinger}
+Scriviamo l'equazione di Lippmann–Schwinger~\eqref{eq:oper-lippmann-schwinger}
 come
 \begin{equation}
   (1 - G_{0}(E^{+})V)\ket{\psi_{a}^{(+)}} = \ket{\psi_{0}}
@@ -1252,12 +1261,60 @@ T(E^{+})\ket{\psi_{0}}$. Gli elementi della matrice di trasferimento fra gli
 stati $\ket{\psi_{0,\bm{k}_{b}}}$ e $\ket{\psi_{0,\bm{k}_{a}}}$, associati a
 vettori d'onda, rispettivamente, $\bm{k}_{b}$ e $\bm{k}_{a}$, sono
 \begin{equation}
+  \label{eq:oper-T-amp}
   \begin{split}
     \braket{\psi_{0,\bm{k}_{b}} | T(E^{+}) | \psi_{0,\bm{k}_{a}}} &=
     \braket{\psi_{0,\bm{k}_{b}} | V | \psi_{a}^{(+)}} \\
-    &= -\frac{2\pi\hslash^{2}}{m} f_{ab}^{(+)}(\Omega_{\bm{k}_{b}}).
+    &= -\frac{2\pi\hslash^{2}}{m} f_{ab}^{(+)}(\Omega_{\bm{k}_{b}}),
   \end{split}
 \end{equation}
+o, equivalentemente,
+\begin{equation}
+  \label{eq:oper-amp-diff}
+  f_{ab}^{(+)}(\Omega_{\bm{k}_{b}}) = -\frac{m}{2\pi\hslash^{2}}
+  \braket{\psi_{0,\bm{k}_{b}} | T(E^{+}) | \psi_{0,\bm{k}_{a}}}.
+\end{equation}
+Abbiamo visto che l'operatore di trasferimento $T$ può essere espanso nella
+serie~\eqref{eq:oper-T-serie}, quindi possiamo espandere anche l'ampiezza di
+diffusione in una serie del tipo
+\begin{equation}
+  f_{ab} = \sum_{n = 1}^{\infty} f_{ab}^{(n)} = f_{ab}^{(1)} + f_{ab}^{(2)} +
+  f_{ab}^{(3)} + \cdots.
+\end{equation}
+Infatti sostituendo la serie~\eqref{eq:oper-T-serie}
+nell'espressione~\eqref{eq:oper-amp-diff} dell'ampiezza di diffusione abbiamo
+\begin{equation}
+  f_{ab} = -\frac{m}{2\pi\hslash^{2}} \braket{\psi_{0,\bm{k}_{b}} | (V +
+    VG_{0}(E^{+})V + VG_{0}(E^{+})VG_{0}(E^{+})V + \cdots) |
+    \psi_{0,\bm{k}_{a}}}.
+\end{equation}
+I primi termini della serie sono
+\begin{subequations}
+  \begin{align}
+    f_{ab}^{(1)} &= -\frac{m}{2\pi\hslash^{2}}
+    \braket{\psi_{0,\bm{k}_{b}} | V | \psi_{0,\bm{k}_{a}}}, \\
+    f_{ab}^{(2)} &= -\frac{m}{2\pi\hslash^{2}} \braket{\psi_{0,\bm{k}_{b}} |
+      VG_{0}(E^{+})V | \psi_{0,\bm{k}_{a}}}, \\
+    f_{ab}^{(3)} &= -\frac{m}{2\pi\hslash^{2}} \braket{\psi_{0,\bm{k}_{b}} |
+      VG_{0}(E^{+})VG_{0}(E^{+})V | \psi_{0,\bm{k}_{a}}}.
+  \end{align}
+\end{subequations}
+Osserviamo che il primo termine della serie, $f_{ab}^{(1)}$, nella
+rappresentazione della base di coordinate è esattamente l'ampiezza di
+diffusione~\eqref{eq:ampiezza-born-braket} nella prima approssimazione di Born,
+scritta con una notazione differente.  È facile verificare che i termini
+$f_{ab}^{(2)}$, $f_{ab}^{(3)}$, ecc\dots sono quelli che si otterrebbero per
+l'ampiezza di diffusione in approssimazione di Born considerando i termini
+successivi nella serie~\eqref{eq:serie-born}.
+
+La serie di Born può essere ottenuta anche risolvendo iterativamente l'equazione
+di Lippmann–Schwinger~\eqref{eq:oper-lippmann-schwinger}
+\begin{equation}
+  \ket{\psi_{a}^{(+)}} = \ket{\psi_{0}} + G_{0}(E^{+})V\ket{\psi_{0}} +
+  G_{0}(E^{+})VG_{0}(E^{+})V\ket{\psi_{0}} + \cdots.
+\end{equation}
+L'ampiezza di diffusione di Born poi si ottiene sostituendo questa equazione
+nella~\eqref{eq:oper-T-amp}.
 
 \phantomsection
 \addcontentsline{toc}{section}{\refname}
