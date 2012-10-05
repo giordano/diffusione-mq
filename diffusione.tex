@@ -30,7 +30,9 @@
   pdfauthor={Mosè Giordano},
   breaklinks=true,% permette di spezzare i link su più righe
   bookmarksnumbered,% inserisce i numeri delle sezioni nei segnalibri
-  hidelinks % link neri e senza bordi colorati, adatto per la stampa
+  hidelinks, % link neri e senza bordi colorati, adatto per la stampa
+  pdfkeywords={diffusione, meccanica quantistica, scattering, quantum
+    mechanics},
 }
 
 \addbibresource{bibliografia.bib} % nome del file contenente la bibliografia
@@ -117,7 +119,7 @@
 
 \begin{document}
 \maketitle
-\tableofcontents
+{\small\tableofcontents}
 
 \phantomsection
 \addcontentsline{toc}{section}{Sommario}
@@ -125,13 +127,15 @@
 \label{sec:sommario}
 
 Queste note presentano un'introduzione alla teoria della diffusione nella
-meccanica quantistica non relativistica.  Sono una rielaborazione personale
-degli appunti delle lezioni di Fisica Teorica tenute dal professor Luigi Martina
-nel corso di Laurea Magistrale in Fisica all'Università del Salento nell'anno
-accademico 2011-2012.  I testi di riferimento seguiti
+meccanica quantistica non relativistica, senza alcuna pretesa di completezza.
+Sono una rielaborazione personale degli appunti delle lezioni di Fisica Teorica
+tenute dal professor Luigi Martina nel corso di Laurea Magistrale in Fisica
+all'Università del Salento nell'anno accademico 2011-2012.  I testi di
+riferimento seguiti
 sono~\textcites{ballentine:quantum-mechanics,cohen:quantum-mechanics}, in
 aggiunta ho integrato del materiale preso
-da~\textcite{griffiths:introduction-qm}.
+da~\textcites{gottfried:quantum-mechanics,griffiths:introduction-qm}.  Ogni
+errore presente in queste note è da attribuire a me.
 
 \section{\completare{Concetti generali}}
 \label{sec:concetti-generali}
@@ -282,10 +286,12 @@ che urta contro un ostacolo, cioè il bersaglio nel problema di diffusione, si
 diffonde in tutto lo spazio come un'onda sferica uscente del tipo
 $f(\theta,\phi)\e^{\uimm kr}/r$, con $f(\theta,\phi)$ ampiezza dell'onda di
 diffusione.  Essa dipende dalle due coordinate angolari sferiche $\theta$ e
-$\phi$ perché la diffusione non è in generale isotropica.  Il fattore $1/r$
-assicura che il flusso della densità di probabilità $\abs{\psi_{b}}^{2}$ sia
-costante per ogni superficie sferica centrata nel bersaglio.  Il comportamento
-asintotico della funzione d'onda $\psi(\bm{r})$ sarà del tipo
+$\phi$, perché la diffusione non è in generale isotropica, e anche dall'energia
+del fascio incidente, ma non scriveremo esplicitamente questa dipendenza per
+semplicità.  Il fattore $1/r$ assicura che il flusso della densità di
+probabilità $\abs{\psi_{b}}^{2}$ sia costante per ogni superficie sferica
+centrata nel bersaglio.  Il comportamento asintotico della funzione d'onda
+$\psi(\bm{r})$ sarà del tipo
 \begin{equation}
   \label{eq:forma-asintotica}
   \psi(\bm{r}) = \psi_{a}(\bm{r}) + \psi_{b}(\bm{r}) =A \bigg( \e^{\uimm
@@ -344,6 +350,8 @@ normalizzazione $A$ e spesso nel seguito lo trascureremo ponendolo uguale a $1$.
 Nei prossimi paragrafi studieremo due metodi alternativi per calcolare
 l'ampiezza di diffusione: il metodo delle onde parziali e l'approssimazione di
 Born.
+% TODO: parlare del fatto che si è ignorata l'interferenza fra le due onde.
+% Vedi Ballentine, Cohen o Gottfried.
 
 \section{Metodo delle onde parziali}
 \label{sec:onde-parziali}
@@ -646,6 +654,11 @@ dopo pochi termini e risulta maggiormente utile a livello pratico.  La
 condizione $kL \ll l$ è vera, indipendentemente dal valore del raggio $L$ del
 potenziale, per piccoli valori dell'energia della particella incidente.
 
+% TODO: Sakurai, pagg 400-402, e Gottfried, pagg 336-8, ricavano l'ampiezza di
+% diffusione in maniera diversa, senza risolvere l'equazione di Schroëdinger.
+% Valutare se metterla, magari in aggiunta a quella che ho fatto io e in
+% {\small [...]}.
+
 \subsection{Calcolo degli sfasamenti}
 \label{sec:calcolo-sfasamenti}
 
@@ -742,16 +755,16 @@ dall'incognita $\psi(\bm{r})$.
 Dalla teoria delle funzioni di Green si sa che la soluzione generale
 dell'equazione~\eqref{eq:helmholtz} è data da
 \begin{equation}
-  \psi(\bm{r}) = \psi_{0}(\bm{r}) + \int G(\bm{r} -
-  \bm{r}_{0})Q(\bm{r}_{0})\dd^{3}\bm{r}_{0} = \psi_{0}(\bm{r}) +
-  \frac{2m}{\hslash^{2}}\int G(\bm{r} -
-  \bm{r}_{0})V(\bm{r}_{0})\psi(\bm{r}_{0})\dd^{3}\bm{r}_{0},
+  \psi(\bm{r}) = \psi_{0}(\bm{r}) + \int
+  G(\bm{r},\bm{r}_{0};k)Q(\bm{r}_{0})\dd^{3}\bm{r}_{0} = \psi_{0}(\bm{r}) +
+  \frac{2m}{\hslash^{2}}\int
+  G(\bm{r},\bm{r}_{0};k)V(\bm{r}_{0})\psi(\bm{r}_{0})\dd^{3}\bm{r}_{0},
 \end{equation}
-in cui $G(\bm{r})$ è una funzione di Green dell'operatore $\nabla^{2} + k^{2}$
-ed è data dalla soluzione dell'equazione
+in cui $G(\bm{r},\bm{r}';k)$ è una funzione di Green dell'operatore
+$\nabla^{2} + k^{2}$ ed è data dalla soluzione dell'equazione
 \begin{equation}
   \label{eq:green}
-  (\nabla^{2} + k^{2})G(\bm{r}) = \delta^{3}(\bm{r}),
+  (\nabla^{2} + k^{2})G(\bm{r},\bm{r}';k) = \delta^{3}(\bm{r} - \bm{r}'),
 \end{equation}
 mentre $\psi_{0}(\bm{r})$ è una soluzione particolare dell'equazione di
 Helmholtz omogenea
@@ -762,9 +775,11 @@ Osserviamo che quest'ultima equazione non è altro che l'equazione di
 Schröedinger stazionaria di particella libera, quindi
 $\psi_{0}(\bm{r}) = A\e^{\uimm \bm{k}\cdot\bm{r}}$, con $A$ costante di
 normalizzazione.  Due soluzioni dell'equazione~\eqref{eq:green} sono le funzioni
-di Green uscente $G_{+}(\bm{r})$ ed entrante $G_{-}(\bm{r})$ definite da
+di Green uscente $G_{+}(\bm{r},\bm{r}';k)$ ed entrante $G_{-}(\bm{r},\bm{r}';k)$
+definite da
 \begin{equation}
-  G_{\pm}(\bm{r}) = -\frac{\e^{\pm \uimm kr}}{4\pi r}.
+  G_{\pm}(\bm{r},\bm{r}';k) = -\frac{\e^{\pm \uimm k\abs{\bm{r} -
+        \bm{r}'}}}{4\pi \abs{\bm{r} - \bm{r}'}}.
 \end{equation}
 Poiché vogliamo che il comportamento asintotico della funzione d'onda sia del
 tipo~\eqref{eq:forma-asintotica}, si intuisce che dobbiamo prendere in
@@ -791,6 +806,8 @@ Supponiamo anche in questo caso che il potenziale sia a corto raggio, cioè che
 risulti $\lim_{r \to \infty} r^{2}V(\bm{r}) \in \mathbb{R}$.  Poiché vogliamo
 determinare $\psi(\bm{r})$ per $\abs{\bm{r}} \gg \abs{\bm{r}_{0}}$, possiamo
 utilizzare l'approssimazione
+% TODO: vedi Sakurai, pagina 384, per questo calcolo, a prima vista mi sembra un
+% po' più chiaro
 \begin{equation}
   \abs{\bm{r} - \bm{r}_{0}}^{2} \approx r^{2} +r_{0}^{2} -
   2\bm{r}\cdot\bm{r}_{0} \approx r^{2}\bigg(1 -
@@ -916,7 +933,7 @@ contenenti potenze di $V$ di ordine $2$ o superiori sono trascurabili rispetto
 al termine di ordine $1$, quindi arrestando la serie al termine lineare in $gV$
 \begin{equation}
   \begin{split}
-    \psi(\bm{r}) &= \psi_{0}(\bm{r}) + \int g(\bm{r} - \bm{r}_{0}) V(\bm{r}_{0})
+    \psi(\bm{r}) &= \psi_{0}(\bm{r}) + \int g(\bm{r},\bm{r}_{0};k) V(\bm{r}_{0})
     \psi_{0}(\bm{r}_{0}) \dd^{3}\bm{r}_{0} \\
     &= A\e^{\uimm \bm{k}\cdot\bm{r}} - \frac{\e^{\uimm kr}}{r}
     \frac{m}{2\pi\hslash^{2}}\int \e^{-\uimm (\bm{k}' - \bm{k})\cdot\bm{r}_{0}}
@@ -986,6 +1003,18 @@ diffusione~\eqref{eq:ampiezza-diffusione-op} si può approssimare con
 \begin{equation}
   f(\theta) \approx \frac{1}{k}\sum_{l}(2l+1) \delta_{l} P_{l}(\cos\theta).
 \end{equation}
+Apparentemente questo risultato è una contraddizione con il teorema ottico:
+un'ampiezza di diffusione puramente reale implicherebbe una sezione d'urto
+totale nulla.  Tuttavia dobbiamo ricordare che la prima approssimazione di Born
+prende in considerazione solo il termine lineare del potenziale, mentre il
+teorema ottico mette in relazione la sezione d'urto totale con un'espressione
+quadratica dell'ampiezza di diffusione.  Per risolvere questo ``paradosso''
+bisogna considerare tutte le potenze di $V$ nell'espressione dell'ampiezza di
+diffusione, che contribuiscono con termini complessi.  Questo fatto, però,
+solleva il problema della convergenza della serie, problema di cui però non ci
+occuperemo qui.
+% TODO: eventualmente calcolare anche le onde parziali in approssimazione di
+% Born.  Vedi, per esempio, Gottfried, pagina 361.
 
 Come abbiamo visto nel paragrafo~\ref{sec:sez-urto-mq}, la sezione d'urto
 differenziale è il modulo quadro dell'ampiezza di diffusione,
@@ -1004,16 +1033,17 @@ seguente modo
   \begin{split}
     \psi(\bm{r}) &= \psi_{0}(\bm{r}) + \psi_{1}(\bm{r}) + \psi_{2}(\bm{r}) +
     \psi_{3}(\bm{r}) + \cdots \\
-    &=\psi_{0} + \frac{2 m}{\hslash^{2}}\int\dd^{3}\bm{r}_{0} G_{+}(\bm{r} -
-    \bm{r}_{0}) V(r_{0}) \psi_{0}(\bm{r}_{0}) \\
-    &+ \bigg(\frac{2m}{\hslash^{2}}\bigg)^{2} \int\dd^{3}\bm{r}_{0}G_{+}(\bm{r}
-    - \bm{r}_{0}) V(r_{0})\int\dd^{3}\bm{r}_{1} G_{+}(\bm{r}_{0}
-    -\bm{r}_{1}) V(r_{1}) \psi_{0}(\bm{r}_{1}) \\
-    &+ \bigg(\frac{2m}{\hslash^{2}}\bigg)^{3} \int\dd^{3}\bm{r}_{0}G_{+}(\bm{r}
-    - \bm{r}_{0}) V(r_{0})\int\dd^{3}\bm{r}_{1} G_{+}(\bm{r}_{0}
-    -\bm{r}_{1}) V(r_{1}) \\
-    &\cdot\int\dd^{3}\bm{r}_{2} G_{+}(\bm{r}_{1} -
-    \bm{r}_{2}) V(r_{2}) \psi_{0}(\bm{r}_{2}) + \cdots.
+    &=\psi_{0} + \frac{2 m}{\hslash^{2}}\int\dd^{3}\bm{r}_{0}
+    G_{+}(\bm{r},\bm{r}_{0};k) V(r_{0}) \psi_{0}(\bm{r}_{0}) \\
+    &+ \bigg(\frac{2m}{\hslash^{2}}\bigg)^{2}
+    \int\dd^{3}\bm{r}_{0}G_{+}(\bm{r},\bm{r}_{0};k)
+    V(r_{0})\int\dd^{3}\bm{r}_{1} G_{+}(\bm{r}_{0},\bm{r}_{1};k) V(r_{1})
+    \psi_{0}(\bm{r}_{1}) \\
+    &+ \bigg(\frac{2m}{\hslash^{2}}\bigg)^{3}
+    \int\dd^{3}\bm{r}_{0}G_{+}(\bm{r},\bm{r}_{0};k)
+    V(r_{0})\int\dd^{3}\bm{r}_{1} G_{+}(\bm{r}_{0},\bm{r}_{1};k) V(r_{1}) \\
+    &\cdot\int\dd^{3}\bm{r}_{2} G_{+}(\bm{r}_{1},\bm{r}_{2};k) V(r_{2})
+    \psi_{0}(\bm{r}_{2}) + \cdots.
   \end{split}
 \end{equation}
 È possibile applicare la prima approssimazione di Born se
@@ -1038,6 +1068,15 @@ approssimazione di Born è applicabile, per ogni valore di $k$, se
 \begin{equation}
   \frac{2m}{\hslash^{2}}\int_{0}^{+\infty}\abs{V(r_{0})}r_{0}\dd r_{0} \ll 1.
 \end{equation}
+Da qui si capisce perché l'approssimazione di Born possa essere applicata solo a
+potenziali a corto raggio.  Naturalmente il potenziale $V(r)$ deve avere un
+comportamento tale da rendere l'integrale non divergente nell'origine, in
+particolare nell'origine può tendere eventualmente all'infinito con un ordine
+minore o uguale ad $\alpha$, con $\alpha \in \mathopen{]}0, 1\mathclose{[}$.  Il
+potenziale coulombiano, che va come $1/r$ e non è quindi un potenziale a corto
+raggio, causa una divergenza nell'integrale precedente sia nell'origine sia
+all'infinito.
+
 Possiamo ottenere una condizione più stringente, spesso però troppo restrittiva,
 se supponiamo che il potenziale abbia un valore massimo $V_{0}$ e raggio
 d'azione $L$.  Sostituendo questi valori nell'equazione precedente abbiamo
@@ -1055,7 +1094,13 @@ questa diventa più affidabile per grandi valori dell'energia della particella
 incidente\footnote{In effetti in questo caso il potenziale può essere
   considerato come una piccola perturbazione dell'hamiltoniana di particella
   libera e l'approssimazione di Born è quindi giustificata.}
-ed è proprio in questi casi che è maggiormente utilizzata.
+ed è proprio in questi casi che è maggiormente utilizzata.  Bisogna però
+osservare che la condizione di energia del fascio incidente molto maggiore del
+potenziale non è una condizione sempre sufficiente a giustificare l'uso
+dell'approssimazione di Born.  Se il potenziale è debole ma ha un raggio molto
+grande, la funzione d'onda rimarrà simile a un'onda piana nella regione di
+influenza del potenziale, ma acquisterà nello stesso tempo un grosso sfasamento,
+che non è compatibile con questa approssimazione.
 
 \section{Operatori di diffusione}
 \label{sec:operatori-diffusione}
@@ -1076,9 +1121,8 @@ Consideriamo l'hamiltoniana $H$ nella forma
   H = H_{0} + V
 \end{equation}
 con $H_{0}$ hamiltoniana di particella libera e $V$ potenziale di diffusione.
-Introduciamo gli operatori risolventi, i corrispondenti delle funzioni di Green
-nel linguaggio operatoriale, rispettivamente dell'hamiltoniana di particella
-libera e dell'hamiltoniana completa
+Introduciamo gli operatori risolventi, rispettivamente, dell'hamiltoniana di
+particella libera e dell'hamiltoniana completa
 \begin{subequations}
   \begin{align}
     G_{0}(z) &= (z\mathbb{I} - H_{0})^{-1}, \\
@@ -1091,8 +1135,10 @@ appartiene allo spettro dell'operatore autoaggiunto $H_{0}$ o $H$, a seconda del
 risolvente considerato, allora l'operatore $z - H_{0}$ o $z - H$ non è
 invertibile.  Il valore del risolvente nel campo dei reali può essere ottenuto
 mediante un passaggio al limite dal campo dei complessi.  Per semplicità di
-scrittura, nel seguito ometteremo l'operatore $\mathbb{I}$.  Introduciamo
-l'\emph{operatore di trasferimento} $T$ definito dalla relazione
+scrittura, nel seguito ometteremo l'operatore $\mathbb{I}$.  Come vedremo più
+avanti, i risolventi corrispondono alle funzioni di Green nel linguaggio
+operatoriale.  Introduciamo l'\emph{operatore di trasferimento} $T$ definito
+dalla relazione
 \begin{equation}
   \label{eq:oper-trasferimento}
   G(z) = G_{0}(z) + G_{0}(z) T(z) G_{0}(z).
@@ -1129,9 +1175,9 @@ Questa equazione può essere risolta iterativamente ottenendo una serie
 perturbativa formale
 \begin{equation}
   \label{eq:oper-G-serie}
-  G = G_{0} + G_{0}VG_{0} + G_{0}VG_{0}VG_{0} + \cdots.
+  G = G_{0} + G_{0}VG_{0} + G_{0}VG_{0}VG_{0} + \cdots
 \end{equation}
-Inoltre abbiamo
+chiamata \emph{serie di Born}.  Inoltre abbiamo
 \begin{equation}
   \begin{split}
     T - V &= G_{0}^{-1} G V -V \\
@@ -1204,11 +1250,26 @@ vedere che questa è associata a stati di diffusione $\ket{\psi^{(-)}}$
   \ket{\psi_{a}^{(-)}} = \ket{\psi_{0}} + G_{0}(E^{-})V\ket{\psi_{a}^{(-)}}
 \end{equation}
 Avevamo incontrato una simile ambiguità anche per le funzioni di Green nel
-paragrafo~\ref{sec:equazione-ls}.  Il prodotto scalare fra due stati di
-diffusione entrante e uscente $\braket{\psi_{b}^{(-)} | \psi_{a}^{(+)}}$
-associati a due insiemi di numeri quantici $a$ e $b$ differenti (in particolare
-sono diversi i vettori d'onda $\bm{k}_{a}$ e $\bm{k}_{b}$) definisce gli
-elementi della cosiddetta \emph{matrice S} o \emph{matrice di diffusione}
+paragrafo~\ref{sec:equazione-ls}.  In effetti le funzioni di Green sono
+strettamente legate ai risolventi.  Dalla definizione di $G_{0}(E^{\pm})$
+abbiamo
+\begin{gather}
+  \braket{\bm{r} | (E - H_{0})G_{0}(E^{\pm}) | \bm{r}'} = \braket{\bm{r} |
+    \bm{r}'} \iff \\
+  \bigg(\frac{\hslash^{2}k^{2}}{2m} + \frac{\hslash^{2}}{2m}\nabla^{2}\bigg)
+  \braket{\bm{r} | G_{0}(E^{\pm}) | \bm{r}'} = \delta(\bm{r} - \bm{r}')
+\end{gather}
+e confrontando con l'equazione~\eqref{eq:green} riconosciamo che
+\begin{equation}
+  \braket{\bm{r} | G_{0}(E^{\pm}) | \bm{r}'} =
+  \frac{2m}{\hslash^{2}}G_{\pm}(\bm{r},\bm{r}';k).
+\end{equation}
+
+Il prodotto scalare fra due stati di diffusione entrante e uscente
+$\braket{\psi_{b}^{(-)} | \psi_{a}^{(+)}}$ associati a due insiemi di numeri
+quantici $a$ e $b$ differenti (in particolare sono diversi i vettori d'onda
+$\bm{k}_{a}$ e $\bm{k}_{b}$) definisce gli elementi della cosiddetta
+\emph{matrice S} o \emph{matrice di diffusione}
 \begin{equation}
   S_{b,a} = \braket{\psi_{b}^{(-)} | \psi_{a}^{(+)}}.
 \end{equation}
