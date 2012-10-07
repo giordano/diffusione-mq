@@ -131,11 +131,11 @@ meccanica quantistica non relativistica, senza alcuna pretesa di completezza.
 Sono una rielaborazione personale degli appunti delle lezioni di Fisica Teorica
 tenute dal professor Luigi Martina nel corso di Laurea Magistrale in Fisica
 all'Università del Salento nell'anno accademico 2011-2012.  I testi di
-riferimento seguiti sono~\textcite{ballentine:quantum-mechanics} e
-\textcite{cohen:quantum-mechanics}, in aggiunta ho integrato del materiale preso
-da~\textcites{gottfried:quantum-mechanics} e
-\textcite{griffiths:introduction-qm}.  Ogni errore presente in queste note è da
-attribuire a me.
+riferimento seguiti
+sono~\textcites{ballentine:quantum-mechanics,cohen:quantum-mechanics}, in
+aggiunta ho integrato del materiale preso
+da~\textcites{gottfried:quantum-mechanics,griffiths:introduction-qm}.  Ogni
+errore presente in queste note è da attribuire a me.
 
 \section{\completare{Concetti generali}}
 \label{sec:concetti-generali}
@@ -304,7 +304,7 @@ $k$.\footnote{L'ampiezza di diffusione dipende, oltre che dalle variabili
   angolari $\theta$ e $\phi$, dal numero d'onda solo perché stiamo considerando
   diffusioni elastiche, nelle quali il modulo del momento del proiettile è
   conservato.  Nel caso più generale $f$ dipenderà dal momento iniziale e
-  finale.}
+  finale, vedi per esempio l'equazione~\eqref{eq:ampiezza-generale}.}
 Il fattore $1/r$ assicura che il flusso della densità di probabilità
 $\abs{\psi_{k,b}}^{2}$ sia costante per ogni superficie sferica centrata nel
 bersaglio.  Il comportamento asintotico della funzione d'onda $\psi_{k}(\bm{r})$
@@ -449,10 +449,10 @@ rapidamente di $1/r^{2}$
   \lim_{r \to \infty} r^{2}V(r) \in \mathbb{R}.
 \end{equation}
 In questo modo stiamo escludendo dalla trattazione il potenziale di Coulomb,
-nonostante sia a simmetria sferica, perché decresce come $1/r$.  In presenza di
-un tale potenziale possiamo supporre che l'andamento asintotico della funzione
-d'onda di diffusione stazionaria, con fissato valore dell'energia e di
-conseguenza di $k$, sia del tipo
+nonostante sia a simmetria sferica, perché decresce come $1/r$.  Con questa
+ipotesi possiamo supporre che l'andamento asintotico della funzione d'onda di
+diffusione stazionaria, con fissato valore dell'energia e di conseguenza di $k$,
+sia del tipo
 \begin{equation}
   \label{eq:onde-parziali2}
   \psi_{k}(\bm{r}) = \sum_{l} (2l+1)\uimm^{l} A_{l} R_{kl}(r) P_{l}(\cos\theta),
@@ -474,13 +474,13 @@ introdotte e inoltre dei coefficienti $A_{l}$ da determinare.
     \node[align=center] at (10,1.5) {Zona di radiazione\\ $kr \gg 1$};
   \end{tikzpicture}
   \caption{Diffusione da potenziale a corto raggio con simmetria sferica.  Nelle
-    immediate vicinanze del bersaglio, $r \approx 0$, si ha la regione di
-    diffusione nella quale il potenziale non è trascurabile.  All'aumentare
-    della distanza dal bersaglio il potenziale centrifugo
+    immediate vicinanze del bersaglio, $r \approx 0$, si ha la
+    \emph{regione di diffusione} nella quale il potenziale non è trascurabile.
+    All'aumentare della distanza dal bersaglio il potenziale centrifugo
     $\hslash^2 l(l+1)/2mr^2$ domina su $V(r)$ e questa condizione determina la
-    regione intermedia.  La zona di radiazione si trova a grande distanza dal
-    bersaglio, quindi $kr \gg 1$ e sia il potenziale di interazione sia il
-    potenziale centrifugo sono trascurabili rispetto a $k^2$.}
+    \emph{regione intermedia}.  La \emph{zona di radiazione} si trova a grande
+    distanza dal bersaglio, quindi $kr \gg 1$ e sia il potenziale di interazione
+    sia il potenziale centrifugo sono trascurabili rispetto a $k^2$.}
 \label{fig:regioni-potenziale-sferico}
 \end{figure}
 Sotto l'ipotesi di potenziale a corto raggio, con riferimento alla
@@ -707,8 +707,8 @@ punto $r = L$
     n'_{l}(kL)\sin\delta_{l})}{j_{l}(kL)\cos\delta_{l} -
     n_{l}(kL)\sin\delta_{l}},
 \end{equation}
-in cui $j'_{l}(kR)$ indica la derivata di $j_{l}(kr)$ rispetto a $kr$ e valutata
-nel punto $kr = kR$.  Significato analogo per $n'_{l}(kR)$.  Riarrangiando
+in cui $j'_{l}(kL)$ indica la derivata di $j_{l}(kr)$ rispetto a $kr$ e valutata
+nel punto $kr = kL$.  Significato analogo per $n'_{l}(kL)$.  Riarrangiando
 l'equazione precedente è possibile ricavare la tangente di $\delta_{l}$
 \begin{equation}
   \label{eq:tangente-sfasamento}
@@ -823,25 +823,29 @@ comportamento della funzione d'onda in assenza di potenziale.
 \subsection{Serie di Born}
 \label{sec:serie-born}
 
-Supponiamo anche in questo caso che il potenziale sia a corto raggio, cioè che
-risulti $\lim_{r \to \infty} r^{2}V(\bm{r}) \in \mathbb{R}$.  Poiché vogliamo
-determinare $\psi_{k}(\bm{r})$ per $\abs{\bm{r}} \gg \abs{\bm{r}_{0}}$, possiamo
-utilizzare l'approssimazione
-% TODO: vedi Sakurai, pagina 384, per questo calcolo, a prima vista mi sembra un
-% po' più chiaro
-\begin{equation}
-  \abs{\bm{r} - \bm{r}_{0}}^{2} \approx r^{2} +r_{0}^{2} -
-  2\bm{r}\cdot\bm{r}_{0} \approx r^{2}\bigg(1 -
-  2\frac{\bm{r}\cdot\bm{r}_{0}}{r^{2}}\bigg)
-\end{equation}
-da cui
-\begin{equation}
-  \abs{\bm{r} - \bm{r}_{0}} \approx r - \versor{r}\cdot\bm{r}_{0}.
-\end{equation}
 Poniamo il vettore d'onda del flusso diffuso uguale a $\bm{k}' = k\versor{r}$
 perché per la conservazione dell'energia ha lo stesso modulo $k$ del vettore
-d'onda incidente $\bm{k} = k\versor{z}$.  La funzione di Green uscente $G_{+}$
-può essere approssimata con
+d'onda incidente $\bm{k} = k\versor{z}$.  Supponiamo anche in questo caso che il
+potenziale sia a corto raggio, cioè che risulti
+$\lim_{r \to \infty} r^{2}V(\bm{r}) \in \mathbb{R}$.  Poiché inoltre vogliamo
+determinare $\psi_{k}(\bm{r})$ molto lontano dalla regione in cui il potenziale
+è localizzato, cioè $\abs{\bm{r}} \gg \abs{\bm{r}_{0}}$, possiamo utilizzare le
+approssimazioni, con $\alpha$ angolo compreso fra $\bm{r}$ e $\bm{r}_{0}$,
+\begin{subequations}
+  \begin{align}
+    \begin{split}
+      \abs{\bm{r} - \bm{r}_{0}} &=
+      r\bigg(1-2\frac{r_{0}}{r}\cos\alpha+\frac{r_{0}^{2}}{r^{2}}\bigg)^{1/2}
+      \approx r - \versor{r}\cdot\bm{r}_{0},
+    \end{split} \\
+    \begin{split}
+      \frac{1}{\abs{\bm{r} - \bm{r}_{0}}} &= \frac{1}{r}\bigg(1 -
+      2\frac{r_{0}}{r}\cos\alpha + \frac{r_{0}^{2}}{r^{2}}\bigg)^{-1/2} \approx
+      \frac{1}{r} + \frac{\bm{r}\cdot\bm{r}_{}}{r^{2}} \approx \frac{1}{r}.
+    \end{split}
+  \end{align}
+\end{subequations}
+La funzione di Green uscente $G_{+}$ può allora essere approssimata con
 \begin{equation}
   \frac{\e^{\uimm k\abs{\bm{r} - \bm{r}_{0}}}}{\abs{\bm{r} - \bm{r}_{0}}}
   \approx \frac{\e^{\uimm kr}}{r} \e^{-\uimm \bm{k}'\cdot\bm{r}_{0}}.
@@ -974,22 +978,22 @@ L'ampiezza di diffusione in questo modo diventa
 \begin{equation}
   \label{eq:ampiezza-born-braket}
   f_{k}(\theta,\phi) = -\frac{m}{2\pi\hslash^{2}} \braket{\psi_{0,\bm{k}'} | V |
-    \psi_{0,\bm{k}}} = -\frac{m}{2\pi\hslash^{2}} \int \e^{-\bm{q}\cdot\bm{r}}
-  V(\bm{r}) \dd^{3} \bm{r},
+    \psi_{0,\bm{k}}} = -\frac{m}{2\pi\hslash^{2}} \int \e^{-\bm{q}\cdot\bm{r}_{0}}
+  V(\bm{r}_{0}) \dd^{3} \bm{r}_{0},
 \end{equation}
-con $\bm{q} = \bm{k}' - \bm{k}$ momento trasferito.  Per semplicità abbiamo
-soppresso il pedice $0$ da $\bm{r}_{0}$ dato che qui non c'è pericolo di
-ambiguità.  L'ampiezza di diffusione di Born è quindi proporzionale alla
-trasformata di Fourier del potenziale fatta rispetto al momento trasferito
-$\bm{q}$.
+con $\bm{q} = \bm{k}' - \bm{k}$ momento trasferito.  L'ampiezza di diffusione di
+Born è quindi proporzionale alla trasformata di Fourier del potenziale fatta
+rispetto al momento trasferito $\bm{q}$.
 
 Per basse energie, cioè bassi valori di $k$, l'esponenziale nell'integrale è
 essenzialmente costante nella regione di diffusione e l'ampiezza di diffusione
 diventa
 \begin{equation}
-  f(\theta,\phi) = -\frac{m}{2\pi\hslash^{2}} \int V(\bm{r}) \dd^{3}
+  f_{k}(\theta,\phi) = -\frac{m}{2\pi\hslash^{2}} \int V(\bm{r}) \dd^{3}
   \bm{r}.
 \end{equation}
+Per semplicità abbiamo soppresso il pedice $0$ dalla variabile di integrazione
+$\bm{r}_{0}$ dato che qui non c'è pericolo di ambiguità.
 
 \begin{SCfigure}[2]
   \centering
@@ -1007,22 +1011,36 @@ diventa
     quindi $q = \abs{\bm{q}} = 2k\sin(\theta/2)$.}
 \label{fig:momento-trasferito}
 \end{SCfigure}
-% TODO: dimostrare la seguente formula dell'ampiezza di diffusione.
-Nel caso di potenziale a simmetria sferica, $V(\bm{r}) = V(r)$, l'ampiezza di
-diffusione di Born dipende solo dalla colatitudine $\theta$, per quanto detto
-nel paragrafo~\ref{sec:sviluppo-onde}, e assume l'espressione
+Nel caso di potenziale a simmetria sferica, $V(\bm{r}) = V(r)$, scegliamo l'asse
+$\versor{z}_{0}$ per la variabile di integrazione $\bm{r}_{0}$
+nell'equazione~\eqref{eq:ampiezza-born-braket} lungo la direzione del momento
+trasferito, in modo che $\bm{q}\cdot\bm{r}_{0} = qr_{0}\cos\theta_{0}$.  In
+questo modo
 \begin{equation}
   \label{eq:ampiezza-born-centrale}
-  f_{k}(\theta) = -\frac{2m}{q\hslash^{2}}\int_{0}^{+\infty} rV(r)\sin(qr)\dd r.
+  \begin{split}
+    f_{k}(\theta) &= -\frac{m}{2\pi\hslash^{2}} \int_{0}^{2\pi}\dd\phi_{0}
+    \int_{0}^{\infty}r_{0}^{2}\dd r_{0} V(r_{0}) \int_{-1}^{1}\e^{-\uimm q
+      r_{0}\cos\theta_{0}} \dd(\cos\theta_{0}) \\
+    &= -\frac{2m}{q\hslash^{2}}\int_{0}^{+\infty} rV(r)\sin(qr)\dd r.
+  \end{split}
 \end{equation}
-Il modulo $q$ del momento trasferito vale $q = 2k\sin(\theta/2)$, come mostrato
-nella figura~\ref{fig:momento-trasferito}, e la dipendenza angolare e
-dall'energia dell'ampiezza di diffusione è contenuta in $q$.  Poiché
-l'approssimazione di Born è applicabile in caso di potenziale sufficientemente
-debole, le deflessioni $\delta_{l}$ prodotte dal potenziale di interazione
-sferico saranno molto piccole: $\delta_{l} \ll 1$.  In questo caso
-$\e^{2\uimm \delta_{l}} - 1 \approx 2\uimm \delta_{l}$ e l'ampiezza di
-diffusione~\eqref{eq:ampiezza-diffusione-op} si può approssimare con
+Nel risultato finale abbiamo nuovamente soppresso il pedice $0$ dalla variabile
+di integrazione.  Il modulo $q$ del momento trasferito vale
+$q = 2k\sin(\theta/2)$, come mostrato nella figura~\ref{fig:momento-trasferito},
+e la dipendenza angolare e dall'energia dell'ampiezza di diffusione è tutta
+contenuta in $q$.  Osserviamo che l'ampiezza di diffusione di Born per un
+potenziale centrale dipende solo dalla colatitudine $\theta$, coerentemente con
+quanto detto nel paragrafo~\ref{sec:sviluppo-onde}.  Poiché l'approssimazione di
+Born è applicabile se il potenziale è sufficientemente debole, in questo caso le
+deflessioni $\delta_{l}$ prodotte dal potenziale di interazione sferico saranno
+piccole,\footnote{Non è vero il contrario: si possono costruire potenziali che
+  producono piccoli sfasamenti ma per i quali non è possibile applicare
+  l'approssimazione di Born.  Le condizioni di validità dell'approssimazione
+  sono discusse nel paragrafo~\ref{sec:validita-born}.}
+$\delta_{l} \ll 1$, e $\e^{2\uimm \delta_{l}} - 1 \approx 2\uimm \delta_{l}$.
+L'ampiezza di diffusione~\eqref{eq:ampiezza-diffusione-op} si può allora
+approssimare con
 \begin{equation}
   f_{k}(\theta) \approx \frac{1}{k}\sum_{l}(2l+1) \delta_{l} P_{l}(\cos\theta).
 \end{equation}
@@ -1191,10 +1209,10 @@ nella formula~\eqref{eq:sezione-yukawa} e ponendo $V_{0} = Z_{1}Z_{2}e^{2}$
 \end{equation}
 che è proprio la sezione d'urto di Rutherford.  La sezione d'urto totale è
 infinita perché integrando questa sezione d'urto differenziale su tutto l'angolo
-solido si ottiene una divergenza, a causa dell'andamento $1/\sin^{4}(\theta/2)$
-nell'origine.  Ciò è dovuto al fatto che il potenziale coulombiano non è a corto
-raggio.  È interessante che la sezione per questo potenziale calcolata secondo
-le regole della meccanica quantistica, sebbene per via
+solido si ottiene una divergenza, a causa dell'andamento $\sin^{-4}(\theta/2)$.
+Ciò è dovuto al fatto che il potenziale coulombiano non è a corto raggio.  È
+interessante che la sezione per questo potenziale calcolata secondo le regole
+della meccanica quantistica, sebbene per via
 indiretta,\footnote{La sezione d'urto~\eqref{eq:sez-urto-coulomb} è valida anche
   nel caso ``esatto''.}
 sia uguale, accidentalmente, a quella ottenuta classicamente da Rutherford.
@@ -1210,11 +1228,11 @@ rappresentazione.  Fra le altre cose, riotterremo l'equazione di
 Lippmann–Schwinger e la serie di Born, valgono anche in questo caso le
 considerazioni e interpretazioni di carattere fisico fatte precedentemente.
 
-% TODO: nota che per la definizione del risolvete ho seguito la convenzione
-% del Ballentine: G = (z - H_0)^{-1}, mentre Martina e Boiti utilizzano la
-% convenzione G = (H_0 - z)^{-1} e la matrice di trasferimento (vedi appunti del
-% 27/01/2012) è scritta come G = G - G_0 T G_0.  Se mi decido, un giorno
-% converto tutto nella convenzione di Martina.
+% TODO (non importante): nota che per la definizione del risolvete ho seguito la
+% convenzione del Ballentine: G = (z - H_0)^{-1}, mentre Martina e Boiti
+% utilizzano la convenzione G = (H_0 - z)^{-1} e la matrice di trasferimento
+% (vedi appunti del 27/01/2012) è scritta come G = G - G_0 T G_0.  Se mi decido,
+% un giorno converto tutto nella convenzione di Martina.
 Consideriamo l'hamiltoniana $H$ nella forma
 \begin{equation}
   H = H_{0} + V
@@ -1381,6 +1399,7 @@ diffusione $f_{ab}^{(+)}(\Omega_{\bm{k}_{b}})$ che nella teoria generale della
 diffusione si dimostra essere uguale a
 (vedi~\textcite[436-441]{ballentine:quantum-mechanics})
 \begin{equation}
+  \label{eq:ampiezza-generale}
   f_{ab}^{(+)}(\Omega_{\bm{k}_{b}}) = -\frac{m}{2\pi\hslash^{2}}
   \braket{\psi_{0,b} | V | \psi_{a}^{(+)}},
 \end{equation}
