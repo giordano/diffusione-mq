@@ -126,12 +126,12 @@
 \section*{Sommario}
 \label{sec:sommario}
 
-Queste note presentano un'introduzione alla teoria della diffusione nella
-meccanica quantistica non relativistica, senza alcuna pretesa di completezza.
-Sono una rielaborazione personale degli appunti delle lezioni di Fisica Teorica
-tenute dal professor Luigi Martina nel corso di Laurea Magistrale in Fisica
-all'Università del Salento nell'anno accademico 2011-2012.  I testi di
-riferimento seguiti
+Queste note presentano un'introduzione alla teoria della diffusione da
+potenziale nella meccanica quantistica non relativistica, senza alcuna pretesa
+di completezza.  Sono una rielaborazione personale degli appunti delle lezioni
+di Fisica Teorica tenute dal professor Luigi Martina nel corso di Laurea
+Magistrale in Fisica all'Università del Salento nell'anno accademico 2011-2012.
+I testi di riferimento seguiti
 sono~\textcites{ballentine:quantum-mechanics,cohen:quantum-mechanics}, in
 aggiunta ho integrato del materiale preso
 da~\textcites{gottfried:quantum-mechanics,griffiths:introduction-qm}.  Ogni
@@ -195,8 +195,8 @@ l'angolo solido
 \label{sec:meccanica-quantistica}
 
 Tutto quello che abbiamo detto finora è valido in generale.  Introdurremo ora la
-teoria della diffusione nell'ambito della meccanica quantistica non
-relativistica.  Prima di procedere precisiamo le ipotesi sotto le quali
+teoria della diffusione da potenziale nell'ambito della meccanica quantistica
+non relativistica.  Prima di procedere precisiamo le ipotesi sotto le quali
 affronteremo il problema
 \begin{itemize}
 \item supponiamo che le particelle coinvolte nella diffusione siano prive di
@@ -292,14 +292,17 @@ all'energia $E$ da $E = \hslash^{2}k^{2}/2m$.  Nella vicinanza del bersaglio, la
 funzione d'onda della particella subirà una profonda modifica a causa
 dell'interazione con il bersaglio.  Tuttavia molto tempo dopo l'interazione,
 l'eiettile sarà lontano dall'influenza del potenziale e la sua funzione d'onda
-avrà raggiunto una forma ``stabile''.  Facendo un'analogia con la meccanica
-ondulatoria classica possiamo prevedere una forma esplicita per il comportamento
-asintotico di $\psi_{k,b}(\bm{r})$.  Un'onda piana che urta contro un ostacolo,
-cioè il bersaglio nel problema di diffusione, si diffonde in tutto lo spazio
-come un'onda sferica uscente del tipo $f_{k}(\theta,\phi)\e^{\uimm kr}/r$, con
-$f_{k}(\theta,\phi)$ ampiezza dell'onda di diffusione.  Essa dipende dalle due
-coordinate angolari sferiche $\theta$ e $\phi$, perché la diffusione non è in
-generale isotropica e dall'energia mediante il numero d'onda
+avrà raggiunto una forma ``stabile''.
+% TODO: giustificare un po' meglio la forma asintotica, quello che ho scritto
+% non mi piace molto.  Prova a vedere Cohen, Gottfried o Sakurai.
+Facendo un'analogia con la meccanica ondulatoria classica possiamo prevedere una
+forma esplicita per il comportamento asintotico di $\psi_{k,b}(\bm{r})$.
+Un'onda piana che urta contro un ostacolo, cioè il bersaglio nel problema di
+diffusione, si diffonde in tutto lo spazio come un'onda sferica uscente del tipo
+$f_{k}(\theta,\phi)\e^{\uimm kr}/r$, con $f_{k}(\theta,\phi)$ ampiezza dell'onda
+di diffusione.  Essa dipende dalle due coordinate angolari sferiche $\theta$ e
+$\phi$, perché la diffusione non è in generale isotropica e dall'energia
+mediante il numero d'onda
 $k$.\footnote{L'ampiezza di diffusione dipende, oltre che dalle variabili
   angolari $\theta$ e $\phi$, dal numero d'onda solo perché stiamo considerando
   diffusioni elastiche, nelle quali il modulo del momento del proiettile è
@@ -317,7 +320,19 @@ sarà del tipo
 con $A$ fattore di normalizzazione.  Nei paragrafi successivi vedremo che questa
 forma asintotica della funzione d'onda in un problema di diffusione, ricavata
 qui in base a un'analogia classica, è ben giustificata sotto opportune ipotesi.
-% TODO: figura 8.1, pagina 348, del Gottfried.
+% TODO: figura 8.1, pagina 348, del Gottfried oppure la prima figura del
+% Sakurai, più difficile da realizzare ma più significativa.
+
+La descrizione temporale dell'evento di diffusione da potenziale si ottiene
+costruendo il pacchetto d'onda
+\begin{equation}
+  \psi(\bm{r},t) = \int_{0}^{\infty} \e^{-\uimm \hslash k^{2} t/2m} g(k)
+  \psi_{k}(\bm{r}) \dd k,
+\end{equation}
+in cui la funzione $g(k)$, che per semplicità può essere presa reale, ha un
+picco intorno a un punto $k = k_{0}$ ed è praticamente nulla altrove.  Il
+pacchetto $\psi(\bm{r},t)$ così costruito è soluzione dell'equazione di
+Schröedinger e quindi descrive l'evoluzione temporale della particella relativa.
 
 \subsection{Calcolo della sezione d'urto}
 \label{sec:sez-urto-mq}
@@ -371,6 +386,10 @@ l'ampiezza di diffusione: il metodo delle onde parziali e l'approssimazione di
 Born.
 % TODO: parlare del fatto che si è ignorata l'interferenza fra le due onde.
 % Vedi Ballentine, Cohen o Gottfried.
+
+% TODO: parlare da qualche parte delle relazioni fra queste grandezze, associate
+% alla particella relativa, e le corrispondenti grandezze nel sistema di
+% riferimento del laboratorio o del centro di massa.
 
 \section{Metodo delle onde parziali}
 \label{sec:onde-parziali}
@@ -1319,7 +1338,7 @@ Born.
 \subsection{Equazione di Lippmann-Schwinger}
 \label{sec:oper-equazione-di-ls}
 
-L'equazione di Schröedinger stazionaria è
+Nella notazione bra-ket, l'equazione di Schröedinger stazionaria è
 \begin{equation}
   H \ket{\psi_{a}^{(+)}} = E \ket{\psi_{a}^{(+)}},
 \end{equation}
@@ -1364,12 +1383,13 @@ $G_{0}(E^{-}) = \lim_{\epsilon \to 0+} G_{0}(E - \uimm \epsilon)$, ma si può fa
 vedere che questa è associata a stati di diffusione $\ket{\psi^{(-)}}$
 \emph{entranti} dati da
 \begin{equation}
-  \ket{\psi_{a}^{(-)}} = \ket{\psi_{0}} + G_{0}(E^{-})V\ket{\psi_{a}^{(-)}}
+  \ket{\psi_{a}^{(-)}} = \ket{\psi_{0}} + G_{0}(E^{-})V\ket{\psi_{a}^{(-)}}.
 \end{equation}
 Avevamo incontrato una simile ambiguità anche per le funzioni di Green nel
-paragrafo~\ref{sec:equazione-ls}.  In effetti le funzioni di Green sono
-strettamente legate ai risolventi.  Dalla definizione di $G_{0}(E^{\pm})$
-abbiamo
+paragrafo~\ref{sec:equazione-ls} e anche in quel caso avevamo scelto la funzione
+$G_{+}(\bm{r},\bm{r}';k)$ perché corrispondente a stati di diffusione uscenti.
+In effetti le funzioni di Green sono strettamente legate ai risolventi.  Dalla
+definizione di $G_{0}(E^{\pm})$ abbiamo
 \begin{gather}
   \braket{\bm{r} | (E - H_{0})G_{0}(E^{\pm}) | \bm{r}'} = \braket{\bm{r} |
     \bm{r}'} \iff \\
@@ -1382,11 +1402,27 @@ e confrontando con l'equazione~\eqref{eq:green} riconosciamo che
   \frac{2m}{\hslash^{2}}G_{\pm}(\bm{r},\bm{r}';k).
 \end{equation}
 
+Studiando l'evoluzione temporale delle funzioni d'onda $\psi_{a}^{(-)}$ si
+scopre che rappresentano stati che per $t \to -\infty$ sono dati dalla
+sovrapposizione di un'onda piana e un'onda di implosione verso il centro, invece
+per $t \to +\infty$ si ha un'onda piana che si propaga nella direzione
+$-\versor{k}_{a}$.  In definitiva, gli stati di diffusione entranti
+$\psi_{a}^{(-)}$ rappresentano l'inversione temporale degli stati di diffusione
+uscenti $\psi_{a}^{(+)}$.  Dobbiamo osservare, però, che sebbene gli stati
+entranti siano una soluzione matematicamente accettabile dell'equazione di
+Schröedinger, essi sono fisicamente difficili da preparare, perché è necessario
+mantenere la coerenza della funzione d'onda iniziale in una regione
+macroscopica.  È questo il motivo per il quale utilizziamo l'insieme degli stati
+di diffusione uscenti come base completa degli stati con energia positiva,
+invece degli stati di diffusione entranti.  L'intera base dello spazio di
+Hilbert si ottiene aggiungendo gli eventuali stati legati agli stati di
+diffusione.
+
 Il prodotto scalare fra due stati di diffusione entrante e uscente
 $\braket{\psi_{b}^{(-)} | \psi_{a}^{(+)}}$ associati a due insiemi di numeri
 quantici $a$ e $b$ differenti (in particolare sono diversi i vettori d'onda
 $\bm{k}_{a}$ e $\bm{k}_{b}$) definisce gli elementi della cosiddetta
-\emph{matrice S} o \emph{matrice di diffusione}
+\emph{matrice S} o \emph{matrice di diffusione} o \emph{matrice di scattering}
 \begin{equation}
   S_{b,a} = \braket{\psi_{b}^{(-)} | \psi_{a}^{(+)}}.
 \end{equation}
