@@ -5,19 +5,36 @@ PRINCIPALE		= diffusione
 PRINCIPALE_TEX		= $(PRINCIPALE).tex
 PRINCIPALE_PDF		= $(PRINCIPALE).pdf
 BIBLIOGRAFIA		= bibliografia.bib
+IMMAGINI_GNUPLOT	= $(wildcard gnuplot/*.gnuplot)
+IMMAGINI_GNUPLOT_PDF	= $(patsubst %.gnuplot,%.pdf,$(IMMAGINI_GNUPLOT))
+IMMAGINI_GNUPLOT_EPS	= $(patsubst %.gnuplot,%.eps,$(IMMAGINI_GNUPLOT))
+IMMAGINI_GNUPLOT_TEX	= $(patsubst %.gnuplot,%.tex,$(IMMAGINI_GNUPLOT))
+
 TUTTI_TEX		= $(PRINCIPALE_TEX) $(BIBLIOGRAFIA)
 CLEAN_FILE		= *.aux *.bbl *.bcf *.blg *-blx.bib *.fdb_latexmk *.fls \
 	*.idx *.ilg *.ind *.lof *.log *.nav *.out *.pgf-plot.* *.run.xml *.snm \
-	*.toc *~
-DISTCLEAN_FILE		= *.pdf
+	*.toc *~ $(IMMAGINI_GNUPLOT_EPS)
+DISTCLEAN_FILE		= *.pdf $(IMMAGINI_GNUPLOT_PDF) $(IMMAGINI_GNUPLOT_TEX)
 
 ##### Regole
 .PHONY: pdf clean distclean dist full-dist
 
 pdf: $(PRINCIPALE_PDF)
 
-$(PRINCIPALE_PDF): $(TUTTI_TEX)
+$(PRINCIPALE_PDF): $(TUTTI_TEX) $(IMMAGINI_GNUPLOT_PDF)
 	latexmk -pdf $(PRINCIPALE_TEX)
+
+# Per compilare tutte le immagini in formato EPS:
+gnuplot/%.eps: gnuplot/%.gnuplot
+	gnuplot $<
+
+# Per generare i file .tex da includere nel documento.
+# La regola è uguale a quella precedente:
+gnuplot/%.tex: gnuplot/%.gnuplot
+	gnuplot $<
+
+gnuplot/%.pdf: gnuplot/%.eps
+	epstopdf $<
 
 # Per fare pulizia dei file temporanei generati:
 clean:

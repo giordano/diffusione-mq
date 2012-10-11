@@ -523,7 +523,7 @@ quindi $F = 0$ e
 \begin{equation}
   R_{kl}(r) \sim \frac{\e^{\uimm kr}}{r}
 \end{equation}
-come avevo previsto nella forma asintotica~\eqref{eq:forma-asintotica}.
+come avevamo previsto nella forma asintotica~\eqref{eq:forma-asintotica}.
 
 Nella regione intermedia l'equazione radiale~\eqref{eq:diff-u-op} è
 \begin{equation}
@@ -1057,6 +1057,8 @@ piccole,\footnote{Non è vero il contrario: si possono costruire potenziali che
   producono piccoli sfasamenti ma per i quali non è possibile applicare
   l'approssimazione di Born.  Le condizioni di validità dell'approssimazione
   sono discusse nel paragrafo~\ref{sec:validita-born}.}
+% la nota precedente è riferita al primo esempio di "Surprises in Theoretical
+% Physics", di Rudolf Peierls.
 $\delta_{l} \ll 1$, e $\e^{2\uimm \delta_{l}} - 1 \approx 2\uimm \delta_{l}$.
 L'ampiezza di diffusione~\eqref{eq:ampiezza-diffusione-op} si può allora
 approssimare con
@@ -1148,9 +1150,10 @@ In ogni caso osserviamo che per grandi valori di $k$ la quantità $f(k)$
 nell'integrale diventa molto piccola per via del fattore $1/k$ e delle rapide
 oscillazioni del termine $\e^{\uimm kr_{0}}\sin(kr_{0})$.  In particolare, se
 $kL \gg 1$ queste oscillazioni diventano molto frequenti all'interno del raggio
-d'azione del potenziale.  Non è semplice individuare condizione precisa sotto la
-quale è possibile applicare l'approssimazione di Born, tuttavia si intuisce che
-questa diventa più affidabile per grandi valori dell'energia della particella
+d'azione del potenziale.  Non è semplice individuare una condizione precisa
+sotto la quale sia possibile applicare l'approssimazione di Born, tuttavia si
+intuisce che questa diventa più affidabile per grandi valori dell'energia della
+particella
 incidente\footnote{In effetti in questo caso il potenziale può essere
   considerato come una piccola perturbazione dell'hamiltoniana di particella
   libera e l'approssimazione di Born è quindi giustificata.}
@@ -1164,8 +1167,15 @@ che non è compatibile con questa approssimazione.
 
 \subsection{Esempi}
 \label{sec:esempi-born}
-% TODO: fare il grafico dell'andamento di Yukawa e Coulomb
 
+\begin{figure}
+  \centering
+  \input{gnuplot/potenziale-yukawa}
+  \caption{Andamento dei potenziali di Yukawa ($V_{\textup{Y}}(r) = \e^{-r}/r$)
+    e di Coulomb ($V_{\textup{C}}(r)=1/r$).  Il potenziale di Yukawa va
+    rapidamente a zero, mentre quello di Coulomb ha una coda molto lunga.}
+  \label{fig:pot-yukawa}
+\end{figure}
 Calcoliamo l'ampiezza di diffusione di Born per il potenziale centrale di Yukawa
 \begin{equation}
   V(r) = V_{0}\frac{\e^{-\mu cr/\hslash}}{r} = V_{0}\frac{\e^{-\alpha r}}{r},
@@ -1173,22 +1183,38 @@ Calcoliamo l'ampiezza di diffusione di Born per il potenziale centrale di Yukawa
 con $\mu$ massa della particella scambiata nell'interazione.
 % TODO: controllare questa affermazione!
 Per semplicità abbiamo posto $\alpha = \mu c/\hslash$ e $1/\alpha$ rappresenta
-il raggio d'azione.  Questo potenziale fu introdotto da Yukawa negli anni Trenta
-del Novecento per descrivere le interazioni nucleari fra protoni e neutroni
-dovute allo scambio di un pione.  Il comportamento del potenziale di Yukawa
-nell'origine e all'infinito soddisfa le ipotesi di applicabilità
-dell'approssimazione di Born viste in precedenza.
+il raggio d'azione.  Nella figura~\ref{fig:pot-yukawa} è rappresentato
+l'andamento del potenziale di Yukawa.  Questo potenziale fu introdotto da Hideki
+Yukawa nel 1935 per descrivere le interazioni nucleari fra protoni e neutroni
+dovute allo scambio di una particella massiva, che successivamente si rivelò
+essere il pione.
+% L'articolo di Yukawa è "On the Interaction of Elementary Particles. I",
+% Proc. Phys. Math. Soc. Japan, 17, p. 48 (1935).  DOI:10.1143/PTPS.1.1.
+% L'unica copia PDF non a pagamento che ho trovato è
+% web.ihep.su/dbserv/compas/src/yukawa35/eng.pdf
+Il comportamento del potenziale di Yukawa nell'origine e all'infinito soddisfa
+le ipotesi di applicabilità dell'approssimazione di Born viste in precedenza.
 Dall'equazione~\eqref{eq:ampiezza-born-centrale} abbiamo che l'ampiezza di
 diffusione Born per il potenziale di Yukawa è
 \begin{equation}
   f_{k}(\theta) = -\frac{2mV_{0}}{q\hslash^{2}} \int_{0}^{+\infty} \e^{-\alpha
-    r}\sin(qr)\dd r = -\frac{2mV_{0}}{\hslash^{2}(q^{2} + \alpha^{2})}.
+    r}\sin(qr)\dd r = -\frac{2mV_{0}}{\hslash^{2}} \frac{1}{q^{2} + \alpha^{2}},
 \end{equation}
+con $q = 2k\sin(\theta/2)$.
+\begin{figure}
+  \centering
+  \input{gnuplot/sez-urto-yukawa}
+  \caption{Distribuzione angolare della diffusione elastica da potenziale di
+    Yukawa in approssimazione di Born.  Nella figura è rappresentata la funzione
+    $F(\theta) = 1/(4(k/\alpha)^{2}\sin^{2}(\theta/2)+1)^{2}$ per diversi valori
+    di $(k/\alpha)^{2}$.}
+  \label{fig:sez-urto-yukawa}
+\end{figure}
 La sezione d'urto differenziale è
 \begin{equation}
   \label{eq:sezione-yukawa}
-  \sigma(\theta) = \frac{4m^{2}V_{0}^{2}}{\hslash^{4}(4k^{2}\sin^{2}(\theta/2) +
-    \alpha^{2})^{2}}.
+  \sigma(\theta) = \bigg(\frac{2mV_{0}}{\hslash^{2}}\bigg)^{2}
+  \frac{1}{(4k^{2}\sin^{2}(\theta/2) + \alpha^{2})^{2}}.
 \end{equation}
 Questa sezione d'urto permette di osservare delle caratteristiche comuni a molti
 tipi di potenziali.  Innanzitutto essa non dipende dal fatto che il potenziale
@@ -1199,9 +1225,9 @@ potevamo aspettarci dalle considerazioni fatte nel
 paragrafo~\ref{sec:sez-urto-op}.  Per $k \to 0$ la sezione d'urto diventa
 indipendente dall'energia, mentre all'aumentare di $k$ diventa sempre più
 piccata intorno alla direzione $\theta = 0$ e si comporta come $1/q^{4}$, o
-$1/\theta^{4}$ per piccoli angoli.
-% TODO: figura 8.2 di pagina 360 del Gottfried.
-La sezione d'urto totale del potenziale di Yukawa è
+$1/\theta^{4}$ per piccoli angoli.  Nella figura~\ref{fig:sez-urto-yukawa} è
+rappresentata la distribuzione angolare della sezione d'urto differenziale.  La
+sezione d'urto totale del potenziale di Yukawa è
 \begin{equation}
   \sigma_{\textup{tot}} = \int \sigma(\theta) \dd\Omega =
   \bigg(\frac{2mV_{0}}{\hslash^{2}}\bigg)^{2} \frac{4\pi}{4k^{2} + \alpha^{2}}.
@@ -1215,7 +1241,8 @@ senza opportune modifiche che però non
 tratteremo,\footnote{Si può trovare la trattazione completa e rigorosa della
   diffusione dal potenziale di Coulomb
   in~\textcite[368-373]{gottfried:quantum-mechanics}.}
-al potenziale coulombiano.  Tuttavia osserviamo che l'interazione
+al potenziale coulombiano, il cui andamento è rappresentato nella
+figura~\ref{fig:pot-yukawa}.  Tuttavia osserviamo che l'interazione
 elettromagnetica è mediata dal fotone, che ha massa nulla, e il potenziale di
 Yukawa tende a quello di Coulomb nel limite $\mu \to 0$.  Possiamo allora
 provare a calcolare la sezione d'urto coulombiana facendo tendere $\alpha$ a $0$
@@ -1229,9 +1256,10 @@ nella formula~\eqref{eq:sezione-yukawa} e ponendo $V_{0} = Z_{1}Z_{2}e^{2}$
 che è proprio la sezione d'urto di Rutherford.  La sezione d'urto totale è
 infinita perché integrando questa sezione d'urto differenziale su tutto l'angolo
 solido si ottiene una divergenza, a causa dell'andamento $\sin^{-4}(\theta/2)$.
-Ciò è dovuto al fatto che il potenziale coulombiano non è a corto raggio.  È
-interessante che la sezione per questo potenziale calcolata secondo le regole
-della meccanica quantistica, sebbene per via
+Ciò è dovuto al fatto che il potenziale coulombiano non è a corto raggio.  In un
+certo senso possiamo dire che nessuna particella (carica) riesce a sfuggire al
+potenziale di Coulomb.  È interessante che la sezione per questo potenziale
+calcolata secondo le regole della meccanica quantistica, sebbene per via
 indiretta,\footnote{La sezione d'urto~\eqref{eq:sez-urto-coulomb} è valida anche
   nel caso ``esatto''.}
 sia uguale, accidentalmente, a quella ottenuta classicamente da Rutherford.
@@ -1271,8 +1299,8 @@ appartiene allo spettro dell'operatore autoaggiunto $H_{0}$ o $H$, a seconda del
 risolvente considerato, allora l'operatore $z - H_{0}$ o $z - H$ non è
 invertibile.  Il valore del risolvente nel campo dei reali può essere ottenuto
 mediante un passaggio al limite dal campo dei complessi.  Per semplicità di
-scrittura, nel seguito ometteremo l'operatore $\mathbb{I}$.  Come vedremo più
-avanti, i risolventi corrispondono alle funzioni di Green nel linguaggio
+scrittura, nel seguito ometteremo l'operatore $\mathbb{I}$.  Vedremo più avanti
+che i risolventi corrispondono alle funzioni di Green nel linguaggio
 operatoriale.  Introduciamo l'\emph{operatore di trasferimento} $T$ definito
 dalla relazione
 \begin{equation}
