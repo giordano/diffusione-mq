@@ -334,7 +334,7 @@ picco intorno a un punto $k = k_{0}$ ed è praticamente nulla altrove.  Il
 pacchetto $\psi(\bm{r},t)$ così costruito è soluzione dell'equazione di
 Schröedinger e quindi descrive l'evoluzione temporale della particella relativa.
 
-\subsection{Calcolo della sezione d'urto}
+\subsection{Sezione d'urto}
 \label{sec:sez-urto-mq}
 
 Lo stato quantico $\psi(\bm{r})$ di una particella non descrive esattamente la
@@ -774,8 +774,8 @@ a bassa energia.  Il metodo dell'approssimazione di Born che andiamo a
 presentare è più utile, invece, nel caso di alte energie delle particelle
 incidenti.
 
-\subsection{Equazione di Lippmann–Schwinger}
-\label{sec:equazione-ls}
+\subsection{Equazione integrale di diffusione}
+\label{sec:equazione-integrale}
 
 L'equazione di Schröedinger stazionaria~\eqref{eq:schroedinger-stazionaria} può
 essere riscritta nella forma
@@ -832,10 +832,10 @@ soluzione dell'equazione~\eqref{eq:helmholtz} è data da
   \int \frac{\e^{\uimm k\abs{\bm{r} - \bm{r}_{0}}}}{\abs{\bm{r} - \bm{r}_{0}}}
   V(\bm{r}_{0}) \psi_{k}(\bm{r}_{0}) \dd^{3}\bm{r}_{0}.
 \end{equation}
-Questa equazione integrale è nota come \emph{equazione di Lippmann–Schwinger}.
-Essa è equivalente all'equazione di Schröedinger
-stazionaria~\eqref{eq:schroedinger-stazionaria} ma in più contiene al suo
-interno la condizione al contorno data dal termine
+Questa è l'\emph{equazione integrale di diffusione}, chiamata anche
+\emph{equazione di Lippmann–Schwinger}.  Essa è equivalente all'equazione di
+Schröedinger stazionaria~\eqref{eq:schroedinger-stazionaria} ma in più contiene
+al suo interno la condizione al contorno data dal termine
 $\psi_{0,k}(\bm{r}) = A\e^{\uimm \bm{k}\cdot\bm{r}}$ che descrive il
 comportamento della funzione d'onda in assenza di potenziale.
 
@@ -1051,8 +1051,8 @@ e la dipendenza angolare e dall'energia dell'ampiezza di diffusione è tutta
 contenuta in $q$.  Osserviamo che l'ampiezza di diffusione di Born per un
 potenziale centrale dipende solo dalla colatitudine $\theta$, coerentemente con
 quanto detto nel paragrafo~\ref{sec:sviluppo-onde}.  Poiché l'approssimazione di
-Born è applicabile se il potenziale è sufficientemente debole, in questo caso le
-deflessioni $\delta_{l}$ prodotte dal potenziale di interazione sferico saranno
+Born è applicabile se il potenziale è sufficientemente debole, le deflessioni
+$\delta_{l}$ prodotte dal potenziale di interazione sferico saranno
 piccole,\footnote{Non è vero il contrario: si possono costruire potenziali che
   producono piccoli sfasamenti ma per i quali non è possibile applicare
   l'approssimazione di Born.  Le condizioni di validità dell'approssimazione
@@ -1078,6 +1078,18 @@ occuperemo qui.
 % TODO: eventualmente calcolare anche le onde parziali in approssimazione di
 % Born.  Vedi, per esempio, Gottfried, pagina 361.
 
+Nel limite di basse energie, cioè piccoli valori $k$ e quindi di $q$, possiamo
+porre $\sin(qr)/q \approx r$ e l'ampiezza di diffusione di
+Born~\eqref{eq:ampiezza-born-centrale} diventa
+\begin{equation}
+  f_{k}(\theta) = f_{k} = -\frac{2m}{\hslash^{2}} \int_{0}^{\infty} r^{2}V(r)
+  \dd r.
+\end{equation}
+La diffusione è in questo caso approssimativamente isotropa e nello sviluppo in
+onde parziali sono non trascurabili solo i primi termini, come potevamo
+aspettarci dalle considerazioni fatte alla fine del
+paragrafo~\ref{sec:sez-urto-op}.
+
 Come abbiamo visto nel paragrafo~\ref{sec:sez-urto-mq}, la sezione d'urto
 differenziale è il modulo quadro dell'ampiezza di diffusione,
 $\sigma(\theta,\phi) = \abs{f_{k}(\theta,\phi)}^{2}$, e la sezione d'urto totale
@@ -1093,8 +1105,8 @@ Riscriviamo la serie di Born~\eqref{eq:serie-born} più esplicitamente nel
 seguente modo
 \begin{equation}
   \begin{split}
-    \psi_{k}(\bm{r}) &= \psi_{0,k}(\bm{r}) + \psi_{1,k}(\bm{r}) + \psi_{2,k}(\bm{r}) +
-    \psi_{3,k}(\bm{r}) + \cdots \\
+    \psi_{k}(\bm{r}) &= \psi_{0,k}(\bm{r}) + \psi_{1,k}(\bm{r}) +
+    \psi_{2,k}(\bm{r}) + \psi_{3,k}(\bm{r}) + \cdots \\
     &=\psi_{0,k} + \frac{2 m}{\hslash^{2}}\int\dd^{3}\bm{r}_{0}
     G_{+}(\bm{r},\bm{r}_{0};k) V(r_{0}) \psi_{0,k}(\bm{r}_{0}) \\
     &+ \bigg(\frac{2m}{\hslash^{2}}\bigg)^{2}
@@ -1109,8 +1121,9 @@ seguente modo
   \end{split}
 \end{equation}
 È possibile applicare la prima approssimazione di Born se
-$\abs{\psi_{1,k}(\bm{r})} \ll 1$.  Valutiamo $\psi_{1,k}(\bm{r})$ nel punto
-$\bm{r} = \bm{0}$ in cui questa funzione è generalmente più grande in modulo
+$\abs{\psi_{1,k}(\bm{r})} \ll \abs{\psi_{0,k}(\bm{r})} \sim 1$.  Valutiamo
+$\psi_{1,k}(\bm{r})$ nel punto $\bm{r} = \bm{0}$ in cui questa funzione è
+generalmente più grande in modulo
 \begin{equation}
   \begin{split}
     \psi_{1,k}(\bm{0}) &= -\frac{m}{2\pi\hslash^{2}}\int \frac{\e^{\uimm
@@ -1120,50 +1133,80 @@ $\bm{r} = \bm{0}$ in cui questa funzione è generalmente più grande in modulo
     \sin(kr_{0}) \dd r_{0}.
   \end{split}
 \end{equation}
-La quantità $f(k)=\e^{\uimm kr_{0}}\sin(kr_{0})/k$ assume il massimo valore in
-modulo\footnote{Senza fare lo studio della funzione $f(k)$ è sufficiente
-  osservare che $\abs{f(k)}^{2} = r_{0} \sin^{2}(kr_{0})/(kr_{0})^{2}$ e
+La quantità $F(k)=\e^{\uimm kr_{0}}\sin(kr_{0})/k$ assume il massimo valore in
+modulo\footnote{Senza fare lo studio della funzione $F(k)$ è sufficiente
+  osservare che $\abs{F(k)}^{2} = r_{0}^{2} \sin^{2}(kr_{0})/(kr_{0})^{2}$ e
   l'andamento della funzione $\sin^{2}(kr_{0})/(kr_{0})^{2}$ è noto.}
-per $k = 0$ e risulta $f(0) = \lim_{k \to 0} f(k) = r_{0}$.  In definitiva
+per $k = 0$ e risulta $F(0) = \lim_{k \to 0} F(k) = r_{0}$.  In definitiva
 abbiamo trovato che se il potenziale assume sempre lo stesso segno la prima
 approssimazione di Born è applicabile, per ogni valore di $k$, se
 \begin{equation}
   \frac{2m}{\hslash^{2}}\int_{0}^{+\infty}\abs{V(r_{0})}r_{0}\dd r_{0} \ll 1.
 \end{equation}
 Da qui si capisce perché l'approssimazione di Born possa essere applicata solo a
-potenziali a corto raggio.  Naturalmente il potenziale $V(r)$ deve avere un
-comportamento tale da rendere l'integrale non divergente nell'origine, in
-particolare nell'origine può tendere eventualmente all'infinito con un ordine
-minore o uguale ad $\alpha$, con $\alpha \in \mathopen{]}0, 1\mathclose{[}$.  Il
-potenziale coulombiano, che va come $1/r$ e non è quindi un potenziale a corto
-raggio, causa una divergenza nell'integrale precedente sia nell'origine sia
-all'infinito.
+potenziali a corto raggio, cioè tali che
+$\lim_{r \to \infty}r^{2}V(r) \in \mathbb{R}$.  Naturalmente il potenziale
+$V(r)$ deve avere anche un comportamento tale da rendere l'integrale non
+divergente nell'origine, in particolare nell'origine può tendere eventualmente
+all'infinito con un ordine minore o uguale ad $\alpha$, con
+$\alpha \in \mathopen{]}0, 1\mathclose{[}$.  Il potenziale coulombiano, che va
+come $1/r$ e non è quindi un potenziale a corto raggio, causa una divergenza
+nell'integrale precedente sia nell'origine sia all'infinito.
 
 Possiamo ottenere una condizione più stringente, spesso però troppo restrittiva,
 se supponiamo che il potenziale abbia un valore massimo $V_{0}$ e raggio
 d'azione $L$.  Sostituendo questi valori nell'equazione precedente abbiamo
 \begin{equation}
+  \label{eq:condizione-born}
   \frac{2m}{\hslash^{2}}\int_{0}^{L}\abs{V_{0}}r_{0}\dd r_{0} =
-  \frac{\abs{V_{0}}mL^{2}}{\hslash^{2}} \ll 1.
+  \frac{\abs{V_{0}}mL^{2}}{\hslash^{2}} \ll 1 \iff \abs{V_{0}} \ll
+  \frac{\hslash^{2}}{mL^{2}}.
 \end{equation}
-In ogni caso osserviamo che per grandi valori di $k$ la quantità $f(k)$
-nell'integrale diventa molto piccola per via del fattore $1/k$ e delle rapide
-oscillazioni del termine $\e^{\uimm kr_{0}}\sin(kr_{0})$.  In particolare, se
-$kL \gg 1$ queste oscillazioni diventano molto frequenti all'interno del raggio
-d'azione del potenziale.  Non è semplice individuare una condizione precisa
-sotto la quale sia possibile applicare l'approssimazione di Born, tuttavia si
-intuisce che questa diventa più affidabile per grandi valori dell'energia della
-particella
-incidente\footnote{In effetti in questo caso il potenziale può essere
-  considerato come una piccola perturbazione dell'hamiltoniana di particella
-  libera e l'approssimazione di Born è quindi giustificata.}
-ed è proprio in questi casi che è maggiormente utilizzata.  Bisogna però
-osservare che la condizione di energia del fascio incidente molto maggiore del
-potenziale non è una condizione sempre sufficiente a giustificare l'uso
-dell'approssimazione di Born.  Se il potenziale è debole ma ha un raggio molto
-grande, la funzione d'onda rimarrà simile a un'onda piana nella regione di
-influenza del potenziale, ma acquisterà nello stesso tempo un grosso sfasamento,
-che non è compatibile con questa approssimazione.
+Osserviamo che per grandi valori di $k$ la quantità $F(k)$ nell'integrale
+diventa molto piccola per via del fattore $1/k$ e delle rapide oscillazioni del
+termine $\e^{\uimm kr_{0}}\sin(kr_{0})$.  In particolare, se $kL \gg 1$ queste
+oscillazioni diventano molto frequenti all'interno del raggio d'azione del
+potenziale e risulta $\abs{F(k)} = \abs{\sin(kr_{0})/k} \leq 1/k$.  Allora
+\begin{equation}
+  \abs{\psi_{1,k}(\bm{0})} \leq \frac{2m}{\hslash^{2}} \int_{0}^{\infty}
+  \abs*{\frac{\e^{\uimm kr_{0}}\sin(kr_{0})}{k}} \abs{V(r_{0})} \dd r_{0} \leq
+  \frac{2m}{\hslash^{2}k} \int_{0}^{\infty} \abs{V(r_{0})} \dd r_{0} \ll 1
+\end{equation}
+e assumendo approssimativamente di nuovo che il potenziale abbia valore massimo
+$V_{0}$ e raggio $L$ troviamo la condizione (valida, sottolineiamo, solo se
+$kL \gg 1$)
+\begin{equation}
+  \frac{2mL\abs{V_{0}}}{\hslash^{2}k} \ll 1 \iff \abs{V_{0}} \ll
+  \frac{\hslash^{2}k}{2mL} = \frac{\hslash^{2}}{2mL^{2}} kL. % = E/kL.
+\end{equation}
+% Nota: la derivazione (molto approssimata) di questa condizione è mia, però dà
+% lo stesso risultato del Landau (vol. 3, pagina 199, equazione (45,6)) a meno
+% di un fattore 2 ininfluente nella stima degli ordini di grandezza.  La
+% dimostrazione del Landau sembra più generale però è un po' artificiosa, la mia
+% dimostrazione è più semplice però ha un difetto: partendo dall'assunto che
+% deve risultare $a << 1$, trovo che $a < b < c$ e deduco che deve aversi
+% $c << 1$, cosa in realtà non necessariamente vera.  Tuttavia fra $a$, $b$ e
+% $c$ c'è davvero poca differenza (la sostituzione |sin(x)/x| → 1/x per grandi
+% valori di x non è malvagia e gli altri valori assoluti essenzialmente cambiano
+% il segno globale) e comunque la dimostrazione non pretende di determinare un
+% risultato esatto.
+Questa condizione, nel regime $kL \gg 1$, è meno restrittiva
+della~\eqref{eq:condizione-born}, quindi se è possibili trattare un potenziale
+come una perturbazione a basse energie è possibile farlo anche ad alte, ma non è
+necessariamente vero il contrario.  Anche se non è semplice individuare una
+condizione precisa sotto la quale sia possibile applicare l'approssimazione di
+Born, dai precedenti ragionamenti è chiaro che questa diventa più affidabile per
+grandi valori dell'energia della particella incidente ed è proprio in questi
+casi che è maggiormente utilizzata.  Bisogna però osservare che la condizione di
+energia del fascio incidente molto maggiore del potenziale non è una condizione
+sempre sufficiente a giustificare l'uso dell'approssimazione di Born.  Se il
+potenziale è debole ma ha un raggio molto grande, la funzione d'onda rimarrà
+simile a un'onda piana nella regione di influenza del potenziale, ma acquisterà
+nello stesso tempo un grosso sfasamento, che non è compatibile con questa
+approssimazione.
+% Ma questo è chiaro dalle due condizioni trovate (quella generale e quella per
+% kL << 1): in ogni caso deve essere V_0 << (fattore)/L^2, quindi se aumenta il
+% raggio L, il valore di V_0 deve diminuire di conseguenza.
 
 \subsection{Esempi}
 \label{sec:esempi-born}
@@ -1219,15 +1262,13 @@ La sezione d'urto differenziale è
 Questa sezione d'urto permette di osservare delle caratteristiche comuni a molti
 tipi di potenziali.  Innanzitutto essa non dipende dal fatto che il potenziale
 sia attrattivo o repulsivo poiché $V_{0}$ compare al quadrato.  Inoltre se
-$k/\alpha \ll 1$ la sezione d'urto è approssimativamente isotropica e nello
-sviluppo in onde parziali sono non trascurabili solo i primi termini, come
-potevamo aspettarci dalle considerazioni fatte nel
-paragrafo~\ref{sec:sez-urto-op}.  Per $k \to 0$ la sezione d'urto diventa
-indipendente dall'energia, mentre all'aumentare di $k$ diventa sempre più
-piccata intorno alla direzione $\theta = 0$ e si comporta come $1/q^{4}$, o
-$1/\theta^{4}$ per piccoli angoli.  Nella figura~\ref{fig:sez-urto-yukawa} è
-rappresentata la distribuzione angolare della sezione d'urto differenziale.  La
-sezione d'urto totale del potenziale di Yukawa è
+$k/\alpha \ll 1$ la sezione d'urto è approssimativamente isotropa.  Per
+$k \to 0$ la sezione d'urto diventa indipendente dall'energia, mentre
+all'aumentare di $k$ diventa sempre più piccata intorno alla direzione
+$\theta = 0$ e si comporta come $1/q^{4}$, o $1/\theta^{4}$ per piccoli angoli.
+Nella figura~\ref{fig:sez-urto-yukawa} è rappresentata la distribuzione angolare
+della sezione d'urto differenziale.  La sezione d'urto totale del potenziale di
+Yukawa è
 \begin{equation}
   \sigma_{\textup{tot}} = \int \sigma(\theta) \dd\Omega =
   \bigg(\frac{2mV_{0}}{\hslash^{2}}\bigg)^{2} \frac{4\pi}{4k^{2} + \alpha^{2}}.
@@ -1414,10 +1455,10 @@ vedere che questa è associata a stati di diffusione $\ket{\psi^{(-)}}$
   \ket{\psi_{a}^{(-)}} = \ket{\psi_{0}} + G_{0}(E^{-})V\ket{\psi_{a}^{(-)}}.
 \end{equation}
 Avevamo incontrato una simile ambiguità anche per le funzioni di Green nel
-paragrafo~\ref{sec:equazione-ls} e anche in quel caso avevamo scelto la funzione
-$G_{+}(\bm{r},\bm{r}';k)$ perché corrispondente a stati di diffusione uscenti.
-In effetti le funzioni di Green sono strettamente legate ai risolventi.  Dalla
-definizione di $G_{0}(E^{\pm})$ abbiamo
+paragrafo~\ref{sec:equazione-integrale} e anche in quel caso avevamo scelto la
+funzione $G_{+}(\bm{r},\bm{r}';k)$ perché corrispondente a stati di diffusione
+uscenti.  In effetti le funzioni di Green sono strettamente legate ai
+risolventi.  Dalla definizione di $G_{0}(E^{\pm})$ abbiamo
 \begin{gather}
   \braket{\bm{r} | (E - H_{0})G_{0}(E^{\pm}) | \bm{r}'} = \braket{\bm{r} |
     \bm{r}'} \iff \\
