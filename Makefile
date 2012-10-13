@@ -9,7 +9,6 @@ IMMAGINI_GNUPLOT	= $(wildcard gnuplot/*.gnuplot)
 IMMAGINI_GNUPLOT_PDF	= $(patsubst %.gnuplot,%.pdf,$(IMMAGINI_GNUPLOT))
 IMMAGINI_GNUPLOT_EPS	= $(patsubst %.gnuplot,%.eps,$(IMMAGINI_GNUPLOT))
 IMMAGINI_GNUPLOT_TEX	= $(patsubst %.gnuplot,%.tex,$(IMMAGINI_GNUPLOT))
-
 TUTTI_TEX		= $(PRINCIPALE_TEX) $(BIBLIOGRAFIA)
 CLEAN_FILE		= *.aux *.bbl *.bcf *.blg *-blx.bib *.fdb_latexmk *.fls \
 	*.idx *.ilg *.ind *.lof *.log *.nav *.out *.pgf-plot.* *.run.xml *.snm \

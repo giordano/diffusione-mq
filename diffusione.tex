@@ -9,7 +9,7 @@
 \usepackage[autostyle=true]{csquotes}
 \usepackage[style=authoryear,hyperref,backend=biber]{biblatex}
 \usepackage[font=small,format=hang,labelfont=bf]{caption}
-\usepackage{sidecap}
+\usepackage{sidecap,subfig}
 \usepackage{braket}
 \usepackage{tikz}
 % `mathtools' serve per definire il valore assoluto
@@ -134,8 +134,9 @@ Magistrale in Fisica all'Università del Salento nell'anno accademico 2011-2012.
 I testi di riferimento seguiti
 sono~\textcites{ballentine:quantum-mechanics,cohen:quantum-mechanics}, in
 aggiunta ho integrato del materiale preso
-da~\textcites{gottfried:quantum-mechanics,griffiths:introduction-qm}.  Ogni
-errore presente in queste note è da attribuire a me.
+da~\textcites{gottfried:quantum-mechanics,griffiths:introduction-qm,
+  landau:meccanica-quantistica}.
+Ogni errore presente in queste note è da attribuire a me.
 
 \section{\completare{Concetti generali}}
 \label{sec:concetti-generali}
@@ -237,7 +238,7 @@ In questo modo l'hamiltoniana assume la forma più semplice
 \begin{equation}
   \label{eq:hamiltoniana}
   H = -\frac{\hslash^{2}}{2(m_{1} + m_{2})}\nabla_{\bm{R}}^{2} -
-  \frac{\hslash^{2}}{2m}\nabla_{\bm{r}}^{2} + V(\bm{r}).
+  \frac{\hslash^{2}}{2m}\nabla^{2} + V(\bm{r}).
 \end{equation}
 Il primo termine è l'energia cinetica del centro di massa, gli ultimi due sono
 l'energia della particella fittizia di massa ridotta
@@ -253,7 +254,7 @@ $\psi(\bm{r})$ tale da soddisfare la seguente equazione di Schröedinger
 stazionaria
 \begin{equation}
   \label{eq:schroedinger-stazionaria}
-  \bigg(-\frac{\hslash^{2}}{2m}\nabla_{\bm{r}}^{2} + V(\bm{r})\bigg)\psi(\bm{r})
+  \bigg(-\frac{\hslash^{2}}{2m}\nabla^{2} + V(\bm{r})\bigg)\psi(\bm{r})
   = E\psi(\bm{r}).
 \end{equation}
 Il moto del centro di massa, descritto dalla funzione d'onda $\Phi(\bm{R})$, non
@@ -465,7 +466,7 @@ Supponiamo che il potenziale di interazione sia a \emph{rapida decrescenza}, o
 \emph{a corto raggio}, vale a dire per $r$ tendente all'infinito va a $0$ più
 rapidamente di $1/r^{2}$
 \begin{equation}
-  \lim_{r \to \infty} r^{2}V(r) \in \mathbb{R}.
+  \lim_{r \to \infty} r^{2}V(r) = 0.
 \end{equation}
 In questo modo stiamo escludendo dalla trattazione il potenziale di Coulomb,
 nonostante sia a simmetria sferica, perché decresce come $1/r$.  Con questa
@@ -525,6 +526,18 @@ quindi $F = 0$ e
 \end{equation}
 come avevamo previsto nella forma asintotica~\eqref{eq:forma-asintotica}.
 
+\begin{figure}
+  \centering
+  \subfloat[][\emph{Funzioni di Bessel sferiche di prima specie}, o
+  semplicemente \emph{funzioni di Bessel sferiche}, degli ordini più
+  bassi.]{\input{gnuplot/bessel}}
+  \\
+  \subfloat[][\emph{Funzioni di Bessel sferiche di seconda specie}, o
+  \emph{funzioni di Neumann sferiche}, degli ordini più
+  bassi.]{\input{gnuplot/neumann}}
+  \caption{Andamenti delle prime funzioni di Bessel sferiche.}
+  \label{fig:bessel}
+\end{figure}
 Nella regione intermedia l'equazione radiale~\eqref{eq:diff-u-op} è
 \begin{equation}
   \toder[2]{u_{kl}}{r} - \frac{l(l+1)}{r^{2}}u_{kl} = -k^{2}u_{kl}.
@@ -550,10 +563,12 @@ asintotici
     - l \frac{\pi}{2}\bigg).
   \end{align}
 \end{subequations}
-Nell'origine le funzioni di Bessel convergono, mentre le funzioni di Neumann
-divergono.  Per normalizzare $R_{kl}$ scegliamo i coefficienti $B$ e $C$ tali
-che $\abs{B}^{2} + \abs{C}^{2} = 1$, in particolare poniamo $B = \cos\delta_{l}$
-e $C = -\sin\delta_{l}$, da cui
+Gli andamenti delle funzioni di Bessel e di Neumann sferiche degli ordini più
+bassi sono rappresentati nella figura~\ref{fig:bessel}.  Nell'origine le
+funzioni di Bessel convergono, mentre le funzioni di Neumann divergono.  Per
+normalizzare $R_{kl}$ scegliamo i coefficienti $B$ e $C$ tali che
+$\abs{B}^{2} + \abs{C}^{2} = 1$, in particolare poniamo $B = \cos\delta_{l}$ e
+$C = -\sin\delta_{l}$, da cui
 \begin{equation}
   \label{eq:R-intermedio}
   R_{kl}(r) = j_{l}(kr)\cos\delta_{l} - n_{l}(kr)\sin\delta_{l}.
@@ -635,8 +650,8 @@ l'ampiezza di diffusione
 \end{equation}
 L'ampiezza di diffusione dipende solo dalla colatitudine $\theta$ perché, come
 notato in precedenza, nelle diffusioni da campi sferici c'è simmetria
-cilindrica.  Osserviamo inoltre che $f_{k}(\theta)$ non cambia per effetto di
-una sostituzione $\delta_{l} \to \delta_{l} + \pi$.
+cilindrica.  Inoltre $f_{k}(\theta)$ non cambia per effetto di una sostituzione
+$\delta_{l} \to \delta_{l} + \pi$.
 
 La sezione d'urto differenziale è data dall'equazione~\eqref{eq:sezione-d'urto}
 \begin{equation}
@@ -678,7 +693,7 @@ quindi
 \begin{equation}
   \sigma_{\textup{tot}} = \frac{4\pi}{k} \Im(f_{k}(0)).
 \end{equation}
-Questo risultato è noto come \emph{teorema ottico}.
+Questo risultato è conosciuto come \emph{teorema ottico}.
 % TODO: spiegare un po' meglio il teorema ottico, dire cosa fisicamente
 % significa e che ha valenza generale, anche diffusioni anelastiche.
 
@@ -795,10 +810,12 @@ dall'incognita $\psi_{k}(\bm{r})$.
 Dalla teoria delle funzioni di Green si sa che la soluzione generale
 dell'equazione~\eqref{eq:helmholtz} è data da
 \begin{equation}
-  \psi_{k}(\bm{r}) = \psi_{0,k}(\bm{r}) + \int
-  G(\bm{r},\bm{r}_{0};k)Q(\bm{r}_{0})\dd^{3}\bm{r}_{0} = \psi_{0,k}(\bm{r}) +
-  \frac{2m}{\hslash^{2}}\int
-  G(\bm{r},\bm{r}_{0};k)V(\bm{r}_{0})\psi_{k}(\bm{r}_{0})\dd^{3}\bm{r}_{0},
+  \begin{split}
+    \psi_{k}(\bm{r}) &= \psi_{0,k}(\bm{r}) + \int
+    G(\bm{r},\bm{r}_{0};k)Q(\bm{r}_{0})\dd^{3}\bm{r}_{0} \\
+    &= \psi_{0,k}(\bm{r}) + \frac{2m}{\hslash^{2}}\int
+    G(\bm{r},\bm{r}_{0};k)V(\bm{r}_{0})\psi_{k}(\bm{r}_{0})\dd^{3}\bm{r}_{0},
+  \end{split}
 \end{equation}
 in cui $G(\bm{r},\bm{r}';k)$ è una funzione di Green dell'operatore
 $\nabla^{2} + k^{2}$, cioè è la soluzione dell'equazione
@@ -811,8 +828,8 @@ Helmholtz omogenea
 \begin{equation}
   (\nabla^{2} + k^{2})\psi_{0,k}(\bm{r}) = 0.
 \end{equation}
-Osserviamo che quest'ultima equazione non è altro che l'equazione di
-Schröedinger stazionaria di particella libera, quindi
+Quest'ultima equazione non è altro che l'equazione di Schröedinger stazionaria
+di particella libera, quindi
 $\psi_{0,k}(\bm{r}) = A\e^{\uimm \bm{k}\cdot\bm{r}}$, con $A$ costante di
 normalizzazione.  Due soluzioni dell'equazione~\eqref{eq:green} sono le funzioni
 di Green uscente $G_{+}(\bm{r},\bm{r}';k)$ ed entrante $G_{-}(\bm{r},\bm{r}';k)$
@@ -846,9 +863,9 @@ Poniamo il vettore d'onda del flusso diffuso uguale a $\bm{k}' = k\versor{r}$
 perché per la conservazione dell'energia ha lo stesso modulo $k$ del vettore
 d'onda incidente $\bm{k} = k\versor{z}$.  Supponiamo anche in questo caso che il
 potenziale sia a corto raggio, cioè che risulti
-$\lim_{r \to \infty} r^{2}V(\bm{r}) \in \mathbb{R}$.  Poiché inoltre vogliamo
-determinare $\psi_{k}(\bm{r})$ molto lontano dalla regione in cui il potenziale
-è localizzato, cioè $\abs{\bm{r}} \gg \abs{\bm{r}_{0}}$, possiamo utilizzare le
+$\lim_{r \to \infty} r^{2}V(\bm{r}) = 0$.  Poiché inoltre vogliamo determinare
+$\psi_{k}(\bm{r})$ molto lontano dalla regione in cui il potenziale è
+localizzato, cioè $\abs{\bm{r}} \gg \abs{\bm{r}_{0}}$, possiamo utilizzare le
 approssimazioni, con $\alpha$ angolo compreso fra $\bm{r}$ e $\bm{r}_{0}$,
 \begin{subequations}
   \begin{align}
@@ -864,10 +881,11 @@ approssimazioni, con $\alpha$ angolo compreso fra $\bm{r}$ e $\bm{r}_{0}$,
     \end{split}
   \end{align}
 \end{subequations}
-La funzione di Green uscente $G_{+}$ può allora essere approssimata con
+La funzione di Green uscente può allora essere approssimata con
 \begin{equation}
-  \frac{\e^{\uimm k\abs{\bm{r} - \bm{r}_{0}}}}{\abs{\bm{r} - \bm{r}_{0}}}
-  \approx \frac{\e^{\uimm kr}}{r} \e^{-\uimm \bm{k}'\cdot\bm{r}_{0}}.
+  G_{+}(\bm{r},\bm{r}';k) = \frac{\e^{\uimm k\abs{\bm{r} -
+        \bm{r}_{0}}}}{\abs{\bm{r} - \bm{r}_{0}}} \approx \frac{\e^{\uimm kr}}{r}
+  \e^{-\uimm \bm{k}'\cdot\bm{r}_{0}}.
 \end{equation}
 Abbiamo trovato che per grandi valori di $r$ la funzione d'onda è data da
 \begin{equation}
@@ -884,6 +902,7 @@ con
 \end{equation}
 Questo risultato conferma anche in questo caso la forma
 asintotica~\eqref{eq:forma-asintotica} della funzione d'onda di diffusione.
+D'ora in poi porremo, per semplicità, il coefficiente di normalizzazione $A=1$.
 Nella rappresentazione bra-ket l'ampiezza di diffusione può essere scritta come
 \begin{equation}
   \label{eq:ampiezza-braket}
@@ -891,8 +910,8 @@ Nella rappresentazione bra-ket l'ampiezza di diffusione può essere scritta come
     \psi_{k}} = -\frac{m}{2\pi\hslash^{2}} \int\e^{-\uimm
     \bm{k}'\cdot\bm{r}_{0}} V(\bm{r}_{0}) \psi_{k}(\bm{r}_{0}) \dd^{3}\bm{r}_{0}
 \end{equation}
-in cui $A=1$, $\psi_{0,\bm{k'}} = \e^{\uimm \bm{k}'\cdot\bm{r}}$ è autostato
-dell'hamiltoniana $H_{0} = -\nabla^{2}/2m$.
+in cui $\psi_{0,\bm{k'}} = \e^{\uimm \bm{k}'\cdot\bm{r}}$ è autostato
+dell'hamiltoniana $H_{0} = -\hslash^{2}\nabla^{2}/2m$.
 
 \begin{figure}
   \centering
@@ -972,14 +991,16 @@ Feynman sono ispirati proprio alla serie di Born.
 \subsection{Prima approssimazione di Born}
 \label{sec:prima-approx-born}
 
-Se il potenziale $V$ è piccolo, i termini della serie~\eqref{eq:serie-born}
-contenenti potenze di $V$ di ordine $2$ o superiori sono trascurabili rispetto
-al termine di ordine $1$, quindi arrestando la serie al termine lineare in $gV$
+Se il potenziale $V$ è sufficientemente piccolo, i termini della
+serie~\eqref{eq:serie-born} contenenti potenze di $V$ di ordine $2$ o superiori
+sono trascurabili rispetto al termine di ordine $1$ e arrestiamo la serie al
+termine lineare in $gV$
 \begin{equation}
+  \label{eq:approx-born}
   \begin{split}
     \psi_{k}(\bm{r}) &= \psi_{0,k}(\bm{r}) + \int g(\bm{r},\bm{r}_{0};k)
     V(\bm{r}_{0}) \psi_{0,k}(\bm{r}_{0}) \dd^{3}\bm{r}_{0} \\
-    &= A\e^{\uimm \bm{k}\cdot\bm{r}} - \frac{\e^{\uimm kr}}{r}
+    &= \e^{\uimm \bm{k}\cdot\bm{r}} - \frac{\e^{\uimm kr}}{r}
     \frac{m}{2\pi\hslash^{2}}\int \e^{-\uimm (\bm{k}' - \bm{k})\cdot\bm{r}_{0}}
     V(\bm{r}_{0}) \dd^{3} \bm{r}_{0}.
   \end{split}
@@ -987,13 +1008,18 @@ al termine di ordine $1$, quindi arrestando la serie al termine lineare in $gV$
 Questa è l'\emph{approssimazione di Born}, chiamata a volte \emph{prima}
 approssimazione di Born proprio perché la serie si arresta al termine di ordine
 $1$.  È possibile migliorare l'approssimazione considerando anche termini
-successivi nella serie.  La prima approssimazione di Born, fisicamente, può
-essere espressa dicendo che se il potenziale è debole rispetto all'energia della
-particella incidente, la funzione d'onda di quest'ultima non è sostanzialmente
-modificata e quindi nell'equazione~\eqref{eq:bar} poniamo
+successivi nella serie.  La prima approssimazione di Born può essere espressa
+dicendo che se il potenziale è tale da non modificare sostanzialmente la
+funzione d'onda della particella incidente, nell'equazione~\eqref{eq:bar}
+possiamo porre
 $\psi_{k}(\bm{r}_{0}) \approx \psi_{0,k}(\bm{r}_{0}) =
-A\e^{\uimm \bm{k}\cdot\bm{r}_{0}}$.
-L'ampiezza di diffusione in questo modo diventa
+\e^{\uimm \bm{k}\cdot\bm{r}_{0}}$.
+In linea di principio diciamo che questa condizione è soddisfatta se il
+potenziale è una debole perturbazione dell'hamiltoniana di particella libera
+$H_{0} = -\hslash^{2}\nabla^{2}/2m$, ma l'applicabilità dell'approssimazione di
+Born verrà discussa più estesamente nel paragrafo~\ref{sec:validita-born}.
+L'ampiezza di diffusione di Born è, come al solito, il coefficiente di
+$\e^{\uimm kr}/r$ nell'equazione~\eqref{eq:approx-born}
 \begin{equation}
   \label{eq:ampiezza-born-braket}
   f_{k}(\theta,\phi) = -\frac{m}{2\pi\hslash^{2}} \braket{\psi_{0,\bm{k}'} | V |
@@ -1008,6 +1034,7 @@ Per basse energie, cioè bassi valori di $k$, l'esponenziale nell'integrale è
 essenzialmente costante nella regione di diffusione e l'ampiezza di diffusione
 diventa
 \begin{equation}
+  \label{eq:ampiezza-born-basse}
   f_{k}(\theta,\phi) = -\frac{m}{2\pi\hslash^{2}} \int V(\bm{r}) \dd^{3}
   \bm{r}.
 \end{equation}
@@ -1033,8 +1060,7 @@ $\bm{r}_{0}$ dato che qui non c'è pericolo di ambiguità.
 Nel caso di potenziale a simmetria sferica, $V(\bm{r}) = V(r)$, scegliamo l'asse
 $\versor{z}_{0}$ per la variabile di integrazione $\bm{r}_{0}$
 nell'equazione~\eqref{eq:ampiezza-born-braket} lungo la direzione del momento
-trasferito, in modo che $\bm{q}\cdot\bm{r}_{0} = qr_{0}\cos\theta_{0}$.  In
-questo modo
+trasferito, in modo che $\bm{q}\cdot\bm{r}_{0} = qr_{0}\cos\theta_{0}$, così
 \begin{equation}
   \label{eq:ampiezza-born-centrale}
   \begin{split}
@@ -1048,10 +1074,10 @@ Nel risultato finale abbiamo nuovamente soppresso il pedice $0$ dalla variabile
 di integrazione.  Il modulo $q$ del momento trasferito vale
 $q = 2k\sin(\theta/2)$, come mostrato nella figura~\ref{fig:momento-trasferito},
 e la dipendenza angolare e dall'energia dell'ampiezza di diffusione è tutta
-contenuta in $q$.  Osserviamo che l'ampiezza di diffusione di Born per un
-potenziale centrale dipende solo dalla colatitudine $\theta$, coerentemente con
-quanto detto nel paragrafo~\ref{sec:sviluppo-onde}.  Poiché l'approssimazione di
-Born è applicabile se il potenziale è sufficientemente debole, le deflessioni
+contenuta in $q$.  L'ampiezza di diffusione di Born per un potenziale centrale
+dipende solo dalla colatitudine $\theta$, coerentemente con quanto detto nel
+paragrafo~\ref{sec:sviluppo-onde}.  Poiché l'approssimazione di Born è
+applicabile se il potenziale è sufficientemente debole, le deflessioni
 $\delta_{l}$ prodotte dal potenziale di interazione sferico saranno
 piccole,\footnote{Non è vero il contrario: si possono costruire potenziali che
   producono piccoli sfasamenti ma per i quali non è possibile applicare
@@ -1071,10 +1097,15 @@ totale nulla.  Tuttavia dobbiamo ricordare che la prima approssimazione di Born
 prende in considerazione solo il termine lineare del potenziale, mentre il
 teorema ottico mette in relazione la sezione d'urto totale con un'espressione
 quadratica dell'ampiezza di diffusione.  Per risolvere questo ``paradosso''
-bisogna considerare tutte le potenze di $V$ nell'espressione dell'ampiezza di
-diffusione, che contribuiscono con termini complessi.  Questo fatto, però,
-solleva il problema della convergenza della serie, problema di cui però non ci
-occuperemo qui.
+bisogna considerare le potenze di $V$ di ordine superiore a $1$ nell'espressione
+dell'ampiezza di diffusione, che contribuiscono con termini complessi anche se
+il potenziale è reale.  Per esempio si può verificare che l'ampiezza di
+diffusione in seconda approssimazione di Born soddisfa il teorema ottico con la
+sezione d'urto totale calcolata con la prima approssimazione di Born,
+vedi~\textcite[361-362]{gottfried:quantum-mechanics}.  Il teorema ottico implica
+allora che l'ampiezza di diffusione esatta contenga tutte le potenze di $V$
+nella serie di Born, questo però solleva il problema della convergenza della
+serie, problema di cui però non ci occuperemo.
 % TODO: eventualmente calcolare anche le onde parziali in approssimazione di
 % Born.  Vedi, per esempio, Gottfried, pagina 361.
 
@@ -1082,12 +1113,15 @@ Nel limite di basse energie, cioè piccoli valori $k$ e quindi di $q$, possiamo
 porre $\sin(qr)/q \approx r$ e l'ampiezza di diffusione di
 Born~\eqref{eq:ampiezza-born-centrale} diventa
 \begin{equation}
+  \label{eq:ampiezza-born-centrale-basse}
   f_{k}(\theta) = f_{k} = -\frac{2m}{\hslash^{2}} \int_{0}^{\infty} r^{2}V(r)
   \dd r.
 \end{equation}
-La diffusione è in questo caso approssimativamente isotropa e nello sviluppo in
-onde parziali sono non trascurabili solo i primi termini, come potevamo
-aspettarci dalle considerazioni fatte alla fine del
+Questa può essere ricavata anche dall'equazione~\eqref{eq:ampiezza-born-basse}
+calcolando l'integrale per $V(\bm{r})$ = $V(r)$.  La diffusione da un potenziale
+centrale nel limite di basse energie è approssimativamente isotropa e nello
+sviluppo in onde parziali sono non trascurabili solo i primi termini, come
+potevamo aspettarci dalle considerazioni fatte alla fine del
 paragrafo~\ref{sec:sez-urto-op}.
 
 Come abbiamo visto nel paragrafo~\ref{sec:sez-urto-mq}, la sezione d'urto
@@ -1104,6 +1138,7 @@ calcoli assumiamo che qui il potenziale sia centrale: $V(\bm{r}) = V(r)$.
 Riscriviamo la serie di Born~\eqref{eq:serie-born} più esplicitamente nel
 seguente modo
 \begin{equation}
+  \label{eq:serie-born-esplicita}
   \begin{split}
     \psi_{k}(\bm{r}) &= \psi_{0,k}(\bm{r}) + \psi_{1,k}(\bm{r}) +
     \psi_{2,k}(\bm{r}) + \psi_{3,k}(\bm{r}) + \cdots \\
@@ -1121,10 +1156,11 @@ seguente modo
   \end{split}
 \end{equation}
 È possibile applicare la prima approssimazione di Born se
-$\abs{\psi_{1,k}(\bm{r})} \ll \abs{\psi_{0,k}(\bm{r})} \sim 1$.  Valutiamo
+$\abs{\psi_{1,k}(\bm{r})} \ll \abs{\psi_{0,k}(\bm{r})} = 1$.  Valutiamo
 $\psi_{1,k}(\bm{r})$ nel punto $\bm{r} = \bm{0}$ in cui questa funzione è
 generalmente più grande in modulo
 \begin{equation}
+  \label{eq:foobar}
   \begin{split}
     \psi_{1,k}(\bm{0}) &= -\frac{m}{2\pi\hslash^{2}}\int \frac{\e^{\uimm
         kr_{0}}}{r_{0}} V(r_{0}) \e^{\uimm \bm{k}\cdot\bm{r}_{0}}
@@ -1135,23 +1171,32 @@ generalmente più grande in modulo
 \end{equation}
 La quantità $F(k)=\e^{\uimm kr_{0}}\sin(kr_{0})/k$ assume il massimo valore in
 modulo\footnote{Senza fare lo studio della funzione $F(k)$ è sufficiente
-  osservare che $\abs{F(k)}^{2} = r_{0}^{2} \sin^{2}(kr_{0})/(kr_{0})^{2}$ e
-  l'andamento della funzione $\sin^{2}(kr_{0})/(kr_{0})^{2}$ è noto.}
-per $k = 0$ e risulta $F(0) = \lim_{k \to 0} F(k) = r_{0}$.  In definitiva
-abbiamo trovato che se il potenziale assume sempre lo stesso segno la prima
-approssimazione di Born è applicabile, per ogni valore di $k$, se
+  osservare che $\abs{F(k)} = r_{0} \abs{\sin(kr_{0})/(kr_{0})}$ e l'andamento
+  della funzione $\sin(x)/x$ è noto.}
+per $k = 0$ e risulta $F(0) = \lim_{k \to 0} F(k) = r_{0}$.  Valutando
+l'equazione~\eqref{eq:foobar} per $k=0$ in definitiva si trova che se il
+potenziale assume sempre lo stesso segno la prima approssimazione di Born è
+applicabile, per ogni valore di $k$, se
 \begin{equation}
   \frac{2m}{\hslash^{2}}\int_{0}^{+\infty}\abs{V(r_{0})}r_{0}\dd r_{0} \ll 1.
 \end{equation}
 Da qui si capisce perché l'approssimazione di Born possa essere applicata solo a
-potenziali a corto raggio, cioè tali che
-$\lim_{r \to \infty}r^{2}V(r) \in \mathbb{R}$.  Naturalmente il potenziale
-$V(r)$ deve avere anche un comportamento tale da rendere l'integrale non
-divergente nell'origine, in particolare nell'origine può tendere eventualmente
-all'infinito con un ordine minore o uguale ad $\alpha$, con
-$\alpha \in \mathopen{]}0, 1\mathclose{[}$.  Il potenziale coulombiano, che va
-come $1/r$ e non è quindi un potenziale a corto raggio, causa una divergenza
-nell'integrale precedente sia nell'origine sia all'infinito.
+potenziali a corto raggio, cioè tali che $\lim_{r \to \infty}r^{2}V(r) =
+0$.\footnote{A
+  basse energie l'ampiezza di diffusione di Born è data
+  dall'equazione~\eqref{eq:ampiezza-born-centrale-basse} e affinché l'integrale
+  converga il potenziale all'infinito deve tendere a zero ancora più
+  rapidamente, in particolare deve risultare $\lim_{r \to \infty}r^{3}V(r) =
+  0$.}
+Naturalmente il potenziale $V(r)$ deve avere anche un comportamento tale da
+rendere l'integrale non divergente nell'origine, in particolare nell'origine può
+tendere eventualmente all'infinito con un ordine minore o uguale ad $\alpha$,
+con $\alpha \in \mathopen{]}0, 1\mathclose{[}$.  Per esempio, l'approssimazione
+di Born è inapplicabile ad alcuni importanti potenziali che descrivono gli urti
+fra atomi ma che per piccole distanze hanno andamenti del tipo $r^{-12}$.  Il
+potenziale coulombiano, che va come $1/r$ e non è quindi un potenziale a corto
+raggio, causa una divergenza nell'integrale precedente sia nell'origine sia
+all'infinito.
 
 Possiamo ottenere una condizione più stringente, spesso però troppo restrittiva,
 se supponiamo che il potenziale abbia un valore massimo $V_{0}$ e raggio
@@ -1162,11 +1207,12 @@ d'azione $L$.  Sostituendo questi valori nell'equazione precedente abbiamo
   \frac{\abs{V_{0}}mL^{2}}{\hslash^{2}} \ll 1 \iff \abs{V_{0}} \ll
   \frac{\hslash^{2}}{mL^{2}}.
 \end{equation}
-Osserviamo che per grandi valori di $k$ la quantità $F(k)$ nell'integrale
-diventa molto piccola per via del fattore $1/k$ e delle rapide oscillazioni del
-termine $\e^{\uimm kr_{0}}\sin(kr_{0})$.  In particolare, se $kL \gg 1$ queste
-oscillazioni diventano molto frequenti all'interno del raggio d'azione del
-potenziale e risulta $\abs{F(k)} = \abs{\sin(kr_{0})/k} \leq 1/k$.  Allora
+Per grandi valori di $k$ la quantità $F(k)$ nell'integrale
+dell'equazione~\eqref{eq:foobar} diventa molto piccola per via del fattore $1/k$
+e delle rapide oscillazioni del termine $\e^{\uimm kr_{0}}\sin(kr_{0})$.  In
+particolare, se $kL \gg 1$ queste oscillazioni diventano molto frequenti
+all'interno del raggio d'azione del potenziale e risulta
+$\abs{F(k)} = \abs{\sin(kr_{0})/k} \leq 1/k$.  Allora
 \begin{equation}
   \abs{\psi_{1,k}(\bm{0})} \leq \frac{2m}{\hslash^{2}} \int_{0}^{\infty}
   \abs*{\frac{\e^{\uimm kr_{0}}\sin(kr_{0})}{k}} \abs{V(r_{0})} \dd r_{0} \leq
@@ -1223,14 +1269,13 @@ Calcoliamo l'ampiezza di diffusione di Born per il potenziale centrale di Yukawa
 \begin{equation}
   V(r) = V_{0}\frac{\e^{-\mu cr/\hslash}}{r} = V_{0}\frac{\e^{-\alpha r}}{r},
 \end{equation}
-con $\mu$ massa della particella scambiata nell'interazione.
-% TODO: controllare questa affermazione!
-Per semplicità abbiamo posto $\alpha = \mu c/\hslash$ e $1/\alpha$ rappresenta
-il raggio d'azione.  Nella figura~\ref{fig:pot-yukawa} è rappresentato
-l'andamento del potenziale di Yukawa.  Questo potenziale fu introdotto da Hideki
-Yukawa nel 1935 per descrivere le interazioni nucleari fra protoni e neutroni
-dovute allo scambio di una particella massiva, che successivamente si rivelò
-essere il pione.
+con $\mu$ massa della particella scambiata nell'interazione.  Per semplicità
+abbiamo posto $\alpha = \mu c/\hslash$ e $1/\alpha$ rappresenta il raggio
+d'azione.  Nella figura~\ref{fig:pot-yukawa} è rappresentato l'andamento del
+potenziale di Yukawa.  Questo potenziale fu introdotto da Hideki Yukawa nel 1935
+per descrivere le interazioni nucleari fra protoni e neutroni dovute allo
+scambio di una particella massiva, che successivamente si rivelò essere il
+pione.
 % L'articolo di Yukawa è "On the Interaction of Elementary Particles. I",
 % Proc. Phys. Math. Soc. Japan, 17, p. 48 (1935).  DOI:10.1143/PTPS.1.1.
 % L'unica copia PDF non a pagamento che ho trovato è
@@ -1259,16 +1304,17 @@ La sezione d'urto differenziale è
   \sigma(\theta) = \bigg(\frac{2mV_{0}}{\hslash^{2}}\bigg)^{2}
   \frac{1}{(4k^{2}\sin^{2}(\theta/2) + \alpha^{2})^{2}}.
 \end{equation}
-Questa sezione d'urto permette di osservare delle caratteristiche comuni a molti
-tipi di potenziali.  Innanzitutto essa non dipende dal fatto che il potenziale
-sia attrattivo o repulsivo poiché $V_{0}$ compare al quadrato.  Inoltre se
-$k/\alpha \ll 1$ la sezione d'urto è approssimativamente isotropa.  Per
-$k \to 0$ la sezione d'urto diventa indipendente dall'energia, mentre
-all'aumentare di $k$ diventa sempre più piccata intorno alla direzione
-$\theta = 0$ e si comporta come $1/q^{4}$, o $1/\theta^{4}$ per piccoli angoli.
-Nella figura~\ref{fig:sez-urto-yukawa} è rappresentata la distribuzione angolare
-della sezione d'urto differenziale.  La sezione d'urto totale del potenziale di
-Yukawa è
+Questa sezione d'urto permette di evidenziare delle caratteristiche comuni a
+molti tipi di potenziali.  Innanzitutto essa non dipende dal fatto che il
+potenziale sia attrattivo o repulsivo poiché $V_{0}$ compare al quadrato.
+Inoltre se $k/\alpha \ll 1$ la sezione d'urto è approssimativamente isotropa.
+Per $k \to 0$ la sezione d'urto diventa indipendente dall'energia.  Invece
+all'aumentare di $k$ la particella viene deflessa solo di angoli piccoli e la
+sezione d'urto diventa sempre più piccata intorno alla direzione $\theta = 0$ e
+si comporta come $1/q^{4}$, o $1/\theta^{4}$ per piccoli angoli.  Nella
+figura~\ref{fig:sez-urto-yukawa} è rappresentata la distribuzione angolare della
+sezione d'urto differenziale.  La sezione d'urto totale del potenziale di Yukawa
+è
 \begin{equation}
   \sigma_{\textup{tot}} = \int \sigma(\theta) \dd\Omega =
   \bigg(\frac{2mV_{0}}{\hslash^{2}}\bigg)^{2} \frac{4\pi}{4k^{2} + \alpha^{2}}.
@@ -1277,11 +1323,12 @@ Questa va a $0$ per $k \to \infty$, caratteristica generale dei potenziali di
 diffusione perché l'interazione diventa trascurabile rispetto all'energia
 cinetica.  Ciò, però, non è più vero nella meccanica quantistica relativistica.
 
-Abbiamo più volte osservato che la teoria qui sviluppata non è applicabile,
-senza opportune modifiche che però non
+Abbiamo più volte notato che la teoria qui sviluppata non è applicabile, senza
+opportune modifiche che però non
 tratteremo,\footnote{Si può trovare la trattazione completa e rigorosa della
   diffusione dal potenziale di Coulomb
-  in~\textcite[368-373]{gottfried:quantum-mechanics}.}
+  in~\textcite[368-373]{gottfried:quantum-mechanics} e
+  \textcites[655-659]{landau:meccanica-quantistica}.}
 al potenziale coulombiano, il cui andamento è rappresentato nella
 figura~\ref{fig:pot-yukawa}.  Tuttavia osserviamo che l'interazione
 elettromagnetica è mediata dal fotone, che ha massa nulla, e il potenziale di
@@ -1303,7 +1350,7 @@ potenziale di Coulomb.  È interessante che la sezione per questo potenziale
 calcolata secondo le regole della meccanica quantistica, sebbene per via
 indiretta,\footnote{La sezione d'urto~\eqref{eq:sez-urto-coulomb} è valida anche
   nel caso ``esatto''.}
-sia uguale, accidentalmente, a quella ottenuta classicamente da Rutherford.
+sia uguale a quella ottenuta classicamente da Rutherford.
 
 \section{Operatori di diffusione}
 \label{sec:operatori-diffusione}
@@ -1459,12 +1506,14 @@ paragrafo~\ref{sec:equazione-integrale} e anche in quel caso avevamo scelto la
 funzione $G_{+}(\bm{r},\bm{r}';k)$ perché corrispondente a stati di diffusione
 uscenti.  In effetti le funzioni di Green sono strettamente legate ai
 risolventi.  Dalla definizione di $G_{0}(E^{\pm})$ abbiamo
-\begin{gather}
-  \braket{\bm{r} | (E - H_{0})G_{0}(E^{\pm}) | \bm{r}'} = \braket{\bm{r} |
-    \bm{r}'} \iff \\
-  \bigg(\frac{\hslash^{2}k^{2}}{2m} + \frac{\hslash^{2}}{2m}\nabla^{2}\bigg)
-  \braket{\bm{r} | G_{0}(E^{\pm}) | \bm{r}'} = \delta(\bm{r} - \bm{r}')
-\end{gather}
+\begin{equation}
+  \begin{gathered}
+    \braket{\bm{r} | (E - H_{0})G_{0}(E^{\pm}) | \bm{r}'} = \braket{\bm{r} |
+      \bm{r}'} \iff \\
+    \bigg(\frac{\hslash^{2}k^{2}}{2m} + \frac{\hslash^{2}}{2m}\nabla^{2}\bigg)
+    \braket{\bm{r} | G_{0}(E^{\pm}) | \bm{r}'} = \delta(\bm{r} - \bm{r}')
+  \end{gathered}
+\end{equation}
 e confrontando con l'equazione~\eqref{eq:green} riconosciamo che
 \begin{equation}
   \braket{\bm{r} | G_{0}(E^{\pm}) | \bm{r}'} =
@@ -1477,15 +1526,14 @@ sovrapposizione di un'onda piana e un'onda di implosione verso il centro, invece
 per $t \to +\infty$ si ha un'onda piana che si propaga nella direzione
 $-\versor{k}_{a}$.  In definitiva, gli stati di diffusione entranti
 $\psi_{a}^{(-)}$ rappresentano l'inversione temporale degli stati di diffusione
-uscenti $\psi_{a}^{(+)}$.  Dobbiamo osservare, però, che sebbene gli stati
-entranti siano una soluzione matematicamente accettabile dell'equazione di
-Schröedinger, essi sono fisicamente difficili da preparare, perché è necessario
-mantenere la coerenza della funzione d'onda iniziale in una regione
-macroscopica.  È questo il motivo per il quale utilizziamo l'insieme degli stati
-di diffusione uscenti come base completa degli stati con energia positiva,
-invece degli stati di diffusione entranti.  L'intera base dello spazio di
-Hilbert si ottiene aggiungendo gli eventuali stati legati agli stati di
-diffusione.
+uscenti $\psi_{a}^{(+)}$.  Sebbene gli stati entranti siano una soluzione
+matematicamente accettabile dell'equazione di Schröedinger, essi sono
+fisicamente difficili da preparare, perché è necessario mantenere la coerenza
+della funzione d'onda iniziale in una regione macroscopica.  È questo il motivo
+per il quale utilizziamo l'insieme degli stati di diffusione uscenti come base
+completa degli stati con energia positiva, invece degli stati di diffusione
+entranti.  L'intera base dello spazio di Hilbert si ottiene aggiungendo gli
+eventuali stati legati agli stati di diffusione.
 
 Il prodotto scalare fra due stati di diffusione entrante e uscente
 $\braket{\psi_{b}^{(-)} | \psi_{a}^{(+)}}$ associati a due insiemi di numeri
@@ -1537,6 +1585,7 @@ come
 \end{equation}
 e sostituendo il risultato precedente abbiamo
 \begin{equation}
+  \label{eq:foobaz}
   \ket{\psi_{a}^{(+)}} = (1 + G(E^{+})V)\ket{\psi_{0}}.
 \end{equation}
 Abbiamo trovato che
@@ -1577,28 +1626,33 @@ I primi termini della serie sono
   \begin{align}
     f_{ab}^{(1)} &= -\frac{m}{2\pi\hslash^{2}}
     \braket{\psi_{0,\bm{k}_{b}} | V | \psi_{0,\bm{k}_{a}}}, \\
+    \label{eq:ampiezza-born2-braket}
     f_{ab}^{(2)} &= -\frac{m}{2\pi\hslash^{2}} \braket{\psi_{0,\bm{k}_{b}} |
       VG_{0}(E^{+})V | \psi_{0,\bm{k}_{a}}}, \\
     f_{ab}^{(3)} &= -\frac{m}{2\pi\hslash^{2}} \braket{\psi_{0,\bm{k}_{b}} |
       VG_{0}(E^{+})VG_{0}(E^{+})V | \psi_{0,\bm{k}_{a}}}.
   \end{align}
 \end{subequations}
-Osserviamo che il primo termine della serie, $f_{ab}^{(1)}$, nella
-rappresentazione della base di coordinate è esattamente l'ampiezza di
+Il primo termine della serie, $f_{ab}^{(1)}$, nella rappresentazione della base
+di coordinate è esattamente l'ampiezza di
 diffusione~\eqref{eq:ampiezza-born-braket} nella prima approssimazione di Born,
-scritta con una notazione differente.  È facile verificare che i termini
-$f_{ab}^{(2)}$, $f_{ab}^{(3)}$, ecc\dots sono quelli che si otterrebbero per
-l'ampiezza di diffusione in approssimazione di Born considerando i termini
-successivi nella serie~\eqref{eq:serie-born}.
+scritta con una notazione differente.  È facile verificare partendo dalla
+serie~\eqref{eq:serie-born}, o dalla forma più
+esplicita~\eqref{eq:serie-born-esplicita}, che i termini $f_{ab}^{(2)}$,
+$f_{ab}^{(3)}$, ecc\dots{}
+sono le ampiezze di diffusione in seconda, terza approssimazione di Born
+ecc\dots{}
 
-La serie di Born può essere ottenuta anche risolvendo iterativamente l'equazione
-di Lippmann–Schwinger~\eqref{eq:oper-lippmann-schwinger}
+La serie di Born per $\ket{\psi_{a}^{(+)}}$ può essere ottenuta risolvendo
+iterativamente l'equazione di
+Lippmann–Schwinger~\eqref{eq:oper-lippmann-schwinger}
 \begin{equation}
   \ket{\psi_{a}^{(+)}} = \ket{\psi_{0}} + G_{0}(E^{+})V\ket{\psi_{0}} +
-  G_{0}(E^{+})VG_{0}(E^{+})V\ket{\psi_{0}} + \cdots.
+  G_{0}(E^{+})VG_{0}(E^{+})V\ket{\psi_{0}} + \cdots,
 \end{equation}
-L'ampiezza di diffusione di Born poi si ottiene sostituendo questa equazione
-nella~\eqref{eq:oper-T-amp}.
+oppure inserendo la serie di Born~\eqref{eq:oper-G-serie} del risolvente $G$
+nell'equazione~\eqref{eq:foobaz}.  L'ampiezza di diffusione di Born poi si
+ottiene sostituendo l'equazione precedente nella~\eqref{eq:oper-T-amp}.
 
 \phantomsection
 \addcontentsline{toc}{section}{\refname}
