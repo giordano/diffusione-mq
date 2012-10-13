@@ -216,7 +216,7 @@ affronteremo il problema
 \end{itemize}
 Abbiamo fatto queste assunzioni non perché non siano possibili casi differenti
 (sono per esempio molto importanti i casi di diffusione di particelle dotate di
-spin e di diffusioni inelastiche) ma solo per semplificare la presente
+spin e di diffusioni anelastiche) ma solo per semplificare la presente
 trattazione.
 
 L'hamiltoniana per un sistema di due particelle senza spin interagenti fra loro
@@ -386,7 +386,9 @@ Nei prossimi paragrafi studieremo due metodi alternativi per calcolare
 l'ampiezza di diffusione: il metodo delle onde parziali e l'approssimazione di
 Born.
 % TODO: parlare del fatto che si è ignorata l'interferenza fra le due onde.
-% Vedi Ballentine, Cohen o Gottfried.
+% Vedi Ballentine, Cohen (pagine 914-5, mi sembra spiegato bene, mette anche in
+% relazione con la conservazione del numero di particelle che mi serve più
+% avanti per il teorema ottico) o Gottfried.
 
 % TODO: parlare da qualche parte delle relazioni fra queste grandezze, associate
 % alla particella relativa, e le corrispondenti grandezze nel sistema di
@@ -693,9 +695,20 @@ quindi
 \begin{equation}
   \sigma_{\textup{tot}} = \frac{4\pi}{k} \Im(f_{k}(0)).
 \end{equation}
-Questo risultato è conosciuto come \emph{teorema ottico}.
-% TODO: spiegare un po' meglio il teorema ottico, dire cosa fisicamente
-% significa e che ha valenza generale, anche diffusioni anelastiche.
+Quest'ultimo risultato è conosciuto come \emph{teorema ottico} e ci dice che la
+sezione d'urto totale è determinata dall'ampiezza di diffusione elastica in
+avanti, cioè per $\theta=0$.  In questa direzione c'è la sovrapposizione e
+interferenza tra l'onda incidente e l'onda diffusa elasticamente e questa causa
+la rimozione di flusso dal fascio di particelle incidenti.  La sezione d'urto
+totale quantifica proprio questa rimozione e il teorema ottico rendo conto della
+conservazione del flusso totale.  L'aggettivo ``ottico'' è dovuto al fatto che
+in ottica l'interferenza fra un'onda incidente e l'onda diffusa in avanti è
+l'origine dell'ombra di un oggetto opaco.  Anche se abbiamo dimostrato il
+teorema ottico solo nel caso di diffusione elastica da potenziale sferico, esso
+vale anche per processi di diffusione anelastica da altri tipi di potenziali.
+In questo caso la sezione d'urto totale è quella somma del canale elastico e
+quello inelastico, l'ampiezza di diffusione in avanti che compare al secondo
+membro è solo quella elastica.
 
 Se il potenziale $U(r)$ fosse identicamente nullo, avremmo
 $R_{kl}(r) = j_{l}(kr)$ e dall'equazione~\eqref{eq:jl-asintotico-orig} vediamo
