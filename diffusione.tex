@@ -177,7 +177,7 @@ $S_{\textup{d}} = r^{2}\dd\Omega_{b}$.  Allora
 \end{equation}
 da cui ricaviamo che la sezione d'urto differenziale è data da
 \begin{equation}
-  \label{eq:sezione-d'urto}
+  \label{eq:sez-urto}
   \sigma(\theta,\phi) = \frac{J_{b}r^{2}}{J_{a}}.
 \end{equation}
 La sezione d'urto differenziale dipende anche dall'energia del fascio di
@@ -315,8 +315,9 @@ bersaglio.  Il comportamento asintotico della funzione d'onda $\psi_{k}(\bm{r})$
 sarà del tipo
 \begin{equation}
   \label{eq:forma-asintotica}
-  \psi_{k}(\bm{r}) = \psi_{k,a}(\bm{r}) + \psi_{k,b}(\bm{r}) =A \bigg( \e^{\uimm
-    \bm{k}\cdot\bm{r}} + f_{k}(\theta,\phi)\frac{\e^{\uimm kr}}{r} \bigg),
+  \psi_{k}(\bm{r}) = \psi_{k,a}(\bm{r}) + \psi_{k,b}(\bm{r}) \underset{r \to
+    \infty}{\sim} A \bigg( \e^{\uimm \bm{k}\cdot\bm{r}} +
+  f_{k}(\theta,\phi)\frac{\e^{\uimm kr}}{r} \bigg),
 \end{equation}
 con $A$ fattore di normalizzazione.  Nei paragrafi successivi vedremo che questa
 forma asintotica della funzione d'onda in un problema di diffusione, ricavata
@@ -334,6 +335,12 @@ in cui la funzione $g(k)$, che per semplicità può essere presa reale, ha un
 picco intorno a un punto $k = k_{0}$ ed è praticamente nulla altrove.  Il
 pacchetto $\psi(\bm{r},t)$ così costruito è soluzione dell'equazione di
 Schröedinger e quindi descrive l'evoluzione temporale della particella relativa.
+% TODO: completare il discorso con quello che c'è nel commento (i) del Cohen,
+% pagina 910-911.
+
+% TODO: spiegare che il formalismo con il pacchetto d'onda sarebbe più preciso
+% ma usiamo quello delle onde perché porta agli stessi risultati ed è più
+% semplice da trattare (vedi Sakurai, pagine 385-386).
 
 \subsection{Sezione d'urto}
 \label{sec:sez-urto-mq}
@@ -348,13 +355,25 @@ probabilità vale
 \begin{equation}
   \bm{J} = \frac{\hslash}{m} \Im(\psi^{*}\nabla\psi).
 \end{equation}
-Applicando questa equazione alla componente incidente della funzione d'onda
+Applicando questa equazione alla funzione d'onda
 asintotica~\eqref{eq:forma-asintotica} abbiamo
 \begin{equation}
-  \bm{J}_{a} = \frac{\hslash}{m}\Im(\psi_{k,a}^{*}\nabla\psi_{k,a}) =
-  \frac{\abs{A}^{2}\hslash \bm{k}}{m}.
+  \label{eq:flusso}
+  \bm{J} = \frac{\hslash}{m} \Im(\psi_{k,a}^{*}\nabla\psi_{k,a} +
+  \psi_{k,a}^{*}\nabla\psi_{k,b} + \psi_{k,b}^{*}\nabla\psi_{k,a} +
+  \psi_{k,b}\nabla\psi_{k,b}).
 \end{equation}
-Per la componente di diffusione abbiamo
+Trascuriamo momentaneamente i termini di interferenza
+$\psi_{k,a}^{*}\nabla\psi_{k,b}$ e $\psi_{k,b}^{*}\nabla\psi_{k,a}$ e
+identifichiamo il flusso associato alla sola funzione d'onda incidente
+$\psi_{k,a}$ con il flusso $J_{a}$ delle particelle incidenti e il flusso della
+sola funzione d'onda diffusa $\psi_{k,b}$ con il flusso di particelle diffuse
+$J_{b}$.  In particolare, $J_{a}$ è
+\begin{equation}
+  \bm{J}_{a} = \frac{\hslash}{m}\Im(\psi_{k,a}^{*}\nabla\psi_{k,a}) =
+  \frac{\abs{A}^{2}\hslash \bm{k}}{m},
+\end{equation}
+mentre le componenti del flusso di diffusione $\bm{J}_{b}$ sono
 \begin{subequations}
   \begin{align}
     (\bm{J}_{b})_{r} &=
@@ -372,27 +391,61 @@ Poiché stiamo considerando il comportamento asintotico, grandi $r$, le
 componenti angolari del flusso $(\bm{J}_{b})_{\theta}$ e $(\bm{J}_{b})_{\phi}$
 sono trascurabili rispetto alla componente radiale $(\bm{J}_{b})_{\textup{r}}$ e
 approssimiamo $J_{b} \approx (\bm{J}_{b})_{r}$.  Inserendo questi risultati
-nell'equazione~\eqref{eq:sezione-d'urto} troviamo che la sezione d'urto
-differenziale è
+nell'equazione~\eqref{eq:sez-urto} troviamo che la sezione d'urto differenziale
+è
 \begin{equation}
+  \label{eq:sez-urto-mq}
   \sigma(\theta,\phi) = \frac{J_{b}r^{2}}{J_{a}} = \abs{f_{k}(\theta,\phi)}^{2}.
 \end{equation}
-La sezione d'urto differenziale è la quantità di maggior interesse nei problemi
-di diffusione perché è quella misurabile sperimentalmente e abbiamo trovato che
-è uguale al modulo quadro di $f_{k}(\theta,\phi)$, chiamata per questo motivo
-\emph{ampiezza di diffusione}.  La sezione d'urto non dipende dal fattore di
-normalizzazione $A$ e spesso nel seguito lo trascureremo ponendolo uguale a $1$.
-Nei prossimi paragrafi studieremo due metodi alternativi per calcolare
-l'ampiezza di diffusione: il metodo delle onde parziali e l'approssimazione di
-Born.
-% TODO: parlare del fatto che si è ignorata l'interferenza fra le due onde.
-% Vedi Ballentine, Cohen (pagine 914-5, mi sembra spiegato bene, mette anche in
-% relazione con la conservazione del numero di particelle che mi serve più
-% avanti per il teorema ottico) o Gottfried.
+Dunque, nei casi in cui la forma asintotica~\eqref{eq:forma-asintotica} della
+funzione d'onda è valida, la sezione d'urto differenziale è calcolabile con la
+formula precedente.  La sezione d'urto differenziale è la quantità di maggior
+interesse nei problemi di diffusione perché è quella misurabile sperimentalmente
+e abbiamo trovato che è uguale al modulo quadro di $f_{k}(\theta,\phi)$,
+chiamata per questo motivo \emph{ampiezza di diffusione}.  La sezione d'urto non
+dipende dal fattore di normalizzazione $A$ e spesso nel seguito lo trascureremo
+ponendolo uguale a $1$.  Nei prossimi paragrafi studieremo due metodi differenti
+per calcolare l'ampiezza di diffusione: il metodo delle onde parziali e
+l'approssimazione di Born.
+
+Ritorniamo all'equazione~\eqref{eq:flusso} e riprendiamo la descrizione del
+processo di diffusione in termini del pacchetto d'onda.  Il fascio incidente
+prima dell'urto, che nella pratica ha larghezza
+finita,\footnote{Negli esperimenti questa condizione può essere raggiunta, per
+  esempio, convogliando il fascio in un diaframma di larghezza sufficientemente
+  grande da evitare anche gli effetti diffrattivi.}
+è diretto verso il bersaglio.  Dopo aver interagito con questo, sono presenti
+due pacchetti: un pacchetto di onde piane, come se il bersaglio non ci fosse, e
+un pacchetto di onde diffuse dal bersaglio in tutte le direzioni.  Il pacchetto
+trasmesso è dato dall'interferenza fra questi due pacchetti.  A causa della sua
+larghezza limitata, a distanze infinite dal bersaglio il pacchetto incidente ha
+densità di probabilità non nulla solo nella direzione in avanti, cioè
+$\theta = 0$ o comunque $\theta$ molto piccolo, nelle altre direzioni
+l'interferenza fra i due pacchetti è assente.  Negli esperimenti, il rivelatore
+che misura il flusso di particelle diffuse è generalmente posto in direzioni
+diverse da quella in avanti, dunque non riceve particelle trasmesse.  In questo
+modo si osservano solo pacchetti di onde diffuse, non è necessario prendere in
+considerazione i termini di interferenza fra i due pacchetti e i risultati
+sperimentali possono essere confrontati correttamente con la sezione
+d'urto~\eqref{eq:sez-urto-mq}.  Se il rivelatore fosse posto nella direzione
+$\theta = 0$, da un punto di vista pratico risulterebbe difficile misurare
+separatamente i due flussi di particelle, mentre nel calcolo della sezione
+d'urto bisognerebbe tener conto dei termini di interferenza fra i pacchetti di
+onde incidente e diffuse in avanti.  Questa interferenza distruttiva assicura la
+conservazione del flusso di probabilità o, equivalentemente, del numero di
+particelle causando una diminuzione del flusso per $\theta = 0$ rispetto al
+flusso del solo pacchetto incidente: le particelle che non sono diffuse in
+avanti sono rimosse dal fascio incidente che, dopo aver superato il bersaglio,
+avrà quindi un'ampiezza minore.
+% Vedi anche Siegfrid Flügge, "Practical Quantum Mechanics", problema 80,
+% soluzione alle pagine 208-10.  Calcola esplicitamente la sezione d'urto
+% tenendo conto anche dei termini di interferenza e fa vedere che la sezione
+% d'urto nella forma sigma = |f|^2 è comunque sensata.
 
 % TODO: parlare da qualche parte delle relazioni fra queste grandezze, associate
 % alla particella relativa, e le corrispondenti grandezze nel sistema di
-% riferimento del laboratorio o del centro di massa.
+% riferimento del laboratorio o del centro di massa.  Vedi che dice il
+% Ballentine all'inizio di pagina 427, *forse* si riferisce a questo.
 
 \section{Metodo delle onde parziali}
 \label{sec:onde-parziali}
@@ -534,8 +587,8 @@ come avevamo previsto nella forma asintotica~\eqref{eq:forma-asintotica}.
   semplicemente \emph{funzioni di Bessel sferiche}, degli ordini più
   bassi.]{\input{gnuplot/bessel}}
   \\
-  \subfloat[][\emph{Funzioni di Bessel sferiche di seconda specie}, o
-  \emph{funzioni di Neumann sferiche}, degli ordini più
+  \subfloat[][\emph{Funzioni di Bessel sferiche di seconda specie}, chiamate
+  anche \emph{funzioni di Neumann sferiche}, degli ordini più
   bassi.]{\input{gnuplot/neumann}}
   \caption{Andamenti delle prime funzioni di Bessel sferiche.}
   \label{fig:bessel}
@@ -655,7 +708,9 @@ notato in precedenza, nelle diffusioni da campi sferici c'è simmetria
 cilindrica.  Inoltre $f_{k}(\theta)$ non cambia per effetto di una sostituzione
 $\delta_{l} \to \delta_{l} + \pi$.
 
-La sezione d'urto differenziale è data dall'equazione~\eqref{eq:sezione-d'urto}
+Poiché abbiamo verificato che la forma asintotica~\eqref{eq:forma-asintotica}
+della funzione d'onda è valida, possiamo calcolare la sezione d'urto
+differenziale con l'equazione~\eqref{eq:sez-urto-mq}
 \begin{equation}
   \sigma(\theta,\phi) = \sigma(\theta) = \abs{f_{k}(\theta)}^{2}.
 \end{equation}
@@ -698,17 +753,18 @@ quindi
 Quest'ultimo risultato è conosciuto come \emph{teorema ottico} e ci dice che la
 sezione d'urto totale è determinata dall'ampiezza di diffusione elastica in
 avanti, cioè per $\theta=0$.  In questa direzione c'è la sovrapposizione e
-interferenza tra l'onda incidente e l'onda diffusa elasticamente e questa causa
-la rimozione di flusso dal fascio di particelle incidenti.  La sezione d'urto
+interferenza tra il pacchetto di onde incidenti e onde diffuse elasticamente e
+questa causa la rimozione di flusso dal fascio di particelle incidenti, come
+discusso alla fine del paragrafo~\ref{sec:sez-urto-mq}.  La sezione d'urto
 totale quantifica proprio questa rimozione e il teorema ottico rendo conto della
-conservazione del flusso totale.  L'aggettivo ``ottico'' è dovuto al fatto che
-in ottica l'interferenza fra un'onda incidente e l'onda diffusa in avanti è
-l'origine dell'ombra di un oggetto opaco.  Anche se abbiamo dimostrato il
-teorema ottico solo nel caso di diffusione elastica da potenziale sferico, esso
-vale anche per processi di diffusione anelastica da altri tipi di potenziali.
-In questo caso la sezione d'urto totale è quella somma del canale elastico e
-quello inelastico, l'ampiezza di diffusione in avanti che compare al secondo
-membro è solo quella elastica.
+conservazione del flusso di probabilità totale.  L'aggettivo ``ottico'' è dovuto
+al fatto che in ottica l'interferenza fra un'onda incidente e l'onda diffusa in
+avanti è l'origine dell'ombra di un oggetto opaco.  Anche se abbiamo dimostrato
+il teorema ottico solo nel caso di diffusione elastica da potenziale sferico,
+esso vale anche per processi di diffusione anelastica da altri tipi di
+potenziali.  In questo caso la sezione d'urto totale è la somma di quelle dei
+canali elastico e anelastico, l'ampiezza di diffusione in avanti che compare al
+secondo membro è solo quella elastica.
 
 Se il potenziale $U(r)$ fosse identicamente nullo, avremmo
 $R_{kl}(r) = j_{l}(kr)$ e dall'equazione~\eqref{eq:jl-asintotico-orig} vediamo
@@ -1108,7 +1164,7 @@ Apparentemente questo risultato è una contraddizione con il teorema ottico:
 un'ampiezza di diffusione puramente reale implicherebbe una sezione d'urto
 totale nulla.  Tuttavia dobbiamo ricordare che la prima approssimazione di Born
 prende in considerazione solo il termine lineare del potenziale, mentre il
-teorema ottico mette in relazione la sezione d'urto totale con un'espressione
+teorema ottico coinvolge la sezione d'urto totale che è un'espressione
 quadratica dell'ampiezza di diffusione.  Per risolvere questo ``paradosso''
 bisogna considerare le potenze di $V$ di ordine superiore a $1$ nell'espressione
 dell'ampiezza di diffusione, che contribuiscono con termini complessi anche se
@@ -1118,7 +1174,7 @@ sezione d'urto totale calcolata con la prima approssimazione di Born,
 vedi~\textcite[361-362]{gottfried:quantum-mechanics}.  Il teorema ottico implica
 allora che l'ampiezza di diffusione esatta contenga tutte le potenze di $V$
 nella serie di Born, questo però solleva il problema della convergenza della
-serie, problema di cui però non ci occuperemo.
+serie, problema di cui non ci occuperemo.
 % TODO: eventualmente calcolare anche le onde parziali in approssimazione di
 % Born.  Vedi, per esempio, Gottfried, pagina 361.
 
@@ -1137,10 +1193,13 @@ sviluppo in onde parziali sono non trascurabili solo i primi termini, come
 potevamo aspettarci dalle considerazioni fatte alla fine del
 paragrafo~\ref{sec:sez-urto-op}.
 
-Come abbiamo visto nel paragrafo~\ref{sec:sez-urto-mq}, la sezione d'urto
-differenziale è il modulo quadro dell'ampiezza di diffusione,
+Anche in approssimazione di Born vale la forma
+asintotica~\eqref{eq:forma-asintotica} della funzione d'onda, allora la sezione
+d'urto differenziale è il modulo quadro dell'ampiezza di diffusione,
 $\sigma(\theta,\phi) = \abs{f_{k}(\theta,\phi)}^{2}$, e la sezione d'urto totale
-è dato da $\sigma_{\textup{tot}} = \int \sigma(\theta,\phi) \dd\Omega$.
+è dato da
+$\sigma_{\textup{tot}} = \int \sigma(\theta,\phi) \dd\Omega = \int
+\abs{f_{k}(\theta,\phi)}^{2} \dd\Omega$.
 
 \subsection{Validità dell'approssimazione}
 \label{sec:validita-born}
@@ -1359,11 +1418,17 @@ infinita perché integrando questa sezione d'urto differenziale su tutto l'angol
 solido si ottiene una divergenza, a causa dell'andamento $\sin^{-4}(\theta/2)$.
 Ciò è dovuto al fatto che il potenziale coulombiano non è a corto raggio.  In un
 certo senso possiamo dire che nessuna particella (carica) riesce a sfuggire al
-potenziale di Coulomb.  È interessante che la sezione per questo potenziale
-calcolata secondo le regole della meccanica quantistica, sebbene per via
+potenziale di Coulomb.  Nella pratica questo non si verifica e non è possibile
+osservare la divergenza della sezione d'urto totale perché non è possibile
+sottoporre effettivamente una particella a un singolo potenziale coulombiano.  È
+interessante che la sezione per questo potenziale calcolata secondo le regole
+della meccanica quantistica, sebbene per via
 indiretta,\footnote{La sezione d'urto~\eqref{eq:sez-urto-coulomb} è valida anche
   nel caso ``esatto''.}
-sia uguale a quella ottenuta classicamente da Rutherford.
+sia uguale a quella ottenuta classicamente da Rutherford.  Questa coincidenza
+può essere attribuita al fatto che il risultato non contiene $\hslash$, se si
+identifica $\hslash^{2}k^{2}/2m$ con l'energia, quindi non cambia eseguendo il
+passaggio al limite classico con $\hslash \to 0$.
 
 \section{Operatori di diffusione}
 \label{sec:operatori-diffusione}
@@ -1376,11 +1441,10 @@ rappresentazione.  Fra le altre cose, riotterremo l'equazione di
 Lippmann–Schwinger e la serie di Born, valgono anche in questo caso le
 considerazioni e interpretazioni di carattere fisico fatte precedentemente.
 
-% TODO (non importante): nota che per la definizione del risolvete ho seguito la
-% convenzione del Ballentine: G = (z - H_0)^{-1}, mentre Martina e Boiti
-% utilizzano la convenzione G = (H_0 - z)^{-1} e la matrice di trasferimento
-% (vedi appunti del 27/01/2012) è scritta come G = G - G_0 T G_0.  Se mi decido,
-% un giorno converto tutto nella convenzione di Martina.
+% Nota che per la definizione del risolvete ho seguito la convenzione del
+% Ballentine: G = (z - H_0)^{-1}, mentre Martina e Boiti utilizzano la
+% convenzione G = (H_0 - z)^{-1} e la matrice di trasferimento (vedi appunti del
+% 27/01/2012) è scritta come G = G - G_0 T G_0
 Consideriamo l'hamiltoniana $H$ nella forma
 \begin{equation}
   H = H_{0} + V
@@ -1460,9 +1524,9 @@ Sostituendo l'equazione~\eqref{eq:oper-G-serie} nella precedente troviamo
   \label{eq:oper-T-serie}
   T = V + VG_{0}V + VG_{0}V + VG_{0}VG_{0}V + \cdots.
 \end{equation}
-Vedremo come, grazie a questo risultato, la matrice di trasferimento può essere
-messo in relazione con l'ampiezza di diffusione in approssimazione di
-Born.
+Nel paragrafo~\ref{sec:oper-ampiezza-diffusione} vedremo che, grazie a questo
+risultato, la matrice di trasferimento può essere messa in relazione con
+l'ampiezza di diffusione in approssimazione di Born.
 
 \subsection{Equazione di Lippmann-Schwinger}
 \label{sec:oper-equazione-di-ls}
@@ -1646,8 +1710,8 @@ I primi termini della serie sono
       VG_{0}(E^{+})VG_{0}(E^{+})V | \psi_{0,\bm{k}_{a}}}.
   \end{align}
 \end{subequations}
-Il primo termine della serie, $f_{ab}^{(1)}$, nella rappresentazione della base
-di coordinate è esattamente l'ampiezza di
+In particolare, il termine $f_{ab}^{(1)}$ nella rappresentazione della base di
+coordinate è esattamente l'ampiezza di
 diffusione~\eqref{eq:ampiezza-born-braket} nella prima approssimazione di Born,
 scritta con una notazione differente.  È facile verificare partendo dalla
 serie~\eqref{eq:serie-born}, o dalla forma più
