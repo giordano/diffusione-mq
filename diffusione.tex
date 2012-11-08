@@ -250,10 +250,10 @@ legati, perché se lo stato delle due particelle fosse legato sarebbe nulla la
 probabilità di trovarle a distanza reciproca infinita.  Grazie alla forma
 dell'hamiltoniana~\eqref{eq:hamiltoniana}, possiamo cercare suoi autostati della
 forma separabile $\Psi(\bm{R}, \bm{r}) = \Phi(\bm{R})\psi(\bm{r})$, con
-$\psi(\bm{r})$ tale da soddisfare la seguente equazione di Schröedinger
+$\psi(\bm{r})$ tale da soddisfare la seguente equazione di Schrödinger
 stazionaria
 \begin{equation}
-  \label{eq:schroedinger-stazionaria}
+  \label{eq:schrodinger-stazionaria}
   \bigg(-\frac{\hslash^{2}}{2m}\nabla^{2} + V(\bm{r})\bigg)\psi(\bm{r})
   = E\psi(\bm{r}).
 \end{equation}
@@ -334,7 +334,7 @@ costruendo il pacchetto d'onda
 in cui la funzione $g(k)$, che per semplicità può essere presa reale, ha un
 picco intorno a un punto $k = k_{0}$ ed è praticamente nulla altrove.  Il
 pacchetto $\psi(\bm{r},t)$ così costruito è soluzione dell'equazione di
-Schröedinger e quindi descrive l'evoluzione temporale della particella relativa.
+Schrödinger e quindi descrive l'evoluzione temporale della particella relativa.
 % TODO: completare il discorso con quello che c'è nel commento (i) del Cohen,
 % pagina 910-911.
 
@@ -456,7 +456,7 @@ avrà quindi un'ampiezza minore.
 Il primo metodo che studieremo è particolarmente utile nei casi in cui il
 potenziale di interazione ha simmetria sferica, cioè dipende solo dal modulo $r$
 della distanza relativa fra i due corpi: $V(\bm{r}) = V(r)$.  L'equazione di
-Schröedinger stazionaria assume la forma
+Schrödinger stazionaria assume la forma
 \begin{equation}
   (\nabla^{2} + k^{2} - U(r)) \psi_{k}(\bm{r}) = 0,
 \end{equation}
@@ -564,8 +564,8 @@ tre regioni: la regione di diffusione, in cui il potenziale di interazione è
 sensibilmente diverso da zero, la regione intermedia in cui $U \ll l(l+1)/r^{2}$
 e la zona di radiazione, in cui $kr \gg 1$ e anche il termine di momento
 angolare è trascurabile nell'hamiltoniana.  Nella zona di radiazione, cioè per
-grandi valori di $r$, l'equazione di Schröedinger radiale~\eqref{eq:diff-u-op}
-si riduce a
+grandi valori di $r$, l'equazione di Schrödinger radiale~\eqref{eq:diff-u-op} si
+riduce a
 \begin{equation}
   \toder[2]{u_{kl}}{r^{2}} = -k^{2}u.
 \end{equation}
@@ -861,7 +861,7 @@ incidenti.
 \subsection{Equazione integrale di diffusione}
 \label{sec:equazione-integrale}
 
-L'equazione di Schröedinger stazionaria~\eqref{eq:schroedinger-stazionaria} può
+L'equazione di Schrödinger stazionaria~\eqref{eq:schrodinger-stazionaria} può
 essere riscritta nella forma
 \begin{equation}
   \label{eq:helmholtz}
@@ -897,12 +897,11 @@ Helmholtz omogenea
 \begin{equation}
   (\nabla^{2} + k^{2})\psi_{0,k}(\bm{r}) = 0.
 \end{equation}
-Quest'ultima equazione non è altro che l'equazione di Schröedinger stazionaria
-di particella libera, quindi
-$\psi_{0,k}(\bm{r}) = A\e^{\uimm \bm{k}\cdot\bm{r}}$, con $A$ costante di
-normalizzazione.  Due soluzioni dell'equazione~\eqref{eq:green} sono le funzioni
-di Green uscente $G_{+}(\bm{r},\bm{r}';k)$ ed entrante $G_{-}(\bm{r},\bm{r}';k)$
-definite da
+Quest'ultima equazione non è altro che l'equazione di Schrödinger stazionaria di
+particella libera, quindi $\psi_{0,k}(\bm{r}) = A\e^{\uimm \bm{k}\cdot\bm{r}}$,
+con $A$ costante di normalizzazione.  Due soluzioni
+dell'equazione~\eqref{eq:green} sono le funzioni di Green uscente
+$G_{+}(\bm{r},\bm{r}';k)$ ed entrante $G_{-}(\bm{r},\bm{r}';k)$ definite da
 \begin{equation}
   G_{\pm}(\bm{r},\bm{r}';k) = -\frac{\e^{\pm \uimm k\abs{\bm{r} -
         \bm{r}'}}}{4\pi \abs{\bm{r} - \bm{r}'}}.
@@ -920,8 +919,8 @@ soluzione dell'equazione~\eqref{eq:helmholtz} è data da
 \end{equation}
 Questa è l'\emph{equazione integrale di diffusione}, chiamata anche
 \emph{equazione di Lippmann–Schwinger}.  Essa è equivalente all'equazione di
-Schröedinger stazionaria~\eqref{eq:schroedinger-stazionaria} ma in più contiene
-al suo interno la condizione al contorno data dal termine
+Schrödinger stazionaria~\eqref{eq:schrodinger-stazionaria} ma in più contiene al
+suo interno la condizione al contorno data dal termine
 $\psi_{0,k}(\bm{r}) = A\e^{\uimm \bm{k}\cdot\bm{r}}$ che descrive il
 comportamento della funzione d'onda in assenza di potenziale.
 
@@ -1531,7 +1530,7 @@ l'ampiezza di diffusione in approssimazione di Born.
 \subsection{Equazione di Lippmann-Schwinger}
 \label{sec:oper-equazione-di-ls}
 
-Nella notazione bra-ket, l'equazione di Schröedinger stazionaria è
+Nella notazione bra-ket, l'equazione di Schrödinger stazionaria è
 \begin{equation}
   H \ket{\psi_{a}^{(+)}} = E \ket{\psi_{a}^{(+)}},
 \end{equation}
@@ -1542,9 +1541,9 @@ tipo~\eqref{eq:forma-asintotica} cioè la somma di un'onda piana e un'onda
 sferica \emph{uscente}.  È necessaria questa precisazione perché è possibile
 considerare funzioni d'onda $\psi^{(-)}$ il cui comportamento asintotico è dato
 dalla somma di un'onda piana e un'onda sferica \emph{entrante}.  Possiamo
-riscrivere l'equazione di Schröedinger precedente anche come
+riscrivere l'equazione di Schrödinger precedente anche come
 \begin{equation}
-  \label{eq:oper-schroedinger}
+  \label{eq:oper-schrodinger}
   (E - H_{0})\ket{\psi_{a}^{(+)}} = V \ket{\psi_{a}^{(+)}}.
 \end{equation}
 Da qui si vede che $\ket{\psi_{a}^{(+)}}$ è data dalla somma della quantità
@@ -1562,7 +1561,7 @@ e questa è l'\emph{equazione di Lippmann–Schwinger} nella notazione
 operatoriale.  In rappresentazione di coordinate questa diventa proprio
 l'equazione~\eqref{eq:lippmann-schwinger}.
 L'equazione~\eqref{eq:oper-lippmann-schwinger} contiene ``più informazione''
-della semplice equazioni di Schröedinger~\eqref{eq:oper-schroedinger} perché
+della semplice equazioni di Schrödinger~\eqref{eq:oper-schrodinger} perché
 incorpora la condizione al contorno data dal termine $\ket{\psi_{0}}$ che
 descrive il comportamento della funzione d'onda in assenza di potenziale.  Se
 poniamo nell'equazione di Lippmann–Schwinger $V = 0$ la soluzione sarà
@@ -1604,13 +1603,13 @@ per $t \to +\infty$ si ha un'onda piana che si propaga nella direzione
 $-\versor{k}_{a}$.  In definitiva, gli stati di diffusione entranti
 $\psi_{a}^{(-)}$ rappresentano l'inversione temporale degli stati di diffusione
 uscenti $\psi_{a}^{(+)}$.  Sebbene gli stati entranti siano una soluzione
-matematicamente accettabile dell'equazione di Schröedinger, essi sono
-fisicamente difficili da preparare, perché è necessario mantenere la coerenza
-della funzione d'onda iniziale in una regione macroscopica.  È questo il motivo
-per il quale utilizziamo l'insieme degli stati di diffusione uscenti come base
-completa degli stati con energia positiva, invece degli stati di diffusione
-entranti.  L'intera base dello spazio di Hilbert si ottiene aggiungendo gli
-eventuali stati legati agli stati di diffusione.
+matematicamente accettabile dell'equazione di Schrödinger, essi sono fisicamente
+difficili da preparare, perché è necessario mantenere la coerenza della funzione
+d'onda iniziale in una regione macroscopica.  È questo il motivo per il quale
+utilizziamo l'insieme degli stati di diffusione uscenti come base completa degli
+stati con energia positiva, invece degli stati di diffusione entranti.  L'intera
+base dello spazio di Hilbert si ottiene aggiungendo gli eventuali stati legati
+agli stati di diffusione.
 
 Il prodotto scalare fra due stati di diffusione entrante e uscente
 $\braket{\psi_{b}^{(-)} | \psi_{a}^{(+)}}$ associati a due insiemi di numeri
@@ -1716,9 +1715,8 @@ diffusione~\eqref{eq:ampiezza-born-braket} nella prima approssimazione di Born,
 scritta con una notazione differente.  È facile verificare partendo dalla
 serie~\eqref{eq:serie-born}, o dalla forma più
 esplicita~\eqref{eq:serie-born-esplicita}, che i termini $f_{ab}^{(2)}$,
-$f_{ab}^{(3)}$, ecc\dots{}
-sono le ampiezze di diffusione in seconda, terza approssimazione di Born
-ecc\dots{}
+$f_{ab}^{(3)}$, ecc. sono le ampiezze di diffusione in seconda, terza
+approssimazione di Born ecc.
 
 La serie di Born per $\ket{\psi_{a}^{(+)}}$ può essere ottenuta risolvendo
 iterativamente l'equazione di
