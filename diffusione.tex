@@ -1239,9 +1239,11 @@ seguente modo
   \end{split}
 \end{equation}
 È possibile applicare la prima approssimazione di Born se
-$\abs{\psi_{1,k}(\bm{r})} \ll \abs{\psi_{0,k}(\bm{r})} = 1$.  Valutiamo
-$\psi_{1,k}(\bm{r})$ nel punto $\bm{r} = \bm{0}$ in cui questa funzione è
-generalmente più grande in modulo
+$\abs{\psi_{1,k}(\bm{r})} \ll \abs{\psi_{0,k}(\bm{r})} = 1$.  Ci aspettiamo che
+l'onda di diffusione assuma i valori più grandi nelle vicinanze del centro
+diffusore, cioè intorno al punto $\bm{r} = \bm{0}$, poiché lontano dall'origine
+è fuori dall'influenza del potenziale e si comporta come un'onda sferica.
+Pertanto valutiamo
 \begin{equation}
   \label{eq:foobar}
   \begin{split}
@@ -1256,10 +1258,11 @@ La quantità $F(k)=\e^{\uimm kr_{0}}\sin(kr_{0})/k$ assume il massimo valore in
 modulo\footnote{Senza fare lo studio della funzione $F(k)$ è sufficiente
   osservare che $\abs{F(k)} = r_{0} \abs{\sin(kr_{0})/(kr_{0})}$ e l'andamento
   della funzione $\sin(x)/x$ è noto.}
-per $k = 0$ e risulta $F(0) = \lim_{k \to 0} F(k) = r_{0}$.  Valutando
-l'equazione~\eqref{eq:foobar} per $k=0$ in definitiva si trova che se il
-potenziale assume sempre lo stesso segno la prima approssimazione di Born è
-applicabile, per ogni valore di $k$, se
+per $k = 0$ e risulta $F(0) = \lim_{k \to 0} F(k) = r_{0}$.  Dunque troviamo una
+prima condizione per l'applicabilità della prima approssimazione di Born per
+qualunque valore di $k$ valutando l'espressione~\eqref{eq:foobar} per $k=0$,
+cioè nel limite di basse energie, e imponendo che risulti
+$\abs{\psi_{1,0}(\bm{0})} \ll 1$
 \begin{equation}
   \frac{2m}{\hslash^{2}}\int_{0}^{+\infty}\abs{V(r_{0})}r_{0}\dd r_{0} \ll 1.
 \end{equation}
@@ -1267,10 +1270,10 @@ Da qui si capisce perché l'approssimazione di Born possa essere applicata solo 
 potenziali a corto raggio, cioè tali che $\lim_{r \to \infty}r^{2}V(r) =
 0$.\footnote{A
   basse energie l'ampiezza di diffusione di Born è data
-  dall'equazione~\eqref{eq:ampiezza-born-centrale-basse} e affinché l'integrale
-  converga il potenziale all'infinito deve tendere a zero ancora più
-  rapidamente, in particolare deve risultare $\lim_{r \to \infty}r^{3}V(r) =
-  0$.}
+  dall'equazione~\eqref{eq:ampiezza-born-centrale-basse} e, affinché
+  quell'integrale converga, il potenziale all'infinito deve tendere a zero
+  ancora più rapidamente, in particolare deve risultare
+  $\lim_{r \to \infty}r^{3}V(r) = 0$.}
 Naturalmente il potenziale $V(r)$ deve avere anche un comportamento tale da
 rendere l'integrale non divergente nell'origine, in particolare nell'origine può
 tendere eventualmente all'infinito con un ordine minore o uguale ad $\alpha$,
@@ -1281,58 +1284,59 @@ potenziale coulombiano, che va come $1/r$ e non è quindi un potenziale a corto
 raggio, causa una divergenza nell'integrale precedente sia nell'origine sia
 all'infinito.
 
-Possiamo ottenere una condizione più stringente, spesso però troppo restrittiva,
-se supponiamo che il potenziale abbia un valore massimo $V_{0}$ e raggio
-d'azione $L$.  Sostituendo questi valori nell'equazione precedente abbiamo
+Una condizione più stringente, spesso però troppo forte, può essere ricavata se
+supponiamo che il potenziale abbia un valore massimo $V_{0}$ e raggio d'azione
+$L$.  Sostituendo questi valori nell'equazione precedente abbiamo
 \begin{equation}
   \label{eq:condizione-born}
   \frac{2m}{\hslash^{2}}\int_{0}^{L}\abs{V_{0}}r_{0}\dd r_{0} =
   \frac{\abs{V_{0}}mL^{2}}{\hslash^{2}} \ll 1 \iff \abs{V_{0}} \ll
   \frac{\hslash^{2}}{mL^{2}}.
 \end{equation}
-Per grandi valori di $k$ la quantità $F(k)$ nell'integrale
+Possiamo dare un'interpretazione fisica alla quantità $\hslash^{2}/mL^{2}$: per
+il principio di indeterminazione di Heisenberg questa è l'ordine di grandezza
+dell'energia cinetica di una particella di massa $m$ confinata in un volume di
+dimensione lineare $L$.  Quindi la condizione~\eqref{eq:condizione-born}
+equivale a dire che l'approssimazione di Born vale quando il potenziale (se
+attrattivo) è sufficientemente debole da non creare uno stato legato per la
+particella relativa.
+
+Ad alte energia possiamo ricavare una condizione meno restrittiva.  Infatti, per
+grandi valori di $k$ la quantità $F(k)$ nell'integrale
 dell'equazione~\eqref{eq:foobar} diventa molto piccola per via del fattore $1/k$
-e delle rapide oscillazioni del termine $\e^{\uimm kr_{0}}\sin(kr_{0})$.  In
-particolare, se risulta $kL \gg 1$ queste oscillazioni diventano molto frequenti
-all'interno del raggio d'azione del potenziale e abbiamo
-$\abs{F(k)} = \abs{\sin(kr_{0})/k} \leq 1/k$.  Allora
+e delle rapide oscillazioni del termine
+$\e^{\uimm kr_{0}}\sin(kr_{0}) = (\e^{2\uimm kr_{0}} - 1)/2\uimm$.  In
+particolare, facciamo nuovamente l'approssimazione che il potenziale abbia
+valore massimo $V_{0}$ e raggio $L$, se risulta $kL \gg 1$ queste oscillazioni
+diventano molto frequenti all'interno del raggio d'azione del potenziale e
+l'integrale
 \begin{equation}
-  \abs{\psi_{1,k}(\bm{0})} \leq \frac{2m}{\hslash^{2}} \int_{0}^{\infty}
-  \abs*{\frac{\e^{\uimm kr_{0}}\sin(kr_{0})}{k}} \abs{V(r_{0})} \dd r_{0} \leq
-  \frac{2m}{\hslash^{2}k} \int_{0}^{\infty} \abs{V(r_{0})} \dd r_{0} \ll 1
+  \int_{0}^{L} V(r_{0}) \frac{\e^{2\uimm kr_{0}}}{2\uimm k} \dd r_{0} \sim
+  \frac{V_{0}}{2\uimm k} \int_{0}^{L} \e^{2\uimm kr_{0}} \dd r_{0} = V_{0}
+  \frac{1 - \e^{2\uimm kL}}{4k^{2}}
 \end{equation}
-e assumendo approssimativamente di nuovo che il potenziale abbia valore massimo
-$V_{0}$ e raggio $L$ troviamo la condizione (valida, sottolineiamo, solo se
-$kL \gg 1$)
+è circa nullo.  Così troviamo la seguente condizione
 \begin{equation}
-  \frac{2mL\abs{V_{0}}}{\hslash^{2}k} \ll 1 \iff \abs{V_{0}} \ll
-  \frac{\hslash^{2}k}{2mL} = \frac{\hslash^{2}}{2mL^{2}} kL. % = E/kL.
+  \abs{\psi_{1,k}(\bm{0})} \approx \frac{m}{\hslash^{2}k}\abs*{\int_{0}^{L}
+    V(r_{0}) \dd r_{0}} \sim \frac{mL\abs{V_{0}}}{\hslash^{2}k} \ll 1 \iff
+  \abs{V_{0}} \ll \frac{\hslash^{2}k}{mL} =
+  \frac{\hslash^{2}}{mL^{2}} kL. % = E/kL.
 \end{equation}
-% Nota: la derivazione (molto approssimata) di questa condizione è mia, però dà
-% lo stesso risultato del Landau (vol. 3, pagina 199, equazione (45,6)) a meno
-% di un fattore 2 ininfluente nella stima degli ordini di grandezza.  La
-% dimostrazione del Landau sembra più generale però è un po' artificiosa, la mia
-% dimostrazione è più semplice però ha un difetto: partendo dall'assunto che
-% deve risultare $a << 1$, trovo che $a < b < c$ e deduco che deve aversi
-% $c << 1$, cosa in realtà non necessariamente vera.  Tuttavia fra $a$, $b$ e
-% $c$ c'è davvero poca differenza (la sostituzione |sin(x)/x| → 1/x per grandi
-% valori di x non è malvagia e gli altri valori assoluti essenzialmente cambiano
-% il segno globale) e comunque la dimostrazione non pretende di determinare un
-% risultato esatto.
-Questa condizione, nel regime $kL \gg 1$, è meno restrittiva
+Come preannunciato, questa condizione, nel regime $kL \gg 1$, è meno restrittiva
 della~\eqref{eq:condizione-born}, quindi se è possibili trattare un potenziale
 come una perturbazione a basse energie è possibile farlo anche ad alte, ma non è
-necessariamente vero il contrario.  Anche se non è semplice individuare una
-condizione precisa sotto la quale sia possibile applicare l'approssimazione di
-Born, dai precedenti ragionamenti è chiaro che questa diventa più affidabile per
-grandi valori dell'energia della particella incidente ed è proprio in questi
-casi che è maggiormente utilizzata.  Bisogna però osservare che la condizione di
-energia del fascio incidente molto maggiore del potenziale non è una condizione
-sempre sufficiente a giustificare l'uso dell'approssimazione di Born.  Se il
-potenziale è debole ma ha un raggio molto grande, la funzione d'onda rimarrà
-simile a un'onda piana nella regione di influenza del potenziale, ma acquisterà
-nello stesso tempo un grosso sfasamento, che non è compatibile con questa
-approssimazione.
+necessariamente vero il contrario.
+
+Anche se non è semplice individuare una condizione precisa sotto la quale sia
+possibile applicare l'approssimazione di Born, dai precedenti ragionamenti è
+chiaro che questa diventa più affidabile per grandi valori dell'energia della
+particella incidente ed è proprio in questi casi che è maggiormente utilizzata.
+Bisogna però osservare che la condizione di energia del fascio incidente molto
+maggiore del potenziale non è una condizione sempre sufficiente a giustificare
+l'uso dell'approssimazione di Born.  Se il potenziale è debole ma ha un raggio
+molto grande, la funzione d'onda rimarrà simile a un'onda piana nella regione di
+influenza del potenziale, ma acquisterà nello stesso tempo un grosso sfasamento,
+che non è compatibile con questa approssimazione.
 % Ma questo è chiaro dalle due condizioni trovate (quella generale e quella per
 % kL << 1): in ogni caso deve essere V_0 << (fattore)/L^2, quindi se aumenta il
 % raggio L, il valore di V_0 deve diminuire di conseguenza.
@@ -1435,7 +1439,7 @@ sottoporre effettivamente una particella a un singolo potenziale coulombiano.  �
 interessante che la sezione per questo potenziale calcolata secondo le regole
 della meccanica quantistica, sebbene per via
 indiretta,\footnote{La sezione d'urto~\eqref{eq:sez-urto-coulomb} è valida anche
-  nel caso ``esatto''.}
+  nello studio ``esatto'' del potenziale coulombiano.}
 sia uguale a quella ottenuta classicamente da Rutherford.  Questa coincidenza
 può essere attribuita al fatto che il risultato non contiene $\hslash$, se si
 identifica $\hslash^{2}k^{2}/2m$ con l'energia, quindi non cambia eseguendo il
@@ -1469,16 +1473,15 @@ particella libera e dell'hamiltoniana completa
     G(z) &= (z\mathbb{I} - H)^{-1},
   \end{align}
 \end{subequations}
-con $\mathbb{I}$ operatore identità e $z$, in generale, numero complesso.  I
+con $\mathbb{I}$ operatore identità e $z$, in generale, numero complesso.  Per
+semplicità di scrittura, nel seguito ometteremo l'operatore $\mathbb{I}$.  I
 risolventi non sono ben definiti nel campo dei numeri reali perché se $z$
 appartiene allo spettro dell'operatore autoaggiunto $H_{0}$ o $H$, a seconda del
 risolvente considerato, allora l'operatore $z - H_{0}$ o $z - H$ non è
 invertibile.  Il valore del risolvente nel campo dei reali può essere ottenuto
-mediante un passaggio al limite dal campo dei complessi.  Per semplicità di
-scrittura, nel seguito ometteremo l'operatore $\mathbb{I}$.  Vedremo più avanti
-che i risolventi corrispondono alle funzioni di Green nel linguaggio
-operatoriale.  Introduciamo l'\emph{operatore di trasferimento} $T$ definito
-dalla relazione
+mediante un passaggio al limite dal campo dei complessi.  Vedremo più avanti che
+i risolventi corrispondono nel linguaggio operatoriale alle funzioni di Green.
+Introduciamo l'\emph{operatore di trasferimento} $T$ definito dalla relazione
 \begin{equation}
   \label{eq:oper-trasferimento}
   G(z) = G_{0}(z) + G_{0}(z) T(z) G_{0}(z).
@@ -1582,7 +1585,7 @@ rappresenta il fascio incidente.  Quindi la forma dello stato di diffusione è
 del tipo: fascio incidente $+$ onda diffusa dal potenziale.  Il risolvente
 $G_{0}(E^{+})$ è associato a stati di diffusione $\ket{\psi^{(+)}}$
 \emph{uscenti}, vedi~\textcite[450-452]{ballentine:quantum-mechanics}.  Un'altra
-possibile scelta per il risolvete potrebbe essere
+possibile scelta per il risolvente potrebbe essere
 $G_{0}(E^{-}) = \lim_{\epsilon \to 0+} G_{0}(E - \uimm \epsilon)$, ma si può far
 vedere che questa è associata a stati di diffusione $\ket{\psi^{(-)}}$
 \emph{entranti} dati da
