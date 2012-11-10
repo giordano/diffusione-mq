@@ -285,7 +285,7 @@ dall'influenza del potenziale e la sua funzione d'onda avrà raggiunto una forma
 più semplice: essa sarà la sovrapposizione di una funzione d'onda trasmessa
 $\psi_{k,a}$ che continua a propagarsi nella direzione $\versor{k}$, quindi ha
 la forma $\e^{\uimm \bm{k}\cdot\bm{r}}$, e una funzione d'onda di diffusione
-$\psi_{k,b}$
+$\psi_{k,b}(\bm{r})$
 \begin{equation}
   \psi_{k}(\bm{r}) = \psi_{k,a}(\bm{r}) + \psi_{k,b}(\bm{r})
 \end{equation}
@@ -304,9 +304,9 @@ comportamento asintotico, vale a dire per grandi valori di $r$:
   densità di probabilità $\abs{\psi_{k,b}}^{2}$ sia costante per ogni superficie
   sferica centrata nel bersaglio;
 \item il processo di diffusione non è in generale isotropico, quindi l'ampiezza
-  dell'onda di diffusione sarà modulata da un fattore del tipo
-  $f_{k}(\theta,\phi)$, dipendente dall'energia mediante il numero d'onda $k$ e
-  dalle due coordinate angolari sferiche $\theta$ e
+  dell'onda di diffusione sarà modulata da un fattore $f_{k}(\theta,\phi)$
+  dipendente dall'energia mediante il numero d'onda $k$ e dalle due coordinate
+  angolari sferiche $\theta$ e
   $\phi$.\footnote{L'ampiezza di diffusione $f$ dipende, oltre che dalle
     variabili angolari $\theta$ e $\phi$, dal numero d'onda solo perché stiamo
     considerando diffusioni elastiche, nelle quali il modulo del momento del
@@ -404,12 +404,11 @@ Dunque, nei casi in cui la forma asintotica~\eqref{eq:forma-asintotica} della
 funzione d'onda è valida, la sezione d'urto differenziale è calcolabile con la
 formula precedente.  La sezione d'urto differenziale è la quantità di maggior
 interesse nei problemi di diffusione perché è quella misurabile sperimentalmente
-e abbiamo trovato che è uguale al modulo quadro di $f_{k}(\theta,\phi)$,
-chiamata per questo motivo \emph{ampiezza di diffusione}.  La sezione d'urto non
-dipende dal fattore di normalizzazione $A$ e spesso nel seguito lo trascureremo
-ponendolo uguale a $1$.  Nei prossimi paragrafi studieremo due metodi differenti
-per calcolare l'ampiezza di diffusione: il metodo delle onde parziali e
-l'approssimazione di Born.
+e abbiamo trovato che è uguale al modulo quadro dell'ampiezza di diffusione
+$f_{k}(\theta,\phi)$.  La sezione d'urto non dipende dal fattore di
+normalizzazione $A$ e spesso nel seguito lo trascureremo ponendolo uguale a $1$.
+Nei prossimi paragrafi studieremo due metodi differenti per calcolare l'ampiezza
+di diffusione: il metodo delle onde parziali e l'approssimazione di Born.
 
 Ritorniamo all'equazione~\eqref{eq:flusso} e riprendiamo la descrizione del
 processo di diffusione in termini del pacchetto d'onda.  Il fascio incidente
@@ -888,8 +887,6 @@ dall'incognita $\psi_{k}(\bm{r})$.
 % TODO: eventualmente fare tutti i passaggi per ricavare la funzione di Green
 Dalla teoria delle funzioni di Green si sa che la soluzione generale
 dell'equazione~\eqref{eq:helmholtz} è data da
-(vedi~\textcite[450-452]{ballentine:quantum-mechanics},
-\textcite[408-411]{griffiths:introduction-qm})
 \begin{equation}
   \begin{split}
     \psi_{k}(\bm{r}) &= \psi_{0,k}(\bm{r}) + \int
@@ -914,6 +911,8 @@ particella libera, quindi $\psi_{0,k}(\bm{r}) = A\e^{\uimm \bm{k}\cdot\bm{r}}$,
 con $A$ costante di normalizzazione.  Due soluzioni
 dell'equazione~\eqref{eq:green} sono le funzioni di Green uscente
 $G_{+}(\bm{r},\bm{r}';k)$ ed entrante $G_{-}(\bm{r},\bm{r}';k)$ definite da
+(vedi~\textcite[450-452]{ballentine:quantum-mechanics},
+\textcite[408-411]{griffiths:introduction-qm})
 \begin{equation}
   G_{\pm}(\bm{r},\bm{r}';k) = -\frac{\e^{\pm \uimm k\abs{\bm{r} -
         \bm{r}'}}}{4\pi \abs{\bm{r} - \bm{r}'}}.
@@ -944,9 +943,9 @@ perché per la conservazione dell'energia ha lo stesso modulo $k$ del vettore
 d'onda incidente $\bm{k} = k\versor{z}$.  Supponiamo anche in questo caso che il
 potenziale sia a corto raggio, cioè che risulti
 $\lim_{r \to \infty} r^{2}V(\bm{r}) = 0$.  Poiché inoltre vogliamo determinare
-$\psi_{k}(\bm{r})$ molto lontano dalla regione in cui il potenziale è
-localizzato, cioè $\abs{\bm{r}} \gg \abs{\bm{r}_{0}}$, possiamo utilizzare le
-approssimazioni, con $\alpha$ angolo compreso fra $\bm{r}$ e $\bm{r}_{0}$,
+$\psi_{k}(\bm{r})$ molto lontano dalla regione di diffusione, cioè
+$\abs{\bm{r}} \gg \abs{\bm{r}_{0}}$, possiamo utilizzare le approssimazioni, con
+$\alpha$ angolo compreso fra $\bm{r}$ e $\bm{r}_{0}$,
 \begin{subequations}
   \begin{align}
     \begin{split}
@@ -957,7 +956,7 @@ approssimazioni, con $\alpha$ angolo compreso fra $\bm{r}$ e $\bm{r}_{0}$,
     \begin{split}
       \frac{1}{\abs{\bm{r} - \bm{r}_{0}}} &= \frac{1}{r}\bigg(1 -
       2\frac{r_{0}}{r}\cos\alpha + \frac{r_{0}^{2}}{r^{2}}\bigg)^{-1/2} \approx
-      \frac{1}{r} + \frac{\bm{r}\cdot\bm{r}_{}}{r^{2}} \approx \frac{1}{r}.
+      \frac{1}{r} + \frac{\bm{r}\cdot\bm{r}_{0}}{r^{2}} \approx \frac{1}{r}.
     \end{split}
   \end{align}
 \end{subequations}
@@ -1215,8 +1214,8 @@ $\sigma_{\textup{tot}} = \int \sigma(\theta,\phi) \dd\Omega = \int
 \subsection{Validità dell'approssimazione}
 \label{sec:validita-born}
 
-In questo paragrafo proveremo a determinare delle condizioni che stabiliscono in
-quali casi è possibile utilizzare l'approssimazione di Born.  Per semplicità di
+In questo paragrafo determineremo delle condizioni che stabiliscono in quali
+casi è possibile utilizzare l'approssimazione di Born.  Per semplicità di
 calcoli assumiamo che qui il potenziale sia centrale: $V(\bm{r}) = V(r)$.
 Riscriviamo la serie di Born~\eqref{eq:serie-born} più esplicitamente nel
 seguente modo
@@ -1297,8 +1296,8 @@ Possiamo dare un'interpretazione fisica alla quantità $\hslash^{2}/mL^{2}$: per
 il principio di indeterminazione di Heisenberg questa è l'ordine di grandezza
 dell'energia cinetica di una particella di massa $m$ confinata in un volume di
 dimensione lineare $L$.  Quindi la condizione~\eqref{eq:condizione-born}
-equivale a dire che l'approssimazione di Born vale quando il potenziale (se
-attrattivo) è sufficientemente debole da non creare uno stato legato per la
+equivale a dire che l'approssimazione di Born è applicabile quando il potenziale
+(se attrattivo) è sufficientemente debole da non creare uno stato legato per la
 particella relativa.
 
 Ad alte energia possiamo ricavare una condizione meno restrittiva.  Infatti, per
@@ -1307,7 +1306,7 @@ dell'equazione~\eqref{eq:foobar} diventa molto piccola per via del fattore $1/k$
 e delle rapide oscillazioni del termine
 $\e^{\uimm kr_{0}}\sin(kr_{0}) = (\e^{2\uimm kr_{0}} - 1)/2\uimm$.  In
 particolare, facciamo nuovamente l'approssimazione che il potenziale abbia
-valore massimo $V_{0}$ e raggio $L$, se risulta $kL \gg 1$ queste oscillazioni
+valore massimo $V_{0}$ e raggio $L$, se risulta $kL \gg 1$ le oscillazioni
 diventano molto frequenti all'interno del raggio d'azione del potenziale e
 l'integrale
 \begin{equation}
