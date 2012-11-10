@@ -12,13 +12,8 @@
 \usepackage{sidecap,subfig}
 \usepackage{braket}
 \usepackage{tikz}
-% `mathtools' serve per definire il valore assoluto
-\usepackage{mathtools}
-% `bm' serve per scrivere i vettori in corsivo con il comando
-% `\bm{vettore}'. Deve sostituire il comando `\mathbf{vettore}' perché questo
-% restituisce erroneamente lettere in tondo, non in corsivo e non funziona con
-% le lettere greche.
-\usepackage{bm}
+\usepackage{mathtools} % per definire il valore assoluto
+\usepackage{bm} % per i vettori: \bm{x}
 \usepackage{hyperref}
 
 \usetikzlibrary{calc,decorations.markings}
@@ -189,8 +184,9 @@ l'angolo solido
   \dd \phi \int_{0}^{\pi} \sin \theta \dd\theta \sigma(\theta,\phi).
 \end{equation}
 
-\subsection{Sistemi di riferimento del laboratorio e del centro di massa}
-\label{sec:sistemi-riferimento}
+% % TODO: scrivere questo paragrafo
+% \subsection{Sistemi di riferimento del laboratorio e del centro di massa}
+% \label{sec:sistemi-riferimento}
 
 \section{Diffusione in meccanica quantistica}
 \label{sec:meccanica-quantistica}
@@ -205,12 +201,12 @@ affronteremo il problema
 \item non consideriamo la struttura interna delle particelle.  In questo modo
   escludiamo dalla trattazione le diffusioni anelastiche e ci occuperemo solo di
   quelle elastiche;
-\item supponiamo che il bersaglio è sufficientemente piccolo da poter trascurare
-  processi di diffusione multipla;
+\item supponiamo che il bersaglio sia sufficientemente piccolo da poter
+  trascurare processi di diffusione multipla;
 \item trascuriamo la possibilità di coerenza fra onde diffuse dalle differenti
   particelle che costituiscono il bersaglio;
 \item supponiamo che l'interazione fra proiettile e bersaglio sia descritta da
-  un potenziale $V$ dipendente dalla distanza relativa fra le due particelle
+  un potenziale $V$ dipendente dalla posizione relativa fra le due particelle
   $\bm{r}_{1} - \bm{r}_{2}$: $V = V(\bm{r}_{1} - \bm{r}_{2})$.  Questo ci
   permetterà di adottare il formalismo noto del problema dei due corpi.
 \end{itemize}
@@ -262,8 +258,8 @@ Il moto del centro di massa, descritto dalla funzione d'onda $\Phi(\bm{R})$, non
 $-\hslash^{2}\nabla_{\bm{R}}^{2}/2(m_{1} + m_{2})$, è semplicemente quella di
 particella libera, dunque ci occuperemo di studiare solo il moto relativo fra la
 particella incidente e il bersaglio.  In pratica equivale a supporre che il
-bersaglio sia infinitamente pesante e a riposo nell'origine del sistema di
-riferimento e il proiettile abbia massa $m$.
+proiettile abbia massa $m$ e che il bersaglio sia infinitamente pesante e a
+riposo nell'origine del sistema di riferimento.
 
 \subsection{Forma asintotica degli stati stazionari}
 \label{sec:forma-asintintotica}
@@ -273,46 +269,53 @@ riferimento e il proiettile abbia massa $m$.
 % finale).  Spiegare le conclusioni nel posto opportuno e individuare una
 % notazione coerente e possibilmente non troppo pesante.
 
-Nel paragrafo~\ref{sec:concetti-generali} abbiamo visto che nei problemi di
-diffusione è presente un flusso $J_{a}$ incidente sul bersaglio e un flusso
-$J_{b}$ diffuso dal bersaglio e che si allontana in tutte le direzioni.  Ci
-aspettiamo che la funzione d'onda $\psi_{k}(\bm{r})$ sia la somma di una
-funzione d'onda incidente $\psi_{k,a}$, che rappresenta il flusso di proiettili,
-e una funzione d'onda di diffusione $\psi_{k,b}$, che rappresenta gli eiettili
+Siamo interessati a individuare una forma asintotica per la funzione d'onda di
+diffusione, cioè lontano dall'influenza del potenziale di interazione, poiché
+negli esperimenti i rivelatori vengono posti molto lontani dal centro diffusore.
+Molto tempo prima di raggiungere il bersaglio, il proiettile si muove come una
+particella libera perché per valori sufficientemente grandi della distanza
+relativa $r$ il potenziale $V(\bm{r})$ è praticamente nullo.  Allora la funzione
+d'onda conterrà un termine di onda piana del tipo
+$\e^{\uimm \bm{k}\cdot\bm{r}}$, con $\bm{k}$ vettore d'onda associato alla
+particella di massa $m$, il cui modulo è legato all'energia $E$ da
+$E = \hslash^{2}k^{2}/2m$.  Nella vicinanza del bersaglio, la funzione d'onda
+della particella subirà una profonda modifica a causa dell'interazione con il
+diffusore.  Tuttavia molto tempo dopo l'interazione, l'onda sarà lontano
+dall'influenza del potenziale e la sua funzione d'onda avrà raggiunto una forma
+più semplice: essa sarà la sovrapposizione di una funzione d'onda trasmessa
+$\psi_{k,a}$ che continua a propagarsi nella direzione $\versor{k}$, quindi ha
+la forma $\e^{\uimm \bm{k}\cdot\bm{r}}$, e una funzione d'onda di diffusione
+$\psi_{k,b}$
 \begin{equation}
-  \psi_{k}(\bm{r}) = \psi_{k,a}(\bm{r}) + \psi_{k,b}(\bm{r}).
+  \psi_{k}(\bm{r}) = \psi_{k,a}(\bm{r}) + \psi_{k,b}(\bm{r})
 \end{equation}
 Nei pedici delle funzioni d'onda abbiamo messo l'esplicita dipendenza
-dall'energia attraverso il numero d'onda $k$.  Molto tempo prima di raggiungere
-il bersaglio, il proiettile si muove come una particella libera perché per
-valori sufficientemente grandi della distanza relativa $r$ il potenziale
-$V(\bm{r})$ è praticamente nullo.  La componente $\psi_{k,a}(\bm{r})$ sarà
-un'onda piana del tipo $\e^{\uimm \bm{k}\cdot\bm{r}}$, con $\bm{k}$ vettore
-d'onda associato alla particella di massa $m$, il cui modulo è legato
-all'energia $E$ da $E = \hslash^{2}k^{2}/2m$.  Nella vicinanza del bersaglio, la
-funzione d'onda della particella subirà una profonda modifica a causa
-dell'interazione con il bersaglio.  Tuttavia molto tempo dopo l'interazione,
-l'eiettile sarà lontano dall'influenza del potenziale e la sua funzione d'onda
-avrà raggiunto una forma ``stabile''.
-% TODO: giustificare un po' meglio la forma asintotica, quello che ho scritto
-% non mi piace molto.  Prova a vedere Cohen, Gottfried o Sakurai.
-Facendo un'analogia con la meccanica ondulatoria classica possiamo prevedere una
-forma esplicita per il comportamento asintotico di $\psi_{k,b}(\bm{r})$.
-Un'onda piana che urta contro un ostacolo, cioè il bersaglio nel problema di
-diffusione, si diffonde in tutto lo spazio come un'onda sferica uscente del tipo
-$f_{k}(\theta,\phi)\e^{\uimm kr}/r$, con $f_{k}(\theta,\phi)$ ampiezza dell'onda
-di diffusione.  Essa dipende dalle due coordinate angolari sferiche $\theta$ e
-$\phi$, perché la diffusione non è in generale isotropica e dall'energia
-mediante il numero d'onda
-$k$.\footnote{L'ampiezza di diffusione dipende, oltre che dalle variabili
-  angolari $\theta$ e $\phi$, dal numero d'onda solo perché stiamo considerando
-  diffusioni elastiche, nelle quali il modulo del momento del proiettile è
-  conservato.  Nel caso più generale $f$ dipenderà dal momento iniziale e
-  finale, vedi per esempio l'equazione~\eqref{eq:ampiezza-generale}.}
-Il fattore $1/r$ assicura che il flusso della densità di probabilità
-$\abs{\psi_{k,b}}^{2}$ sia costante per ogni superficie sferica centrata nel
-bersaglio.  Il comportamento asintotico della funzione d'onda $\psi_{k}(\bm{r})$
-sarà del tipo
+dall'energia attraverso il numero d'onda $k$.
+
+L'espressione esplicita dell'onda di diffusione $\psi_{k,b}(\bm{r})$ dipende dal
+particolare potenziale di interazione considerato, ma facendo un'analogia con
+l'ottica ondulatoria possiamo prevedere una struttura generale per il suo
+comportamento asintotico, vale a dire per grandi valori di $r$:
+\begin{itemize}
+\item in una fissata direzione angolare $(\theta, \phi)$ la funzione
+  $\psi_{k,b}(\bm{r})$ avrà la forma di un'onda sferica uscente del tipo
+  $\e^{\uimm kr}/r$ con la stessa energia dell'onda incidente
+  $\e^{\uimm \bm{k}\cdot\bm{r}}$.  Il fattore $1/r$ assicura che il flusso della
+  densità di probabilità $\abs{\psi_{k,b}}^{2}$ sia costante per ogni superficie
+  sferica centrata nel bersaglio;
+\item il processo di diffusione non è in generale isotropico, quindi l'ampiezza
+  dell'onda di diffusione sarà modulata da un fattore del tipo
+  $f_{k}(\theta,\phi)$, dipendente dall'energia mediante il numero d'onda $k$ e
+  dalle due coordinate angolari sferiche $\theta$ e
+  $\phi$.\footnote{L'ampiezza di diffusione $f$ dipende, oltre che dalle
+    variabili angolari $\theta$ e $\phi$, dal numero d'onda solo perché stiamo
+    considerando diffusioni elastiche, nelle quali il modulo del momento del
+    proiettile è conservato.  Nel caso più generale $f$ dipenderà dal momento
+    iniziale e finale, vedi per esempio
+    l'equazione~\eqref{eq:ampiezza-generale}.}
+\end{itemize}
+In definitiva il comportamento asintotico della funzione d'onda
+$\psi_{k}(\bm{r})$ sarà del tipo
 \begin{equation}
   \label{eq:forma-asintotica}
   \psi_{k}(\bm{r}) = \psi_{k,a}(\bm{r}) + \psi_{k,b}(\bm{r}) \underset{r \to
@@ -321,26 +324,26 @@ sarà del tipo
 \end{equation}
 con $A$ fattore di normalizzazione.  Nei paragrafi successivi vedremo che questa
 forma asintotica della funzione d'onda in un problema di diffusione, ricavata
-qui in base a un'analogia classica, è ben giustificata sotto opportune ipotesi.
+qui su basi intuitive, è ben giustificata sotto opportune ipotesi.
 % TODO: figura 8.1, pagina 348, del Gottfried oppure la prima figura del
 % Sakurai, più difficile da realizzare ma più significativa.
 
-La descrizione temporale dell'evento di diffusione da potenziale si ottiene
-costruendo il pacchetto d'onda
+Un'onda piana non rappresenta una particella, o un fascio di particelle,
+incidente fisicamente accettabile dal momento che ha estensione infinita nello
+spazio e nel tempo.  Una descrizione più realistica della particella incidente
+si ottiene considerando un pacchetto di onde con dimensione limitata del tipo
 \begin{equation}
   \psi(\bm{r},t) = \int_{0}^{\infty} \e^{-\uimm \hslash k^{2} t/2m} g(k)
   \psi_{k}(\bm{r}) \dd k,
 \end{equation}
 in cui la funzione $g(k)$, che per semplicità può essere presa reale, ha un
-picco intorno a un punto $k = k_{0}$ ed è praticamente nulla altrove.  Il
-pacchetto $\psi(\bm{r},t)$ così costruito è soluzione dell'equazione di
-Schrödinger e quindi descrive l'evoluzione temporale della particella relativa.
-% TODO: completare il discorso con quello che c'è nel commento (i) del Cohen,
-% pagina 910-911.
-
-% TODO: spiegare che il formalismo con il pacchetto d'onda sarebbe più preciso
-% ma usiamo quello delle onde perché porta agli stessi risultati ed è più
-% semplice da trattare (vedi Sakurai, pagine 385-386).
+picco intorno a un punto $k = k_{0}$ ed è praticamente nulla altrove.  Si può
+verificare che il pacchetto $\psi(\bm{r},t)$ così costruito è soluzione
+dell'equazione di Schrödinger e quindi descrive l'evoluzione temporale della
+particella relativa, vedi~\textcite[910-911]{cohen:quantum-mechanics}.
+L'approssimazione del pacchetto di onde con un'onda piana è accettabile se la
+dimensione del pacchetto è molto più grande di quella del diffusore, oppure del
+raggio d'azione del potenziale di diffusione.
 
 \subsection{Sezione d'urto}
 \label{sec:sez-urto-mq}
@@ -350,7 +353,7 @@ sua posizione ma l'ampiezza della probabilità di trovare la particella nella
 posizione $\bm{r}$.  Analogamente, il flusso che dobbiamo considerare per
 calcolare la sezione d'urto differenziale è il flusso di probabilità, cioè la
 probabilità per unità di tempo che la particella attraversi l'area unitaria.  È
-noto che per una particella di massa $m$ nello stato $\psi$, il flusso di
+noto che per una particella di massa $m$ nello stato $\psi$ il flusso di
 probabilità vale
 \begin{equation}
   \bm{J} = \frac{\hslash}{m} \Im(\psi^{*}\nabla\psi).
@@ -507,7 +510,7 @@ Tenendo anche presente quanto appena notato, possiamo ipotizzare una forma più
 precisa per lo sviluppo in onde parziali di $\psi_{k}(\bm{r})$.  Partiamo
 dall'osservare che un'onda piana, quindi in assenza di potenziale, con vettore
 d'onda $\bm{k} = k\versor{z}$ può essere sviluppata in onde parziali nel
-seguente modo
+seguente modo (vedi~\textcite[928-929]{cohen:quantum-mechanics})
 \begin{equation}
   \label{eq:sviluppo-onda-piana}
   \e^{\uimm \bm{k}\cdot\bm{r}} = \sum_{l} (2l+1) \uimm^{l} j_{l}(kr)
@@ -736,8 +739,9 @@ Utilizzando le altre espressioni dell'ampiezza di diffusione $f_{k}(\theta)$ si
 possono trovare con calcoli analoghi espressioni differenti per la sezione
 d'urto totale
 \begin{equation}
-  \sigma_{\textup{tot}} = \frac{\pi}{k^{2}} \sum_{l}(2l+1)\abs{1 - S_{l}}^{2} =
-  \frac{2\pi}{k^{2}} \sum_{l}(2l+1)(1-\Re(S_{l})),
+  \sigma_{\textup{tot}} = \sum_{l} \sigma_{l} = \frac{\pi}{k^{2}}
+  \sum_{l}(2l+1)\abs{1 - S_{l}}^{2} = \frac{2\pi}{k^{2}}
+  \sum_{l}(2l+1)(1-\Re(S_{l})),
 \end{equation}
 con $S_{l} = \e^{2\uimm\delta_{l}}$.  Infine notiamo che ponendo $\theta = 0$
 nell'ultimo membro dell'equazione~\eqref{eq:ampiezza-diffusione-op} e ricordando
@@ -774,9 +778,15 @@ nell'equazione~\eqref{eq:diff-R-op} il potenziale è moltiplicato per la piccola
 quantità $R_{kl}(r)$ e avrà un piccolo effetto sulla soluzione.  Questo rozzo
 ragionamento ci permette di intuire che gli sfasamenti $\delta_{l}$ sono piccoli
 se $kL \ll l$ e in questo caso la serie~\eqref{eq:serie-sfasamenti} converge già
-dopo pochi termini e risulta maggiormente utile a livello pratico.  La
+dopo pochi termini e risulta maggiormente utile a livello pratico.  In molti
+casi già il termine con $l = 0$ è sufficiente a dare una buona stima della
+sezione d'urto e in questi casi si parla di diffusione in onda $s$.  La
 condizione $kL \ll l$ è vera, indipendentemente dal valore del raggio $L$ del
-potenziale, per piccoli valori dell'energia della particella incidente.
+potenziale, per piccoli valori dell'energia della particella incidente.  D'altra
+parte potevamo aspettarci questo risultato perché se il potenziale è centrale e
+l'energia della particella incidente è bassa, la simmetria sferica è poco
+perturbata e nello sviluppo in onde parziali domina il termine di onda $s$, la
+quale è isotropica.
 
 % TODO: Sakurai, pagg 400-402, e Gottfried, pagg 336-8, ricavano l'ampiezza di
 % diffusione in maniera diversa, senza risolvere l'equazione di Schroëdinger.
@@ -878,6 +888,8 @@ dall'incognita $\psi_{k}(\bm{r})$.
 % TODO: eventualmente fare tutti i passaggi per ricavare la funzione di Green
 Dalla teoria delle funzioni di Green si sa che la soluzione generale
 dell'equazione~\eqref{eq:helmholtz} è data da
+(vedi~\textcite[450-452]{ballentine:quantum-mechanics},
+\textcite[408-411]{griffiths:introduction-qm})
 \begin{equation}
   \begin{split}
     \psi_{k}(\bm{r}) &= \psi_{0,k}(\bm{r}) + \int
@@ -1281,8 +1293,8 @@ d'azione $L$.  Sostituendo questi valori nell'equazione precedente abbiamo
 Per grandi valori di $k$ la quantità $F(k)$ nell'integrale
 dell'equazione~\eqref{eq:foobar} diventa molto piccola per via del fattore $1/k$
 e delle rapide oscillazioni del termine $\e^{\uimm kr_{0}}\sin(kr_{0})$.  In
-particolare, se $kL \gg 1$ queste oscillazioni diventano molto frequenti
-all'interno del raggio d'azione del potenziale e risulta
+particolare, se risulta $kL \gg 1$ queste oscillazioni diventano molto frequenti
+all'interno del raggio d'azione del potenziale e abbiamo
 $\abs{F(k)} = \abs{\sin(kr_{0})/k} \leq 1/k$.  Allora
 \begin{equation}
   \abs{\psi_{1,k}(\bm{0})} \leq \frac{2m}{\hslash^{2}} \int_{0}^{\infty}
@@ -1345,12 +1357,12 @@ abbiamo posto $\alpha = \mu c/\hslash$ e $1/\alpha$ rappresenta il raggio
 d'azione.  Nella figura~\ref{fig:pot-yukawa} è rappresentato l'andamento del
 potenziale di Yukawa.  Questo potenziale fu introdotto da Hideki Yukawa nel 1935
 per descrivere le interazioni nucleari fra protoni e neutroni dovute allo
-scambio di una particella massiva, che successivamente si rivelò essere il
-pione.
+scambio di una particella massiva, che successivamente è stata identificata con
+il pione.
 % L'articolo di Yukawa è "On the Interaction of Elementary Particles. I",
 % Proc. Phys. Math. Soc. Japan, 17, p. 48 (1935).  DOI:10.1143/PTPS.1.1.
 % L'unica copia PDF non a pagamento che ho trovato è
-% web.ihep.su/dbserv/compas/src/yukawa35/eng.pdf
+% http://web.ihep.su/dbserv/compas/src/yukawa35/eng.pdf
 Il comportamento del potenziale di Yukawa nell'origine e all'infinito soddisfa
 le ipotesi di applicabilità dell'approssimazione di Born viste in precedenza.
 Dall'equazione~\eqref{eq:ampiezza-born-centrale} abbiamo che l'ampiezza di
