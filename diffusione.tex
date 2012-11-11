@@ -56,7 +56,7 @@
 % Derivata parziale \parder[ordine]{funzione}{variabile}
 % Per la definizione del comando `parder' (per inserire le derivate parziali)
 % vedi
-% http://www.guitex.org/home/index.php?option=com_kunena&func=view&catid=5&id=42178&Itemid=60#42199
+% http://www.guitex.org/home/it/forum/5-tex-e-latex/42178-comando-derivate#42199
 \makeatletter
 \newcommand{\parder}[2]{\begingroup
   \@tempswafalse\toks@={}\count@=\z@
@@ -97,7 +97,7 @@
 
 % Il comando `\allinea' deve essere dato come valore dell'opzione `baseline' del
 % comando `\tikz' per allineare verticalmente i disegni in linea.  Vedi
-% http://tex.stackexchange.com/questions/59658/use-of-tikzpicture-matrix-in-align-or-gather-environment/59660#comment126261_59660
+% http://tex.stackexchange.com/q/59658#comment126261_59660
 \newcommand\allinea{-\the\dimexpr\fontdimen22\textfont2\relax}
 
 \tikzset{
@@ -239,13 +239,13 @@ In questo modo l'hamiltoniana assume la forma più semplice
 Il primo termine è l'energia cinetica del centro di massa, gli ultimi due sono
 l'energia della particella fittizia di massa ridotta
 $m = m_{1}m_{2}/(m_{1}+m_{2})$.  Vogliamo determinare gli autovalori
-dell'hamiltoniana e poiché essa è indipendente dal tempo possiamo considerare
-gli autostati stazionari.  In particolare siamo interessati agli autostati con
-valori positivi dell'energia $E = \hslash^{2}k^{2}/2m$, associati a stati non
-legati, perché se lo stato delle due particelle fosse legato sarebbe nulla la
-probabilità di trovarle a distanza reciproca infinita.  Grazie alla forma
-dell'hamiltoniana~\eqref{eq:hamiltoniana}, possiamo cercare suoi autostati della
-forma separabile $\Psi(\bm{R}, \bm{r}) = \Phi(\bm{R})\psi(\bm{r})$, con
+dell'hamiltoniana e dal momento che essa è indipendente dal tempo possiamo
+considerare gli autostati stazionari.  In particolare siamo interessati agli
+autostati con valori positivi dell'energia $E = \hslash^{2}k^{2}/2m$, associati
+a stati non legati, perché se lo stato delle due particelle fosse legato sarebbe
+nulla la probabilità di trovarle a distanza reciproca infinita.  Grazie alla
+forma dell'hamiltoniana~\eqref{eq:hamiltoniana}, possiamo cercare suoi autostati
+della forma separabile $\Psi(\bm{R}, \bm{r}) = \Phi(\bm{R})\psi(\bm{r})$, con
 $\psi(\bm{r})$ tale da soddisfare la seguente equazione di Schrödinger
 stazionaria
 \begin{equation}
@@ -254,7 +254,7 @@ stazionaria
   = E\psi(\bm{r}).
 \end{equation}
 Il moto del centro di massa, descritto dalla funzione d'onda $\Phi(\bm{R})$, non
-è di nostro interesse poiché la sua hamiltoniana,
+è di nostro interesse in quanto la sua hamiltoniana,
 $-\hslash^{2}\nabla_{\bm{R}}^{2}/2(m_{1} + m_{2})$, è semplicemente quella di
 particella libera, dunque ci occuperemo di studiare solo il moto relativo fra la
 particella incidente e il bersaglio.  In pratica equivale a supporre che il
@@ -270,21 +270,21 @@ riposo nell'origine del sistema di riferimento.
 % notazione coerente e possibilmente non troppo pesante.
 
 Siamo interessati a individuare una forma asintotica per la funzione d'onda di
-diffusione, cioè lontano dall'influenza del potenziale di interazione, poiché
-negli esperimenti i rivelatori vengono posti molto lontani dal centro diffusore.
+diffusione, lontano dall'influenza del potenziale di interazione, poiché negli
+esperimenti i rivelatori vengono posti molto lontani dal centro diffusore.
 Molto tempo prima di raggiungere il bersaglio, il proiettile si muove come una
 particella libera perché per valori sufficientemente grandi della distanza
-relativa $r$ il potenziale $V(\bm{r})$ è praticamente nullo.  Allora la funzione
-d'onda conterrà un termine di onda piana del tipo
-$\e^{\uimm \bm{k}\cdot\bm{r}}$, con $\bm{k}$ vettore d'onda associato alla
-particella di massa $m$, il cui modulo è legato all'energia $E$ da
-$E = \hslash^{2}k^{2}/2m$.  Nella vicinanza del bersaglio, la funzione d'onda
-della particella subirà una profonda modifica a causa dell'interazione con il
-diffusore.  Tuttavia molto tempo dopo l'interazione, l'onda sarà lontano
-dall'influenza del potenziale e la sua funzione d'onda avrà raggiunto una forma
-più semplice: essa sarà la sovrapposizione di una funzione d'onda trasmessa
-$\psi_{k,a}$ che continua a propagarsi nella direzione $\versor{k}$, quindi ha
-la forma $\e^{\uimm \bm{k}\cdot\bm{r}}$, e una funzione d'onda di diffusione
+relativa $r$ il potenziale $V(\bm{r})$ è praticamente nullo.  La funzione d'onda
+conterrà un termine di onda piana del tipo $\e^{\uimm \bm{k}\cdot\bm{r}}$, con
+$\bm{k}$ vettore d'onda associato alla particella di massa $m$, il cui modulo è
+legato all'energia $E$ da $E = \hslash^{2}k^{2}/2m$.  Nella vicinanza del
+bersaglio, la funzione d'onda della particella subirà una profonda modifica a
+causa dell'interazione con il diffusore.  Tuttavia molto tempo dopo
+l'interazione, l'onda sarà lontano dall'influenza del potenziale e la sua
+funzione d'onda avrà raggiunto una forma più semplice: essa sarà la
+sovrapposizione di una funzione d'onda trasmessa $\psi_{k,a}$ che continua a
+propagarsi nella direzione $\versor{k}$, quindi ha la forma
+$\e^{\uimm \bm{k}\cdot\bm{r}}$, e una funzione d'onda di diffusione
 $\psi_{k,b}(\bm{r})$
 \begin{equation}
   \psi_{k}(\bm{r}) = \psi_{k,a}(\bm{r}) + \psi_{k,b}(\bm{r})
@@ -444,11 +444,11 @@ nell'equazione~\eqref{eq:sez-urto} troviamo che la sezione d'urto differenziale
   \label{eq:sez-urto-mq}
   \sigma(\theta,\phi) = \frac{J_{b}r^{2}}{J_{a}} = \abs{f_{k}(\theta,\phi)}^{2}.
 \end{equation}
-Dunque, nei casi in cui la forma asintotica~\eqref{eq:forma-asintotica} della
-funzione d'onda è valida, la sezione d'urto differenziale è calcolabile con la
-formula precedente.  La sezione d'urto differenziale è la quantità di maggior
-interesse nei problemi di diffusione perché è quella misurabile sperimentalmente
-e abbiamo trovato che è uguale al modulo quadro dell'ampiezza di diffusione
+Nei casi in cui la forma asintotica~\eqref{eq:forma-asintotica} della funzione
+d'onda è valida, la sezione d'urto differenziale è calcolabile con la formula
+precedente.  La sezione d'urto differenziale è la quantità di maggior interesse
+nei problemi di diffusione perché è quella misurabile sperimentalmente e abbiamo
+trovato che è uguale al modulo quadro dell'ampiezza di diffusione
 $f_{k}(\theta,\phi)$.  La sezione d'urto non dipende dal fattore di
 normalizzazione $A$ e spesso nel seguito lo trascureremo ponendolo uguale a $1$.
 Nei prossimi paragrafi studieremo due metodi differenti per calcolare l'ampiezza
@@ -518,20 +518,20 @@ $\theta = 0$ o comunque $\theta$ molto piccolo, nelle altre direzioni
 l'interferenza fra i due pacchetti è assente.  Negli esperimenti, il rivelatore
 che misura il flusso di particelle diffuse è generalmente posto in direzioni
 diverse da quella in avanti, come mostrato nella
-figura~\ref{fig:cin-diffusione-pacchetto}, dunque non riceve particelle
-trasmesse.  In questo modo si osservano solo pacchetti di onde diffuse, non è
-necessario prendere in considerazione i termini di interferenza fra i due
-pacchetti e i risultati sperimentali possono essere confrontati correttamente
-con la sezione d'urto~\eqref{eq:sez-urto-mq}.  Se il rivelatore fosse posto
-nella direzione $\theta = 0$, da un punto di vista pratico risulterebbe
-difficile misurare separatamente i due flussi di particelle, mentre nel calcolo
-della sezione d'urto bisognerebbe tener conto dei termini di interferenza fra i
-pacchetti di onde incidente e diffuse in avanti.  Questa interferenza
-distruttiva assicura la conservazione del flusso di probabilità o,
-equivalentemente, del numero di particelle causando una diminuzione del flusso
-per $\theta = 0$ rispetto al flusso del solo pacchetto incidente: le particelle
-che non sono diffuse in avanti sono rimosse dal fascio incidente che, dopo aver
-superato il bersaglio, avrà quindi un'ampiezza minore.
+figura~\ref{fig:cin-diffusione-pacchetto}, e non riceve particelle trasmesse.
+In questo modo si osservano solo pacchetti di onde diffuse, non è necessario
+prendere in considerazione i termini di interferenza fra i due pacchetti e i
+risultati sperimentali possono essere confrontati correttamente con la sezione
+d'urto~\eqref{eq:sez-urto-mq}.  Se il rivelatore fosse posto nella direzione
+$\theta = 0$, da un punto di vista pratico risulterebbe difficile misurare
+separatamente i due flussi di particelle, mentre nel calcolo della sezione
+d'urto bisognerebbe tener conto dei termini di interferenza fra i pacchetti di
+onde incidente e diffuse in avanti.  Questa interferenza distruttiva assicura la
+conservazione del flusso di probabilità o, equivalentemente, del numero di
+particelle causando una diminuzione del flusso per $\theta = 0$ rispetto al
+flusso del solo pacchetto incidente: le particelle che non sono diffuse in
+avanti sono rimosse dal fascio incidente che, dopo aver superato il bersaglio,
+avrà quindi un'ampiezza minore.
 % Vedi anche Siegfrid Flügge, "Practical Quantum Mechanics", problema 80,
 % soluzione alle pagine 208-10.  Calcola esplicitamente la sezione d'urto
 % tenendo conto anche dei termini di interferenza e fa vedere che la sezione
@@ -555,8 +555,8 @@ Schrödinger stazionaria assume la forma
 \begin{equation}
   (\nabla^{2} + k^{2} - U(r)) \psi_{k}(\bm{r}) = 0,
 \end{equation}
-con $U(r) = (2m/\hslash^{2})V(r)$.  Poiché l'hamiltoniana commuta con gli
-operatori di momento angolare $\bm{L}^{2}$ e $L_{z}$ sappiamo che una soluzione
+con $U(r) = (2m/\hslash^{2})V(r)$.  L'hamiltoniana commuta con gli operatori di
+momento angolare $\bm{L}^{2}$ e $L_{z}$ e sappiamo che una soluzione
 dell'equazione precedente è del tipo separabile
 $R_{kl}(r)Y_{l}^{m}(\theta,\phi)$, in cui $Y_{l}^{m}(\theta,\phi))$ è
 un'armonica sferica e $R_{kl}(r)$ è una funzione puramente radiale che può
@@ -565,7 +565,7 @@ $u_{kl}(0) = 0$.  La soluzione generale dell'equazione precedente, autostato
 dell'hamiltoniana con autovalore di energia $E = \hslash^{2}k^{2}/2m$, sarà una
 combinazione lineare delle soluzioni appena illustrate con somma su tutti i
 possibili valori di momento angolare $l$ e terza componente $m$, ma con fissato
-valore del numero d'onda $k$ poiché stiamo considerando gli stati stazionari
+valore del numero d'onda $k$ in quanto stiamo considerando gli stati stazionari
 dell'hamiltoniana
 \begin{equation}
   \label{eq:onde-parziali1}
@@ -589,20 +589,20 @@ un'equazione differenziale più semplice
 \end{equation}
 Il potenziale di interazione è a simmetria sferica, la particella incidente
 rompe la completa simmetria definendo una direzione precisa che identifichiamo
-con l'asse $\versor{z}$ (cioè poniamo $\versor{z}$ tale che
-$\bm{k} = k\versor{z}$), tuttavia non è presente alcuna dipendenza dall'angolo
-azimutale $\phi$ e ci sarà pertanto simmetria cilindrica.  Per annullare la
-dipendenza della funzione d'onda $\psi_{k}(\bm{r})$ da $\phi$ nello sviluppo in
-onde parziali~\eqref{eq:onde-parziali1} dobbiamo considerare solo i termini con
+con l'asse $\versor{z}$ (poniamo $\versor{z}$ tale che $\bm{k} = k\versor{z}$),
+tuttavia non è presente alcuna dipendenza dall'angolo azimutale $\phi$ e ci sarà
+pertanto simmetria cilindrica.  Per annullare la dipendenza della funzione
+d'onda $\psi_{k}(\bm{r})$ da $\phi$ nello sviluppo in onde
+parziali~\eqref{eq:onde-parziali1} dobbiamo considerare solo i termini con
 $m = 0$ perché le armoniche sferiche dipende da $\phi$ attraverso
 $\e^{\uimm m \phi}$.
 
 % TODO: dimostrare lo sviluppo in onde parziali dell'onda piana
 Tenendo anche presente quanto appena notato, possiamo ipotizzare una forma più
 precisa per lo sviluppo in onde parziali di $\psi_{k}(\bm{r})$.  Partiamo
-dall'osservare che un'onda piana, quindi in assenza di potenziale, con vettore
-d'onda $\bm{k} = k\versor{z}$ può essere sviluppata in onde parziali nel
-seguente modo (vedi~\textcite[928-929]{cohen:quantum-mechanics})
+dall'osservare che un'onda piana, in assenza di potenziale, con vettore d'onda
+$\bm{k} = k\versor{z}$ può essere sviluppata in onde parziali nel seguente modo
+(vedi~\textcite[928-929]{cohen:quantum-mechanics})
 \begin{equation}
   \label{eq:sviluppo-onda-piana}
   \e^{\uimm \bm{k}\cdot\bm{r}} = \sum_{l} (2l+1) \uimm^{l} j_{l}(kr)
@@ -637,9 +637,10 @@ introdotte e inoltre dei coefficienti $A_{l}$ da determinare.
 \begin{figure}
   \centering
   \begin{tikzpicture}[scale=0.7,font=\footnotesize]
-    \draw[fill=white!90!black](0,0) circle (4);
-    \node[circle,draw,align=center,fill=white!80!black] (0,0)
-    {Regione di\\diffusione\\ $V \neq 0$};
+    \draw[inner color=white!65!black,outer color=white!95!black](0,0)circle(4);
+    \node[circle,draw,align=center,inner color=white!50!black,
+      outer color=white!65!black,text=white] (0,0)
+      {Regione di\\diffusione\\ $V \neq 0$};
     \node[align=center] at (0,2.6) {Regione intermedia\\ $V\approx0$};
     \node[align=center] at (10,1.5) {Zona di radiazione\\ $kr \gg 1$};
   \end{tikzpicture}
@@ -649,8 +650,8 @@ introdotte e inoltre dei coefficienti $A_{l}$ da determinare.
     All'aumentare della distanza dal bersaglio il potenziale centrifugo
     $\hslash^2 l(l+1)/2mr^2$ domina su $V(r)$ e questa condizione determina la
     \emph{regione intermedia}.  La \emph{zona di radiazione} si trova a grande
-    distanza dal bersaglio, quindi $kr \gg 1$ e sia il potenziale di interazione
-    sia il potenziale centrifugo sono trascurabili rispetto a $k^2$.}
+    distanza dal bersaglio, $kr \gg 1$, e sia il potenziale di interazione sia
+    il potenziale centrifugo sono trascurabili rispetto a $k^2$.}
 \label{fig:regioni-potenziale-sferico}
 \end{figure}
 Sotto l'ipotesi di potenziale a corto raggio, con riferimento alla
@@ -670,7 +671,7 @@ La soluzione generale è data da
 \end{equation}
 Il primo termine rappresenta un'onda sferica uscente, il secondo un'onda sferica
 entrante.  Nel problema di diffusione è presente solo l'onda sferica uscente,
-quindi $F = 0$ e
+allora $F = 0$ e
 \begin{equation}
   R_{kl}(r) \sim \frac{\e^{\uimm kr}}{r}
 \end{equation}
@@ -726,8 +727,8 @@ $C = -\sin\delta_{l}$, da cui
 L'equazione differenziale che soddisfa $R_{kl}$ è reale, la soluzione può essere
 scelta reale e anche i $\delta_{l}$ dovranno essere reali.  Con questa
 posizione, usando le proprietà~\eqref{eq:asintoti-bessel} troviamo che il
-comportamento asintotico per grandi valori di $kr$, cioè nella zona di
-radiazione, di $R_{kl}$ è
+comportamento asintotico per grandi valori di $kr$, nella zona di radiazione, di
+$R_{kl}$ è
 \begin{equation}
   \label{eq:R-asintotico}
   R_{kl}(r) \underset{kr \to \infty}{\sim} \frac{\sin(kr - l\pi/2 +
@@ -848,19 +849,19 @@ quindi
 \end{equation}
 Quest'ultimo risultato è conosciuto come \emph{teorema ottico} e ci dice che la
 sezione d'urto totale è determinata dall'ampiezza di diffusione elastica in
-avanti, cioè per $\theta=0$.  In questa direzione c'è la sovrapposizione e
-interferenza tra il pacchetto di onde incidenti e onde diffuse elasticamente e
-questa causa la rimozione di flusso dal fascio di particelle incidenti, come
-discusso alla fine del paragrafo~\ref{sec:sez-urto-mq}.  La sezione d'urto
-totale quantifica proprio questa rimozione e il teorema ottico rendo conto della
-conservazione del flusso di probabilità totale.  L'aggettivo ``ottico'' è dovuto
-al fatto che in ottica l'interferenza fra un'onda incidente e l'onda diffusa in
-avanti è l'origine dell'ombra di un oggetto opaco.  Anche se abbiamo dimostrato
-il teorema ottico solo nel caso di diffusione elastica da potenziale sferico,
-esso vale anche per processi di diffusione anelastica da altri tipi di
-potenziali.  In questo caso la sezione d'urto totale è la somma di quelle dei
-canali elastico e anelastico, l'ampiezza di diffusione in avanti che compare al
-secondo membro è solo quella elastica.
+avanti $\theta=0$.  In questa direzione c'è la sovrapposizione e interferenza
+tra il pacchetto di onde incidenti e onde diffuse elasticamente e questa causa
+la rimozione di flusso dal fascio di particelle incidenti, come discusso alla
+fine del paragrafo~\ref{sec:sez-urto-mq}.  La sezione d'urto totale quantifica
+proprio questa rimozione e il teorema ottico rendo conto della conservazione del
+flusso di probabilità totale.  L'aggettivo ``ottico'' è dovuto al fatto che in
+ottica l'interferenza fra un'onda incidente e l'onda diffusa in avanti è
+l'origine dell'ombra di un oggetto opaco.  Anche se abbiamo dimostrato il
+teorema ottico solo nel caso di diffusione elastica da potenziale sferico, esso
+vale anche per processi di diffusione anelastica da altri tipi di potenziali.
+In questo caso la sezione d'urto totale è la somma di quelle dei canali elastico
+e anelastico, l'ampiezza di diffusione in avanti che compare al secondo membro è
+solo quella elastica.
 
 Se il potenziale $U(r)$ fosse identicamente nullo, avremmo
 $R_{kl}(r) = j_{l}(kr)$ e dall'equazione~\eqref{eq:jl-asintotico-orig} vediamo
@@ -893,9 +894,9 @@ distanze maggiori è possibile trovare una formula che fornisce direttamente gli
 sfasamenti $\delta_{l}$.  Bisogna risolvere, eventualmente con metodi numerici,
 l'equazione differenziale~\eqref{eq:diff-R-op} nella regione di diffusione
 $r < L$ ed effettuare il raccordo con la forma~\eqref{eq:R-intermedio} valutata
-nel punto $r = L$.  Poiché la~\eqref{eq:diff-R-op} è un'equazione differenziale
-del secondo ordine, ci saranno due soluzioni linearmente indipendenti, di cui
-solo una non diverge per nell'origine, come succede per esempio in assenza di
+nel punto $r = L$.  La~\eqref{eq:diff-R-op} è un'equazione differenziale del
+secondo ordine e ci saranno due soluzioni linearmente indipendenti, di cui solo
+una non diverge per nell'origine, come succede per esempio in assenza di
 potenziale con le funzioni sferiche di Bessel e Neumann.  Per determinare gli
 sfasamenti possiamo imporre la continuità in $r=L$ di $R_{kl}$ e
 $\ltoder{R_{kl}}{r}$, ma è più conveniente imporre che sia continua da sinistra
@@ -941,7 +942,7 @@ da cui
       h_{l}^{(2)}(kr)]}{W[R_{kl}(r), h_{l}^{(1)}(kr)]}\right|_{r = L}.
 \end{equation}
 Il simbolo $W[\cdot,\cdot]$ indica il wronskiano delle due funzioni, con
-derivate rispetto alla coordinata $r$, dunque per le funzioni di Hankel si ha
+derivate rispetto alla coordinata $r$, per le funzioni di Hankel si ha
 $\partial_{r}h(kr) = k \partial_{\rho}h(\rho) = k h'(\rho)$.
 
 Se il potenziale non è esattamente nullo per $r > L$ ma è comunque a corto
@@ -1035,8 +1036,8 @@ Poniamo il vettore d'onda del flusso diffuso uguale a $\bm{k}' = k\versor{r}$
 perché per la conservazione dell'energia ha lo stesso modulo $k$ del vettore
 d'onda incidente $\bm{k} = k\versor{z}$.  Supponiamo anche in questo caso che il
 potenziale sia a corto raggio, cioè che risulti
-$\lim_{r \to \infty} r^{2}V(\bm{r}) = 0$.  Poiché inoltre vogliamo determinare
-$\psi_{k}(\bm{r})$ molto lontano dalla regione di diffusione, cioè
+$\lim_{r \to \infty} r^{2}V(\bm{r}) = 0$.  Inoltre vogliamo determinare
+$\psi_{k}(\bm{r})$ molto lontano dalla regione di diffusione, dunque
 $\abs{\bm{r}} \gg \abs{\bm{r}_{0}}$, possiamo utilizzare le approssimazioni, con
 $\alpha$ angolo compreso fra $\bm{r}$ e $\bm{r}_{0}$,
 \begin{subequations}
@@ -1258,8 +1259,8 @@ piccole,\footnote{Non è vero il contrario: si possono costruire potenziali che
 % la nota precedente è riferita al primo esempio di "Surprises in Theoretical
 % Physics", di Rudolf Peierls.
 $\delta_{l} \ll 1$, e $\e^{2\uimm \delta_{l}} - 1 \approx 2\uimm \delta_{l}$.
-L'ampiezza di diffusione~\eqref{eq:ampiezza-diffusione-op} si può allora
-approssimare con
+L'ampiezza di diffusione~\eqref{eq:ampiezza-diffusione-op} si può approssimare
+con
 \begin{equation}
   f_{k}(\theta) \approx \frac{1}{k}\sum_{l}(2l+1) \delta_{l} P_{l}(\cos\theta).
 \end{equation}
@@ -1275,14 +1276,14 @@ il potenziale è reale.  Per esempio si può verificare che l'ampiezza di
 diffusione in seconda approssimazione di Born soddisfa il teorema ottico con la
 sezione d'urto totale calcolata con la prima approssimazione di Born,
 vedi~\textcite[361-362]{gottfried:quantum-mechanics}.  Il teorema ottico implica
-allora che l'ampiezza di diffusione esatta contenga tutte le potenze di $V$
-nella serie di Born, questo però solleva il problema della convergenza della
-serie, problema di cui non ci occuperemo.
+che l'ampiezza di diffusione esatta contenga tutte le potenze di $V$ nella serie
+di Born, questo però solleva il problema della convergenza della serie, problema
+di cui non ci occuperemo.
 % TODO: eventualmente calcolare anche le onde parziali in approssimazione di
 % Born.  Vedi, per esempio, Gottfried, pagina 361.
 
-Nel limite di basse energie, cioè piccoli valori $k$ e quindi di $q$, possiamo
-porre $\sin(qr)/q \approx r$ e l'ampiezza di diffusione di
+Nel limite di basse energie, quindi piccoli valori $k$ e di $q$, possiamo porre
+$\sin(qr)/q \approx r$ e l'ampiezza di diffusione di
 Born~\eqref{eq:ampiezza-born-centrale} diventa
 \begin{equation}
   \label{eq:ampiezza-born-centrale-basse}
@@ -1359,7 +1360,7 @@ $\abs{\psi_{1,0}(\bm{0})} \ll 1$
   \frac{2m}{\hslash^{2}}\int_{0}^{+\infty}\abs{V(r_{0})}r_{0}\dd r_{0} \ll 1.
 \end{equation}
 Da qui si capisce perché l'approssimazione di Born possa essere applicata solo a
-potenziali a corto raggio, cioè tali che $\lim_{r \to \infty}r^{2}V(r) =
+potenziali a corto raggio, tali che $\lim_{r \to \infty}r^{2}V(r) =
 0$.\footnote{A
   basse energie l'ampiezza di diffusione di Born è data
   dall'equazione~\eqref{eq:ampiezza-born-centrale-basse} e, affinché
@@ -1385,13 +1386,13 @@ $L$.  Sostituendo questi valori nell'equazione precedente abbiamo
   \frac{\abs{V_{0}}mL^{2}}{\hslash^{2}} \ll 1 \iff \abs{V_{0}} \ll
   \frac{\hslash^{2}}{mL^{2}}.
 \end{equation}
-Possiamo dare un'interpretazione fisica alla quantità $\hslash^{2}/mL^{2}$: per
-il principio di indeterminazione di Heisenberg questa è l'ordine di grandezza
-dell'energia cinetica di una particella di massa $m$ confinata in un volume di
-dimensione lineare $L$.  Quindi la condizione~\eqref{eq:condizione-born}
-equivale a dire che l'approssimazione di Born è applicabile quando il potenziale
-(se attrattivo) è sufficientemente debole da non creare uno stato legato per la
-particella relativa.
+La quantità $\hslash^{2}/mL^{2}$ ha un'interpretazione fisica: per il principio
+di indeterminazione di Heisenberg essa è l'ordine di grandezza dell'energia
+cinetica di una particella di massa $m$ confinata in un volume di dimensione
+lineare $L$.  Quindi la condizione~\eqref{eq:condizione-born} equivale a dire
+che l'approssimazione di Born è applicabile quando il potenziale (se attrattivo)
+è sufficientemente debole da non creare uno stato legato per la particella
+relativa.
 
 Ad alte energia possiamo ricavare una condizione meno restrittiva.  Infatti, per
 grandi valori di $k$ la quantità $F(k)$ nell'integrale
@@ -1484,10 +1485,10 @@ La sezione d'urto differenziale è
   \frac{1}{(4k^{2}\sin^{2}(\theta/2) + \alpha^{2})^{2}}.
 \end{equation}
 Questa sezione d'urto permette di evidenziare delle caratteristiche comuni a
-molti tipi di potenziali.  Innanzitutto essa non dipende dal fatto che il
-potenziale sia attrattivo o repulsivo poiché $V_{0}$ compare al quadrato.
-Inoltre se $k/\alpha \ll 1$ la sezione d'urto è approssimativamente isotropa.
-Per $k \to 0$ la sezione d'urto diventa indipendente dall'energia.  Invece
+molti tipi di potenziali.  Innanzitutto $V_{0}$ compare al quadrato ed essa non
+dipende dal fatto che il potenziale sia attrattivo o repulsivo.  Inoltre se
+$k/\alpha \ll 1$ la sezione d'urto è approssimativamente isotropa.  Per
+$k \to 0$ la sezione d'urto diventa indipendente dall'energia.  Invece
 all'aumentare di $k$ la particella viene deflessa solo di angoli piccoli e la
 sezione d'urto diventa sempre più piccata intorno alla direzione $\theta = 0$ e
 si comporta come $1/q^{4}$, o $1/\theta^{4}$ per piccoli angoli.  Nella
@@ -1511,9 +1512,9 @@ tratteremo,\footnote{Si può trovare la trattazione completa e rigorosa della
 al potenziale coulombiano, il cui andamento è rappresentato nella
 figura~\ref{fig:pot-yukawa}.  Tuttavia osserviamo che l'interazione
 elettromagnetica è mediata dal fotone, che ha massa nulla, e il potenziale di
-Yukawa tende a quello di Coulomb nel limite $\mu \to 0$.  Possiamo allora
-provare a calcolare la sezione d'urto coulombiana facendo tendere $\alpha$ a $0$
-nella formula~\eqref{eq:sezione-yukawa} e ponendo $V_{0} = Z_{1}Z_{2}e^{2}$
+Yukawa tende a quello di Coulomb nel limite $\mu \to 0$.  Possiamo provare a
+calcolare la sezione d'urto coulombiana facendo tendere $\alpha$ a $0$ nella
+formula~\eqref{eq:sezione-yukawa} e ponendo $V_{0} = Z_{1}Z_{2}e^{2}$
 \begin{equation}
   \label{eq:sez-urto-coulomb}
   \sigma(\theta) =
@@ -1569,10 +1570,10 @@ con $\mathbb{I}$ operatore identità e $z$, in generale, numero complesso.  Per
 semplicità di scrittura, nel seguito ometteremo l'operatore $\mathbb{I}$.  I
 risolventi non sono ben definiti nel campo dei numeri reali perché se $z$
 appartiene allo spettro dell'operatore autoaggiunto $H_{0}$ o $H$, a seconda del
-risolvente considerato, allora l'operatore $z - H_{0}$ o $z - H$ non è
-invertibile.  Il valore del risolvente nel campo dei reali può essere ottenuto
-mediante un passaggio al limite dal campo dei complessi.  Vedremo più avanti che
-i risolventi corrispondono nel linguaggio operatoriale alle funzioni di Green.
+risolvente considerato, e l'operatore $z - H_{0}$ o $z - H$ non è invertibile.
+Il valore del risolvente nel campo dei reali può essere ottenuto mediante un
+passaggio al limite dal campo dei complessi.  Vedremo più avanti che i
+risolventi corrispondono nel linguaggio operatoriale alle funzioni di Green.
 Introduciamo l'\emph{operatore di trasferimento} $T$ definito dalla relazione
 \begin{equation}
   \label{eq:oper-trasferimento}
@@ -1644,11 +1645,11 @@ Nella notazione bra-ket, l'equazione di Schrödinger stazionaria è
 in cui $a$ indica l'insieme di numeri quantici, fra cui il vettore d'onda
 $\bm{k}_{a}$, che caratterizzano lo stato e l'apice $(+)$ rappresenta che il
 comportamento asintotico della funzione d'onda di diffusione deve essere del
-tipo~\eqref{eq:forma-asintotica} cioè la somma di un'onda piana e un'onda
-sferica \emph{uscente}.  È necessaria questa precisazione perché è possibile
-considerare funzioni d'onda $\psi^{(-)}$ il cui comportamento asintotico è dato
-dalla somma di un'onda piana e un'onda sferica \emph{entrante}.  Possiamo
-riscrivere l'equazione di Schrödinger precedente anche come
+tipo~\eqref{eq:forma-asintotica}, somma di un'onda piana e un'onda sferica
+\emph{uscente}.  È necessaria questa precisazione perché è possibile considerare
+funzioni d'onda $\psi^{(-)}$ il cui comportamento asintotico è dato dalla somma
+di un'onda piana e un'onda sferica \emph{entrante}.  Possiamo riscrivere
+l'equazione di Schrödinger precedente anche come
 \begin{equation}
   \label{eq:oper-schrodinger}
   (E - H_{0})\ket{\psi_{a}^{(+)}} = V \ket{\psi_{a}^{(+)}}.
