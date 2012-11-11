@@ -16,7 +16,7 @@
 \usepackage{bm} % per i vettori: \bm{x}
 \usepackage{hyperref}
 
-\usetikzlibrary{calc,decorations.markings}
+\usetikzlibrary{calc,decorations.markings,decorations.pathreplacing}
 
 % impostazioni per il pacchetto `hyperref'. Per l'elenco di tutte le opzioni del
 % documento consulta il manuale: `texdoc hyperref'
@@ -314,6 +314,50 @@ comportamento asintotico, vale a dire per grandi valori di $r$:
     iniziale e finale, vedi per esempio
     l'equazione~\eqref{eq:ampiezza-generale}.}
 \end{itemize}
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[font=\footnotesize]
+    % onda piana prima della diffusione.  L'argomento del comando è il nome del
+    % nodo (oppure le coordinate senza `()') in cui c'è la coda del vettore k
+    \newcommand{\ondapiana}[1]{
+      \foreach \x in {1, 1.25, 1.5}
+        \draw ($(#1) + (\x,2)$) -- ++(0,-4);
+      \draw[thick,-latex] (#1) -- ++(2.5,0) node[above] {$\bm{k}$};}
+
+    %% prima della diffusione
+    \coordinate (A) at (0,0); % inizio vettore k prima della diffusione
+    \ondapiana{A} % onda piana
+    \draw[decoration={brace,mirror},decorate] ($(A) - (0,2.25)$)
+      -- node[below,align=center] {prima della \\ diffusione} ++(2.5,0);
+
+    %% dopo la diffusione
+    % onde sferiche
+    \coordinate (B) at ($(A) + (8,0)$); % centro onde sferiche
+    \foreach \x in {1.5, 1.75, 2} % onde sferiche
+      \draw[dashed,thick] (B) circle (\x);
+    \draw[thick,-latex] (B) node[left] {$O$} --
+      ++($cos(45)*(2.5,0) + sin(45)*(0,2.5)$) node[above] {$\bm{k}'$};
+    \draw[dotted] (B) node[dot] {} -- ++(1.25,0);
+    \draw[-latex] ($(B) + (0.5,0)$) to[out=90,in=-45] node[right]
+      {$\theta$} ($(B) + cos(45)*(0.5,0) + sin(45)*(0,0.5)$);
+    \draw[dotted] ($(B) + cos(45)*(3.25,0) + sin(45)*(0,3.25)$) --
+      ++($cos(45)*(1,0) + sin(45)*(0,1)$)
+      node[above right] {$\bm{r}$} node[dot] {};
+
+    % onda piana
+    \coordinate (C) at ($(B) + (2.5,0)$); % inizio vettore k
+    \ondapiana{C} % onda piana
+    \draw[decoration={brace,mirror},decorate] ($(B) - (2,2.25)$) --
+      node[below,align=center] {dopo la diffusione} ($(C) + (2.5,-2.25)$);
+  \end{tikzpicture}
+  \caption{Cinematica della diffusione di un'onda piana.  Prima della diffusione
+    c'è la sola onda piana incidente, dopo la diffusione ci sono l'onda sferica
+    uscente e l'onda piana trasmessa.  Il punto $O$ rappresenta la posizione del
+    centro diffusore, $\bm{r}$ quella del rivelatore.  Il vettore d'onda
+    $\bm{k}'$ è associato all'onda sferica uscente e ha lo stesso modulo di
+    $\bm{k}$, per la conservazione dell'energia dell'urto elastico.}
+  \label{fig:cin-diffusione}
+\end{figure}
 In definitiva il comportamento asintotico della funzione d'onda
 $\psi_{k}(\bm{r})$ sarà del tipo
 \begin{equation}
@@ -324,9 +368,9 @@ $\psi_{k}(\bm{r})$ sarà del tipo
 \end{equation}
 con $A$ fattore di normalizzazione.  Nei paragrafi successivi vedremo che questa
 forma asintotica della funzione d'onda in un problema di diffusione, ricavata
-qui su basi intuitive, è ben giustificata sotto opportune ipotesi.
-% TODO: figura 8.1, pagina 348, del Gottfried oppure la prima figura del
-% Sakurai, più difficile da realizzare ma più significativa.
+qui su basi intuitive, è ben giustificata sotto opportune ipotesi.  Nella
+figura~\ref{fig:cin-diffusione} è riportata una rappresentazione schematica
+della cinematica del processo diffusivo.
 
 Un'onda piana non rappresenta una particella, o un fascio di particelle,
 incidente fisicamente accettabile dal momento che ha estensione infinita nello
