@@ -454,9 +454,57 @@ normalizzazione $A$ e spesso nel seguito lo trascureremo ponendolo uguale a $1$.
 Nei prossimi paragrafi studieremo due metodi differenti per calcolare l'ampiezza
 di diffusione: il metodo delle onde parziali e l'approssimazione di Born.
 
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[scale=0.7,font=\footnotesize]
+    % comando per disegnare il pacchetto di onde piane.  L'argomento è il nome
+    % del nodo (oppure le coordinate senza `()') in cui è centrato il pacchetto.
+    \newcommand{\pacchettoonda}[1]{
+      \draw[rounded corners,thick,fill=white] ($(#1) - (0.5,0.75)$)
+        rectangle ($(#1) + (0.5,0.75)$);
+      \foreach \x in {0.25, 0, -0.25}
+        \draw ($(#1) - (\x,0.75)$) -- ++(0,1.5);
+    }
+
+    %% prima della diffusione
+    \pacchettoonda{-13,0} % pacchetto di onde piane incidenti
+    \draw[-latex,thick] (-12.25,0) -- ++(1,0);
+    % centro diffusore
+    \draw[thick] (-10,0) node[above left] {$O$} node[dot] {} circle (1);
+    \draw[decoration={brace,mirror},decorate] (-13.5,-1.5)
+      -- node[below,align=center] {prima della \\ diffusione} ++(4.5,0);
+
+    %% dopo la diffusione
+    % centro diffusore
+    \draw[thick] (0,0) node[above left] {$O$} node[dot] {} circle (1);
+    % onde sferiche
+    \foreach \x in {3.5, 3.75, ..., 4.5}
+      \draw[dashed,thick] (0,0) circle (\x);
+    \pacchettoonda{4,0} % pacchetto di onde piane trasmesse
+    \foreach \x in {0, 45, ..., 315}
+      \draw[thick,-latex] ($cos(\x)*(4.75,0) + sin(\x)*(0,4.75)$) --
+        ++($cos(\x)*(1,0) + sin(\x)*(0,1)$);
+    \draw[dotted] (-2,0) -- ++(4,0);
+    \draw[-latex] (1.5,0) to[out=90,in=-55] node[right]
+      {$\theta$} ($cos(35)*(1.5,0) + sin(35)*(0,1.5)$);
+    \draw[dotted] (0,0) -- ++($cos(35)*(5.75,0)+sin(35)*(0,5.75)$) node (A) {};
+    \shadedraw[left color=white,right color=white!65!black,rotate=35]
+      ($(A)-(0,0.35)$) rectangle ($(A)+(1.5,0.35)$) node[above] {rivelatore};
+    \draw[decoration={brace,mirror},decorate] (-5.75,-6)
+      -- node[below,align=center] {dopo la diffusione} ++(11.5,0);
+  \end{tikzpicture}
+  \caption{Cinematica della diffusione di un pacchetto di onde piane.  Prima
+    della diffusione il pacchetto di onde piane si dirige verso il centro
+    diffusore $O$.  Dopo la diffusione sono presenti un pacchetto di onde piane
+    trasmesse e un pacchetto di onde sferiche uscenti diffuse dal potenziale.
+    Questi due pacchetti interferiscono distruttivamente nella direzione in
+    avanti ($\theta = 0$).}
+  \label{fig:cin-diffusione-pacchetto}
+\end{figure}
 Ritorniamo all'equazione~\eqref{eq:flusso} e riprendiamo la descrizione del
-processo di diffusione in termini del pacchetto d'onda.  Il fascio incidente
-prima dell'urto, che nella pratica ha larghezza
+processo di diffusione in termini del pacchetto d'onda, schematizzata nella
+figura~\ref{fig:cin-diffusione-pacchetto}.  Il fascio incidente prima dell'urto,
+che nella pratica ha larghezza
 finita,\footnote{Negli esperimenti questa condizione può essere raggiunta, per
   esempio, convogliando il fascio in un diaframma di larghezza sufficientemente
   grande da evitare anche gli effetti diffrattivi.}
@@ -469,20 +517,21 @@ densità di probabilità non nulla solo nella direzione in avanti, cioè
 $\theta = 0$ o comunque $\theta$ molto piccolo, nelle altre direzioni
 l'interferenza fra i due pacchetti è assente.  Negli esperimenti, il rivelatore
 che misura il flusso di particelle diffuse è generalmente posto in direzioni
-diverse da quella in avanti, dunque non riceve particelle trasmesse.  In questo
-modo si osservano solo pacchetti di onde diffuse, non è necessario prendere in
-considerazione i termini di interferenza fra i due pacchetti e i risultati
-sperimentali possono essere confrontati correttamente con la sezione
-d'urto~\eqref{eq:sez-urto-mq}.  Se il rivelatore fosse posto nella direzione
-$\theta = 0$, da un punto di vista pratico risulterebbe difficile misurare
-separatamente i due flussi di particelle, mentre nel calcolo della sezione
-d'urto bisognerebbe tener conto dei termini di interferenza fra i pacchetti di
-onde incidente e diffuse in avanti.  Questa interferenza distruttiva assicura la
-conservazione del flusso di probabilità o, equivalentemente, del numero di
-particelle causando una diminuzione del flusso per $\theta = 0$ rispetto al
-flusso del solo pacchetto incidente: le particelle che non sono diffuse in
-avanti sono rimosse dal fascio incidente che, dopo aver superato il bersaglio,
-avrà quindi un'ampiezza minore.
+diverse da quella in avanti, come mostrato nella
+figura~\ref{fig:cin-diffusione-pacchetto}, dunque non riceve particelle
+trasmesse.  In questo modo si osservano solo pacchetti di onde diffuse, non è
+necessario prendere in considerazione i termini di interferenza fra i due
+pacchetti e i risultati sperimentali possono essere confrontati correttamente
+con la sezione d'urto~\eqref{eq:sez-urto-mq}.  Se il rivelatore fosse posto
+nella direzione $\theta = 0$, da un punto di vista pratico risulterebbe
+difficile misurare separatamente i due flussi di particelle, mentre nel calcolo
+della sezione d'urto bisognerebbe tener conto dei termini di interferenza fra i
+pacchetti di onde incidente e diffuse in avanti.  Questa interferenza
+distruttiva assicura la conservazione del flusso di probabilità o,
+equivalentemente, del numero di particelle causando una diminuzione del flusso
+per $\theta = 0$ rispetto al flusso del solo pacchetto incidente: le particelle
+che non sono diffuse in avanti sono rimosse dal fascio incidente che, dopo aver
+superato il bersaglio, avrà quindi un'ampiezza minore.
 % Vedi anche Siegfrid Flügge, "Practical Quantum Mechanics", problema 80,
 % soluzione alle pagine 208-10.  Calcola esplicitamente la sezione d'urto
 % tenendo conto anche dei termini di interferenza e fa vedere che la sezione
