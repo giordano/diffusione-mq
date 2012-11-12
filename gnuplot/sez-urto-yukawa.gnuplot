@@ -19,6 +19,7 @@ set mxtics 2
 set key spacing 1.3
 F(x,k)=1/(4*k*sin(x/2)**2 + 1)**2
 set output 'gnuplot/sez-urto-yukawa.tex'
-plot [0:pi][5e-4:1] F(x,1) title "$(k/\\alpha)^{2} = 1$", \
+plot [0:pi][5e-4:12] F(x,0.1) title "$(k/\\alpha)^{2} = 0.1$", \
+     F(x,1) title "$(k/\\alpha)^{2} = 1$", \
      F(x,10) title "$(k/\\alpha)^{2} = 10$", \
      F(x,100) title "$(k/\\alpha)^{2} = 100$"

@@ -11,7 +11,7 @@
 \usepackage[font=small,format=hang,labelfont=bf]{caption}
 \usepackage{sidecap,subfig}
 \usepackage{braket}
-\usepackage{tikz}
+\usepackage{tikz,siunitx}
 \usepackage{mathtools} % per definire il valore assoluto
 \usepackage{bm} % per i vettori: \bm{x}
 \usepackage{hyperref}
@@ -28,6 +28,13 @@
   hidelinks, % link neri e senza bordi colorati, adatto per la stampa
   pdfkeywords={diffusione, meccanica quantistica, scattering, quantum
     mechanics},
+}
+
+\sisetup{per-mode=symbol,
+  inter-unit-product=\ensuremath{{}\cdot{}},
+  exponent-product=\cdot,
+  output-product=\cdot,
+  separate-uncertainty=true,
 }
 
 \addbibresource{bibliografia.bib} % nome del file contenente la bibliografia
@@ -241,11 +248,11 @@ l'energia della particella fittizia di massa ridotta
 $m = m_{1}m_{2}/(m_{1}+m_{2})$.  Vogliamo determinare gli autovalori
 dell'hamiltoniana e dal momento che essa è indipendente dal tempo possiamo
 considerare gli autostati stazionari.  In particolare siamo interessati agli
-autostati con valori positivi dell'energia $E = \hslash^{2}k^{2}/2m$, associati
-a stati non legati, perché se lo stato delle due particelle fosse legato sarebbe
-nulla la probabilità di trovarle a distanza reciproca infinita.  Grazie alla
-forma dell'hamiltoniana~\eqref{eq:hamiltoniana}, possiamo cercare suoi autostati
-della forma separabile $\Psi(\bm{R}, \bm{r}) = \Phi(\bm{R})\psi(\bm{r})$, con
+autostati con valori positivi dell'energia $E$, associati a stati non legati,
+perché se lo stato delle due particelle fosse legato sarebbe nulla la
+probabilità di trovarle a distanza reciproca infinita.  Grazie alla forma
+dell'hamiltoniana~\eqref{eq:hamiltoniana}, possiamo cercare suoi autostati della
+forma separabile $\Psi(\bm{R}, \bm{r}) = \Phi(\bm{R})\psi(\bm{r})$, con
 $\psi(\bm{r})$ tale da soddisfare la seguente equazione di Schrödinger
 stazionaria
 \begin{equation}
@@ -276,21 +283,20 @@ Molto tempo prima di raggiungere il bersaglio, il proiettile si muove come una
 particella libera perché per valori sufficientemente grandi della distanza
 relativa $r$ il potenziale $V(\bm{r})$ è praticamente nullo.  La funzione d'onda
 conterrà un termine di onda piana del tipo $\e^{\uimm \bm{k}\cdot\bm{r}}$, con
-$\bm{k}$ vettore d'onda associato alla particella di massa $m$, il cui modulo è
-legato all'energia $E$ da $E = \hslash^{2}k^{2}/2m$.  Nella vicinanza del
-bersaglio, la funzione d'onda della particella subirà una profonda modifica a
-causa dell'interazione con il diffusore.  Tuttavia molto tempo dopo
-l'interazione, l'onda sarà lontano dall'influenza del potenziale e la sua
-funzione d'onda avrà raggiunto una forma più semplice: essa sarà la
-sovrapposizione di una funzione d'onda trasmessa $\psi_{k,a}$ che continua a
-propagarsi nella direzione $\versor{k}$, quindi ha la forma
-$\e^{\uimm \bm{k}\cdot\bm{r}}$, e una funzione d'onda di diffusione
-$\psi_{k,b}(\bm{r})$
+$\bm{k}$ vettore d'onda associato alla particella di massa $m$ il cui modulo è
+legato all'energia da $E = \hslash^{2}k^{2}/2m$.  Nella vicinanza del bersaglio,
+la funzione d'onda della particella subirà una profonda modifica a causa
+dell'interazione con il diffusore.  Tuttavia molto tempo dopo l'interazione,
+l'onda sarà lontano dall'influenza del potenziale e la sua funzione d'onda avrà
+raggiunto una forma più semplice: essa sarà la sovrapposizione di una funzione
+d'onda trasmessa $\psi_{k,a}$ che continua a propagarsi nella direzione
+$\versor{k}$, quindi ha la forma $\e^{\uimm \bm{k}\cdot\bm{r}}$, e una funzione
+d'onda di diffusione $\psi_{k,b}(\bm{r})$
 \begin{equation}
-  \psi_{k}(\bm{r}) = \psi_{k,a}(\bm{r}) + \psi_{k,b}(\bm{r})
+  \psi_{k}(\bm{r}) = \psi_{k,a}(\bm{r}) + \psi_{k,b}(\bm{r}).
 \end{equation}
-Nei pedici delle funzioni d'onda abbiamo messo l'esplicita dipendenza
-dall'energia attraverso il numero d'onda $k$.
+Nei pedici delle funzioni d'onda abbiamo evidenziato la dipendenza dall'energia
+attraverso il numero d'onda $k$.
 
 L'espressione esplicita dell'onda di diffusione $\psi_{k,b}(\bm{r})$ dipende dal
 particolare potenziale di interazione considerato, ma facendo un'analogia con
@@ -610,11 +616,9 @@ $\bm{k} = k\versor{z}$ può essere sviluppata in onde parziali nel seguente modo
 \end{equation}
 in cui $j_{l}$ è la funzione di Bessel sferica di ordine $l$, $P_{l}$ è il
 polinomio di Legendre di grado $l$ e $\theta$ è l'angolo compreso fra
-$\bm{k} = k\versor{z}$ e $\bm{r}$.
-
-Supponiamo che il potenziale di interazione sia a \emph{rapida decrescenza}, o
-\emph{a corto raggio}, vale a dire per $r$ tendente all'infinito va a $0$ più
-rapidamente di $1/r^{2}$
+$\bm{k} = k\versor{z}$ e $\bm{r}$.  Supponiamo che il potenziale di interazione
+sia a \emph{rapida decrescenza}, o \emph{a corto raggio}, vale a dire per $r$
+tendente all'infinito va a $0$ più rapidamente di $1/r^{2}$
 \begin{equation}
   \lim_{r \to \infty} r^{2}V(r) = 0.
 \end{equation}
@@ -727,8 +731,7 @@ $C = -\sin\delta_{l}$, da cui
 L'equazione differenziale che soddisfa $R_{kl}$ è reale, la soluzione può essere
 scelta reale e anche i $\delta_{l}$ dovranno essere reali.  Con questa
 posizione, usando le proprietà~\eqref{eq:asintoti-bessel} troviamo che il
-comportamento asintotico per grandi valori di $kr$, nella zona di radiazione, di
-$R_{kl}$ è
+comportamento asintotico di $R_{kl}$ nella zona di radiazione è
 \begin{equation}
   \label{eq:R-asintotico}
   R_{kl}(r) \underset{kr \to \infty}{\sim} \frac{\sin(kr - l\pi/2 +
@@ -742,12 +745,13 @@ avere questo comportamento, dunque deve essere $\delta_{l} = 0$ per ogni $l$ e
 $r$ in assenza di potenziale e in questo caso si avrebbe $R_{kl}(r) =
 j_{l}(kr)$.
 Questo risultato supporta lo sviluppo in onde parziali ipotizzato
-nell'equazione~\eqref{eq:onde-parziali2}.  A questo punto possiamo confrontare
+nell'equazione~\eqref{eq:onde-parziali2}.  A questo punto confrontiamo
 l'andamento asintotico~\eqref{eq:R-asintotico} di $R_{kl}(r)$ con
 quello~\eqref{eq:jl-asintotico-inf} del caso di potenziale nullo e riconosciamo
 che l'effetto di un potenziale sferico a corto raggio a grandi distanze $r$ è
-quello di introdurre uno sfasamento in ciascuna funzione radiale asintotica
-$R_{kl}(r)$ dello sviluppo in onde parziali~\eqref{eq:onde-parziali2}.
+quello di introdurre uno sfasamento $\delta_{l}$ in ciascuna funzione radiale
+asintotica $R_{kl}(r)$ dello sviluppo in onde
+parziali~\eqref{eq:onde-parziali2}.
 
 \subsection{Calcolo della sezione d'urto}
 \label{sec:sez-urto-op}
@@ -825,12 +829,13 @@ e da questa ricaviamo
     &= 2\pi \frac{1}{k^{2}} \sum_{ll'}(2l+1)(2l'+1) \sin\delta_{l} \e^{-\uimm
       \delta_{l}} \sin\delta_{l'}\e^{\uimm \delta_{l'}}
     \int_{-1}^{1}P_{l}(\cos\theta)P_{l'}(\cos\theta) \dd(\cos\theta) \\
-    &= \frac{4\pi}{k^{2}} \sum_{l}(2l+1)\sin^{2}\delta_{l}.
+    &=\frac{4\pi}{k^{2}} \sum_{l}(2l+1)\sin^{2}\delta_{l} = \sum_{l} \sigma_{l},
   \end{split}
 \end{equation}
-Utilizzando le altre espressioni dell'ampiezza di diffusione $f_{k}(\theta)$ si
-possono trovare con calcoli analoghi espressioni differenti per la sezione
-d'urto totale
+con $\sigma_{l} = (4\pi/k^{2})(2l+1)\sin^{2}\delta_{l}$ componente parziale
+$l$-esima della sezione d'urto totale.  Utilizzando le altre espressioni
+dell'ampiezza di diffusione $f_{k}(\theta)$ si possono trovare con calcoli
+analoghi espressioni differenti per $\sigma_{\textup{tot}}$
 \begin{equation}
   \sigma_{\textup{tot}} = \sum_{l} \sigma_{l} = \frac{\pi}{k^{2}}
   \sum_{l}(2l+1)\abs{1 - S_{l}}^{2} = \frac{2\pi}{k^{2}}
@@ -857,23 +862,23 @@ proprio questa rimozione e il teorema ottico rendo conto della conservazione del
 flusso di probabilità totale.  L'aggettivo ``ottico'' è dovuto al fatto che in
 ottica l'interferenza fra un'onda incidente e l'onda diffusa in avanti è
 l'origine dell'ombra di un oggetto opaco.  Anche se abbiamo dimostrato il
-teorema ottico solo nel caso di diffusione elastica da potenziale sferico, esso
-vale anche per processi di diffusione anelastica da altri tipi di potenziali.
-In questo caso la sezione d'urto totale è la somma di quelle dei canali elastico
-e anelastico, l'ampiezza di diffusione in avanti che compare al secondo membro è
+teorema ottico solo per la diffusione elastica da potenziale sferico, esso vale
+anche per processi di diffusione anelastica da altri tipi di potenziali.  In
+questo caso la sezione d'urto totale è la somma di quelle dei canali elastico e
+anelastico, l'ampiezza di diffusione in avanti che compare al secondo membro è
 solo quella elastica.
 
 Se il potenziale $U(r)$ fosse identicamente nullo, avremmo
 $R_{kl}(r) = j_{l}(kr)$ e dall'equazione~\eqref{eq:jl-asintotico-orig} vediamo
-che per $kr \ll l$ va come $(kr)^{l}$ e diventa sempre più piccolo al crescere
-di $l$.  Se $U(r)$ è a corto raggio, in particolare con raggio uguale a $L$,
-nell'equazione~\eqref{eq:diff-R-op} il potenziale è moltiplicato per la piccola
-quantità $R_{kl}(r)$ e avrà un piccolo effetto sulla soluzione.  Questo rozzo
-ragionamento ci permette di intuire che gli sfasamenti $\delta_{l}$ sono piccoli
-se $kL \ll l$ e in questo caso la serie~\eqref{eq:serie-sfasamenti} converge già
-dopo pochi termini e risulta maggiormente utile a livello pratico.  In molti
-casi già il termine con $l = 0$ è sufficiente a dare una buona stima della
-sezione d'urto e in questi casi si parla di diffusione in onda $s$.  La
+che $R_{kl}(r)$ per $kr \ll l$ va come $(kr)^{l}$ e diventa sempre più piccolo
+al crescere di $l$.  Se $U(r)$ è a corto raggio, in particolare con raggio
+uguale a $L$, nell'equazione~\eqref{eq:diff-R-op} il potenziale è moltiplicato
+per la piccola quantità $R_{kl}(r)$ e avrà un piccolo effetto sulla soluzione.
+Questo rozzo ragionamento ci permette di intuire che gli sfasamenti $\delta_{l}$
+sono piccoli se $kL \ll l$ e in questo caso la serie~\eqref{eq:serie-sfasamenti}
+converge già dopo pochi termini e risulta maggiormente utile a livello pratico.
+In molti casi già il termine con $l = 0$ è sufficiente a dare una buona stima
+della sezione d'urto e in questi casi si parla di diffusione in onda $s$.  La
 condizione $kL \ll l$ è vera, indipendentemente dal valore del raggio $L$ del
 potenziale, per piccoli valori dell'energia della particella incidente.  D'altra
 parte potevamo aspettarci questo risultato perché se il potenziale è centrale e
@@ -915,7 +920,7 @@ punto $r = L$
 \end{equation}
 in cui $j'_{l}(kL)$ indica la derivata di $j_{l}(kr)$ rispetto a $kr$ e valutata
 nel punto $kr = kL$.  Significato analogo per $n'_{l}(kL)$.  Riarrangiando
-l'equazione precedente è possibile ricavare la tangente di $\delta_{l}$
+l'equazione precedente si ricava la tangente di $\delta_{l}$
 \begin{equation}
   \label{eq:tangente-sfasamento}
   \tan\delta_{l} = \frac{kj'_{l}(kL) - \gamma_{kl}j_{l}(kL)}{kn'_{l}(kL) -
@@ -1038,8 +1043,8 @@ d'onda incidente $\bm{k} = k\versor{z}$.  Supponiamo anche in questo caso che il
 potenziale sia a corto raggio, cioè che risulti
 $\lim_{r \to \infty} r^{2}V(\bm{r}) = 0$.  Inoltre vogliamo determinare
 $\psi_{k}(\bm{r})$ molto lontano dalla regione di diffusione, dunque
-$\abs{\bm{r}} \gg \abs{\bm{r}_{0}}$, possiamo utilizzare le approssimazioni, con
-$\alpha$ angolo compreso fra $\bm{r}$ e $\bm{r}_{0}$,
+$\abs{\bm{r}} \gg \abs{\bm{r}_{0}}$, e in questa zona utilizziamo le seguenti
+approssimazioni, con $\alpha$ angolo compreso fra $\bm{r}$ e $\bm{r}_{0}$,
 \begin{subequations}
   \begin{align}
     \begin{split}
@@ -1060,7 +1065,7 @@ La funzione di Green uscente può allora essere approssimata con
         \bm{r}_{0}}}}{\abs{\bm{r} - \bm{r}_{0}}} \approx \frac{\e^{\uimm kr}}{r}
   \e^{-\uimm \bm{k}'\cdot\bm{r}_{0}}.
 \end{equation}
-Abbiamo trovato che per grandi valori di $r$ la funzione d'onda è data da
+Abbiamo così trovato che per grandi valori di $r$ la funzione d'onda è data da
 \begin{equation}
   \label{eq:bar}
   \psi_{k}(\bm{r}) = A\e^{\uimm \bm{k}\cdot\bm{r}} - \frac{\e^{\uimm kr}}{r}
@@ -1281,7 +1286,6 @@ di Born, questo però solleva il problema della convergenza della serie, problem
 di cui non ci occuperemo.
 % TODO: eventualmente calcolare anche le onde parziali in approssimazione di
 % Born.  Vedi, per esempio, Gottfried, pagina 361.
-
 Nel limite di basse energie, quindi piccoli valori $k$ e di $q$, possiamo porre
 $\sin(qr)/q \approx r$ e l'ampiezza di diffusione di
 Born~\eqref{eq:ampiezza-born-centrale} diventa
@@ -1293,9 +1297,8 @@ Born~\eqref{eq:ampiezza-born-centrale} diventa
 Questa può essere ricavata anche dall'equazione~\eqref{eq:ampiezza-born-basse}
 calcolando l'integrale per $V(\bm{r})$ = $V(r)$.  La diffusione da un potenziale
 centrale nel limite di basse energie è approssimativamente isotropa e nello
-sviluppo in onde parziali sono non trascurabili solo i primi termini, come
-potevamo aspettarci dalle considerazioni fatte alla fine del
-paragrafo~\ref{sec:sez-urto-op}.
+sviluppo in onde parziali sono non trascurabili solo i primi termini, in accordo
+con le considerazioni fatte alla fine del paragrafo~\ref{sec:sez-urto-op}.
 
 Anche in approssimazione di Born vale la forma
 asintotica~\eqref{eq:forma-asintotica} della funzione d'onda, allora la sezione
@@ -1318,7 +1321,7 @@ seguente modo
   \begin{split}
     \psi_{k}(\bm{r}) &= \psi_{0,k}(\bm{r}) + \psi_{1,k}(\bm{r}) +
     \psi_{2,k}(\bm{r}) + \psi_{3,k}(\bm{r}) + \cdots \\
-    &=\psi_{0,k} + \frac{2 m}{\hslash^{2}}\int\dd^{3}\bm{r}_{0}
+    &=\psi_{0,k}(\bm{r}) + \frac{2 m}{\hslash^{2}}\int\dd^{3}\bm{r}_{0}
     G_{+}(\bm{r},\bm{r}_{0};k) V(r_{0}) \psi_{0,k}(\bm{r}_{0}) \\
     &+ \bigg(\frac{2m}{\hslash^{2}}\bigg)^{2}
     \int\dd^{3}\bm{r}_{0}G_{+}(\bm{r},\bm{r}_{0};k)
@@ -1334,9 +1337,10 @@ seguente modo
 È possibile applicare la prima approssimazione di Born se
 $\abs{\psi_{1,k}(\bm{r})} \ll \abs{\psi_{0,k}(\bm{r})} = 1$.  Ci aspettiamo che
 l'onda di diffusione assuma i valori più grandi nelle vicinanze del centro
-diffusore, cioè intorno al punto $\bm{r} = \bm{0}$, poiché lontano dall'origine
-è fuori dall'influenza del potenziale e si comporta come un'onda sferica.
-Pertanto valutiamo
+diffusore, cioè intorno al punto $\bm{r} = \bm{0}$ dove è più importante il
+contributo di $V$ all'integrale, poiché lontano dall'origine è fuori
+dall'influenza del potenziale e si comporta come un'onda sferica.  Pertanto
+valutiamo
 \begin{equation}
   \label{eq:foobar}
   \begin{split}
@@ -1404,9 +1408,9 @@ valore massimo $V_{0}$ e raggio $L$, se risulta $kL \gg 1$ le oscillazioni
 diventano molto frequenti all'interno del raggio d'azione del potenziale e
 l'integrale
 \begin{equation}
-  \int_{0}^{L} V(r_{0}) \frac{\e^{2\uimm kr_{0}}}{2\uimm k} \dd r_{0} \sim
-  \frac{V_{0}}{2\uimm k} \int_{0}^{L} \e^{2\uimm kr_{0}} \dd r_{0} = V_{0}
-  \frac{1 - \e^{2\uimm kL}}{4k^{2}}
+  \int_{0}^{L} V(r_{0}) \frac{\e^{2\uimm kr_{0}}}{2\uimm} \dd r_{0} \sim
+  \frac{V_{0}}{2\uimm} \int_{0}^{L} \e^{2\uimm kr_{0}} \dd r_{0} = V_{0}
+  \frac{1 - \e^{2\uimm kL}}{4k}
 \end{equation}
 è circa nullo.  Così troviamo la seguente condizione
 \begin{equation}
@@ -1440,9 +1444,10 @@ che non è compatibile con questa approssimazione.
 \begin{figure}
   \centering
   \input{gnuplot/potenziale-yukawa}
-  \caption{Andamento dei potenziali di Yukawa ($V_{\textup{Y}}(r) = \e^{-r}/r$)
-    e di Coulomb ($V_{\textup{C}}(r)=1/r$).  Il potenziale di Yukawa va
-    rapidamente a zero, mentre quello di Coulomb ha una coda molto lunga.}
+  \caption{Andamento in scala log-lin dei potenziali di Yukawa
+    ($V_{\textup{Y}}(r) = \e^{-r}/r$) e di Coulomb ($V_{\textup{C}}(r)=1/r$).
+    Il potenziale di Yukawa va rapidamente a zero, mentre quello di Coulomb ha
+    una coda molto lunga.}
   \label{fig:pot-yukawa}
 \end{figure}
 Calcoliamo l'ampiezza di diffusione di Born per il potenziale centrale di Yukawa
@@ -1454,8 +1459,7 @@ abbiamo posto $\alpha = \mu c/\hslash$ e $1/\alpha$ rappresenta il raggio
 d'azione.  Nella figura~\ref{fig:pot-yukawa} è rappresentato l'andamento del
 potenziale di Yukawa.  Questo potenziale fu introdotto da Hideki Yukawa nel 1935
 per descrivere le interazioni nucleari fra protoni e neutroni dovute allo
-scambio di una particella massiva, che successivamente è stata identificata con
-il pione.
+scambio di una particella massiva, successivamente identificata con il pione.
 % L'articolo di Yukawa è "On the Interaction of Elementary Particles. I",
 % Proc. Phys. Math. Soc. Japan, 17, p. 48 (1935).  DOI:10.1143/PTPS.1.1.
 % L'unica copia PDF non a pagamento che ho trovato è
@@ -1487,9 +1491,9 @@ La sezione d'urto differenziale è
 Questa sezione d'urto permette di evidenziare delle caratteristiche comuni a
 molti tipi di potenziali.  Innanzitutto $V_{0}$ compare al quadrato ed essa non
 dipende dal fatto che il potenziale sia attrattivo o repulsivo.  Inoltre se
-$k/\alpha \ll 1$ la sezione d'urto è approssimativamente isotropa.  Per
+$k/\alpha \ll 1$ la sezione d'urto è approssimativamente isotropa e per
 $k \to 0$ la sezione d'urto diventa indipendente dall'energia.  Invece
-all'aumentare di $k$ la particella viene deflessa solo di angoli piccoli e la
+all'aumentare di $k$ la particella viene deflessa solo di angoli piccoli, la
 sezione d'urto diventa sempre più piccata intorno alla direzione $\theta = 0$ e
 si comporta come $1/q^{4}$, o $1/\theta^{4}$ per piccoli angoli.  Nella
 figura~\ref{fig:sez-urto-yukawa} è rappresentata la distribuzione angolare della
@@ -1503,7 +1507,7 @@ Questa va a $0$ per $k \to \infty$, caratteristica generale dei potenziali di
 diffusione perché l'interazione diventa trascurabile rispetto all'energia
 cinetica.  Ciò, però, non è più vero nella meccanica quantistica relativistica.
 
-Abbiamo più volte notato che la teoria qui sviluppata non è applicabile, senza
+Abbiamo più volte ripetuto che la teoria qui sviluppata non è applicabile, senza
 opportune modifiche che però non
 tratteremo,\footnote{Si può trovare la trattazione completa e rigorosa della
   diffusione dal potenziale di Coulomb
@@ -1526,9 +1530,9 @@ infinita perché integrando questa sezione d'urto differenziale su tutto l'angol
 solido si ottiene una divergenza, a causa dell'andamento $\sin^{-4}(\theta/2)$.
 Ciò è dovuto al fatto che il potenziale coulombiano non è a corto raggio.  In un
 certo senso possiamo dire che nessuna particella (carica) riesce a sfuggire al
-potenziale di Coulomb.  Nella pratica questo non si verifica e non è possibile
-osservare la divergenza della sezione d'urto totale perché non è possibile
-sottoporre effettivamente una particella a un singolo potenziale coulombiano.  È
+potenziale di Coulomb.  Nella pratica questo non si verifica e non si osserva la
+divergenza della sezione d'urto totale perché p difficile sottoporre
+effettivamente una particella a un singolo potenziale coulombiano.  È
 interessante che la sezione per questo potenziale calcolata secondo le regole
 della meccanica quantistica, sebbene per via
 indiretta,\footnote{La sezione d'urto~\eqref{eq:sez-urto-coulomb} è valida anche
@@ -1570,11 +1574,10 @@ con $\mathbb{I}$ operatore identità e $z$, in generale, numero complesso.  Per
 semplicità di scrittura, nel seguito ometteremo l'operatore $\mathbb{I}$.  I
 risolventi non sono ben definiti nel campo dei numeri reali perché se $z$
 appartiene allo spettro dell'operatore autoaggiunto $H_{0}$ o $H$, a seconda del
-risolvente considerato, e l'operatore $z - H_{0}$ o $z - H$ non è invertibile.
-Il valore del risolvente nel campo dei reali può essere ottenuto mediante un
-passaggio al limite dal campo dei complessi.  Vedremo più avanti che i
-risolventi corrispondono nel linguaggio operatoriale alle funzioni di Green.
-Introduciamo l'\emph{operatore di trasferimento} $T$ definito dalla relazione
+risolvente considerato, l'operatore $z - H_{0}$ o $z - H$ non è invertibile.  Il
+valore del risolvente nel campo dei reali può essere ottenuto mediante un
+passaggio al limite dal campo dei complessi.  Introduciamo
+l'\emph{operatore di trasferimento} $T$ definito dalla relazione
 \begin{equation}
   \label{eq:oper-trasferimento}
   G(z) = G_{0}(z) + G_{0}(z) T(z) G_{0}(z).
@@ -1589,7 +1592,7 @@ Dalla definizione di $T$ abbiamo
   \end{split}
 \end{equation}
 in cui abbiamo sfruttato la relazione $G_{0}^{-1} - G^{-1} = V$.  D'altra parte
-$G_{0}^{-1} G G_{0}^{-1} - G_{0}^{-1}$ può anche essere riscritto come
+il secondo membro dell'equazione precedente può anche essere fattorizzato come
 $(G_{0}^{-1}G - 1)(z - H_{0})$ e con calcoli analoghi si trova che
 \begin{equation}
   T = VG(z - H_{0}).
@@ -1626,10 +1629,12 @@ da cui
 \begin{equation}
   T = V + VGV.
 \end{equation}
-Sostituendo l'equazione~\eqref{eq:oper-G-serie} nella precedente troviamo
+Sostituendo la definizione~\eqref{eq:oper-trasferimento} dell'operatore di
+trasferimento, oppure la serie~\eqref{eq:oper-G-serie}, nell'equazione
+precedente e poi risolvendo iterativamente l'equazione risultante troviamo
 \begin{equation}
   \label{eq:oper-T-serie}
-  T = V + VG_{0}V + VG_{0}V + VG_{0}VG_{0}V + \cdots.
+  T = V + VG_{0}V + VG_{0}VG_{0}V + \cdots.
 \end{equation}
 Nel paragrafo~\ref{sec:oper-ampiezza-diffusione} vedremo che, grazie a questo
 risultato, la matrice di trasferimento può essere messa in relazione con
@@ -1643,13 +1648,8 @@ Nella notazione bra-ket, l'equazione di Schrödinger stazionaria è
   H \ket{\psi_{a}^{(+)}} = E \ket{\psi_{a}^{(+)}},
 \end{equation}
 in cui $a$ indica l'insieme di numeri quantici, fra cui il vettore d'onda
-$\bm{k}_{a}$, che caratterizzano lo stato e l'apice $(+)$ rappresenta che il
-comportamento asintotico della funzione d'onda di diffusione deve essere del
-tipo~\eqref{eq:forma-asintotica}, somma di un'onda piana e un'onda sferica
-\emph{uscente}.  È necessaria questa precisazione perché è possibile considerare
-funzioni d'onda $\psi^{(-)}$ il cui comportamento asintotico è dato dalla somma
-di un'onda piana e un'onda sferica \emph{entrante}.  Possiamo riscrivere
-l'equazione di Schrödinger precedente anche come
+$\bm{k}_{a}$, che caratterizzano lo stato.  Possiamo riscrivere l'equazione di
+Schrödinger precedente anche come
 \begin{equation}
   \label{eq:oper-schrodinger}
   (E - H_{0})\ket{\psi_{a}^{(+)}} = V \ket{\psi_{a}^{(+)}}.
@@ -1675,10 +1675,13 @@ descrive il comportamento della funzione d'onda in assenza di potenziale.  Se
 poniamo nell'equazione di Lippmann–Schwinger $V = 0$ la soluzione sarà
 $\ket{\psi_{0}}$, che è autostato dell'hamiltoniana di particella libera e
 rappresenta il fascio incidente.  Quindi la forma dello stato di diffusione è
-del tipo: fascio incidente $+$ onda diffusa dal potenziale.  Il risolvente
-$G_{0}(E^{+})$ è associato a stati di diffusione $\ket{\psi^{(+)}}$
-\emph{uscenti}, vedi~\textcite[450-452]{ballentine:quantum-mechanics}.  Un'altra
-possibile scelta per il risolvente potrebbe essere
+del tipo: fascio incidente $+$ onda diffusa dal potenziale e con la stessa
+energia del fascio incidente, come nella funzione d'onda
+asintotica~\eqref{eq:forma-asintotica}.  Il risolvente $G_{0}(E^{+})$ è
+associato a stati di diffusione $\ket{\psi^{(+)}}$ \emph{uscenti},
+vedi~\textcite[450-452]{ballentine:quantum-mechanics}.  L'apice $(+)$ sta
+proprio a indicare questo comportamento asintotico.  Un'altra possibile scelta
+per il risolvente potrebbe essere
 $G_{0}(E^{-}) = \lim_{\epsilon \to 0+} G_{0}(E - \uimm \epsilon)$, ma si può far
 vedere che questa è associata a stati di diffusione $\ket{\psi^{(-)}}$
 \emph{entranti} dati da
@@ -1691,12 +1694,10 @@ funzione $G_{+}(\bm{r},\bm{r}';k)$ perché corrispondente a stati di diffusione
 uscenti.  In effetti le funzioni di Green sono strettamente legate ai
 risolventi.  Dalla definizione di $G_{0}(E^{\pm})$ abbiamo
 \begin{equation}
-  \begin{gathered}
-    \braket{\bm{r} | (E - H_{0})G_{0}(E^{\pm}) | \bm{r}'} = \braket{\bm{r} |
-      \bm{r}'} \iff \\
-    \bigg(\frac{\hslash^{2}k^{2}}{2m} + \frac{\hslash^{2}}{2m}\nabla^{2}\bigg)
-    \braket{\bm{r} | G_{0}(E^{\pm}) | \bm{r}'} = \delta(\bm{r} - \bm{r}')
-  \end{gathered}
+  \braket{\bm{r} | (E - H_{0})G_{0}(E^{\pm}) | \bm{r}'} = \braket{\bm{r} |
+    \bm{r}'} \iff \bigg(\frac{\hslash^{2}k^{2}}{2m} +
+  \frac{\hslash^{2}}{2m}\nabla^{2}\bigg) \braket{\bm{r} | G_{0}(E^{\pm}) |
+    \bm{r}'} = \delta^{3}(\bm{r} - \bm{r}')
 \end{equation}
 e confrontando con l'equazione~\eqref{eq:green} riconosciamo che
 \begin{equation}
@@ -1711,19 +1712,20 @@ per $t \to +\infty$ si ha un'onda piana che si propaga nella direzione
 $-\versor{k}_{a}$.  In definitiva, gli stati di diffusione entranti
 $\psi_{a}^{(-)}$ rappresentano l'inversione temporale degli stati di diffusione
 uscenti $\psi_{a}^{(+)}$.  Sebbene gli stati entranti siano una soluzione
-matematicamente accettabile dell'equazione di Schrödinger, essi sono fisicamente
-difficili da preparare, perché è necessario mantenere la coerenza della funzione
-d'onda iniziale in una regione macroscopica.  È questo il motivo per il quale
-utilizziamo l'insieme degli stati di diffusione uscenti come base completa degli
-stati con energia positiva, invece degli stati di diffusione entranti.  L'intera
-base dello spazio di Hilbert si ottiene aggiungendo gli eventuali stati legati
-agli stati di diffusione.
+matematicamente accettabile dell'equazione di Schrödinger e giochino un ruolo
+importante nella teoria, essi sono fisicamente difficili da preparare, perché è
+necessario mantenere la coerenza della funzione d'onda iniziale in una regione
+macroscopica.  È questo il motivo per il quale utilizziamo l'insieme degli stati
+di diffusione uscenti come base completa degli stati con energia positiva,
+invece degli stati di diffusione entranti.  L'intera base dello spazio di
+Hilbert si ottiene aggiungendo gli eventuali stati legati agli stati di
+diffusione.
 
 Il prodotto scalare fra due stati di diffusione entrante e uscente
 $\braket{\psi_{b}^{(-)} | \psi_{a}^{(+)}}$ associati a due insiemi di numeri
-quantici $a$ e $b$ differenti (in particolare sono diversi i vettori d'onda
-$\bm{k}_{a}$ e $\bm{k}_{b}$) definisce gli elementi della cosiddetta
-\emph{matrice S} o \emph{matrice di diffusione} o \emph{matrice di scattering}
+quantici $a$ e $b$ (e in particolare ai vettori d'onda $\bm{k}_{a}$ e
+$\bm{k}_{b}$) definisce gli elementi della cosiddetta \emph{matrice S} o
+\emph{matrice di diffusione} o \emph{matrice di scattering}
 \begin{equation}
   S_{b,a} = \braket{\psi_{b}^{(-)} | \psi_{a}^{(+)}}.
 \end{equation}
@@ -1779,17 +1781,16 @@ stati $\ket{\psi_{0,\bm{k}_{b}}}$ e $\ket{\psi_{0,\bm{k}_{a}}}$, associati a
 vettori d'onda, rispettivamente, $\bm{k}_{b}$ e $\bm{k}_{a}$, sono
 \begin{equation}
   \label{eq:oper-T-amp}
-  \begin{split}
-    \braket{\psi_{0,\bm{k}_{b}} | T(E^{+}) | \psi_{0,\bm{k}_{a}}} &=
-    \braket{\psi_{0,\bm{k}_{b}} | V | \psi_{a}^{(+)}} \\
-    &= -\frac{2\pi\hslash^{2}}{m} f_{ab}^{(+)}(\Omega_{\bm{k}_{b}}),
-  \end{split}
+  \braket{\psi_{0,\bm{k}_{b}} | T(E^{+}) | \psi_{0,\bm{k}_{a}}} =
+  \braket{\psi_{0,\bm{k}_{b}} | V | \psi_{a}^{(+)}} = -\frac{2\pi\hslash^{2}}{m}
+  f_{ab}^{(+)}(\Omega_{\bm{k}_{b}}),
 \end{equation}
 o, equivalentemente,
 \begin{equation}
   \label{eq:oper-amp-diff}
   f_{ab}^{(+)}(\Omega_{\bm{k}_{b}}) = -\frac{m}{2\pi\hslash^{2}}
-  \braket{\psi_{0,\bm{k}_{b}} | T(E^{+}) | \psi_{0,\bm{k}_{a}}}.
+  \braket{\psi_{0,\bm{k}_{b}} | T(E^{+}) | \psi_{0,\bm{k}_{a}}} =
+  -\frac{m}{2\pi\hslash^{2}} \braket{\psi_{0,\bm{k}_{b}} | V | \psi_{a}^{(+)}}.
 \end{equation}
 Abbiamo visto che l'operatore di trasferimento $T$ può essere espanso nella
 serie~\eqref{eq:oper-T-serie}, quindi possiamo espandere anche l'ampiezza di
@@ -1801,6 +1802,7 @@ diffusione in una serie del tipo
 Infatti sostituendo la serie~\eqref{eq:oper-T-serie}
 nell'espressione~\eqref{eq:oper-amp-diff} dell'ampiezza di diffusione abbiamo
 \begin{equation}
+  \label{eq:serie-ampiezza}
   f_{ab} = -\frac{m}{2\pi\hslash^{2}} \braket{\psi_{0,\bm{k}_{b}} | (V +
     VG_{0}(E^{+})V + VG_{0}(E^{+})VG_{0}(E^{+})V + \cdots) |
     \psi_{0,\bm{k}_{a}}}.
@@ -1834,8 +1836,9 @@ Lippmann–Schwinger~\eqref{eq:oper-lippmann-schwinger}
   G_{0}(E^{+})VG_{0}(E^{+})V\ket{\psi_{0}} + \cdots,
 \end{equation}
 oppure inserendo la serie di Born~\eqref{eq:oper-G-serie} del risolvente $G$
-nell'equazione~\eqref{eq:foobaz}.  L'ampiezza di diffusione di Born poi si
-ottiene sostituendo l'equazione precedente nella~\eqref{eq:oper-T-amp}.
+nell'equazione~\eqref{eq:foobaz}.  L'ampiezza di diffusione di
+Born~\eqref{eq:serie-ampiezza} poi si ricava sostituendo l'equazione precedente
+nella~\eqref{eq:oper-amp-diff}.
 
 \phantomsection
 \addcontentsline{toc}{section}{\refname}
